@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" href="../assets/css/include/navi_style.css">
+<link rel="stylesheet" href="../assets/css/movie/analysis.css">
+<title>Movie Analysis</title>
+</head>
+<body>
+  <div id="header_wrap">
+   <div class="header">
+      <h1 class="logo"><a href="../main/main.html"><img src="../assets/img/logo/logo2.png" style="margin-top:1px;"></a></h1>
+      <ul class="header_left">
+        <li><a href="../moive/reservepage.html">예매</a></li>
+        <li><a href="../movie/analysis.html">평점분석</a></li>
+        <li><a href="../movie/current_movie.html">상영작/예정작</a></li>
+        <li><a href="../movie/recommend.html">추천영화</a></li>
+      </ul>
+      <!--로그인 전-->
+      <!-- <ul class="header_right">
+        <li>
+          <a>
+            <i class="fa fa-map-marker-alt"></i>
+            위치 검색
+          </a>
+        </li>
+        <li class="myinfo">
+            <div class="before_login">
+            <a href="../user/login.html">
+              <i>로그인</i>
+            </a>
+            <a href="../user/register.html">
+              <i>회원가입</i>
+            </a>
+          </div>
+        </li>
+      </ul> -->
+
+      <!--로그인 후-->
+      <ul class="header_login">
+        <li>
+          <a>
+            <i class="fa fa-map-marker-alt"></i>
+            위치 검색
+          </a>
+        </li>
+        <div class="after_login">
+        <li class="myinfo2">
+            <!-- <div class="before_login2"> -->
+              <a class="aa"><i class="fas fa-user"></i>&nbsp;&nbsp;
+             윈더무비님&nbsp;&nbsp;<i class="fas fa-angle-down"></i></a>
+          <!-- </div> -->
+        </li>
+      </ul>
+      </div>
+            <!-- <a>
+               <i class="fas fa-user"></i>
+               JIIMY 고객님<i class="fas fa-angle-down"></i>
+             </a>-->
+              <ul class="dropdown-content">
+               <li><a href="#">예매내역</a></li>
+               <li><a href="#">회원정보</a></li>
+               <li><a href="#">나의 영화관</a></li>
+               <li><a href="#">1:1 문의</a></li>
+               <li><a href="#">로그아웃</a></li>
+             </ul>
+    </div>
+  </div>
+
+    <div class="analysis-title">
+        <div class="title-box">
+          <div class="analysis-box">
+            <span class="analysis-date">오늘(18.06.22)의 영화분석</span>
+          </div>
+          <div>
+            <span>현재 상영되는 영화에 대한 다양한 분석을 보여드립니다!</span>
+          </div>
+        </div>
+    </div>
+    <div class="analysis-poster">
+      <div class="poster"></div>
+      <div class="poster"></div>
+      <div class="poster"></div>
+      <div class="poster"></div>
+      <div class="poster"></div>
+    </div>
+    <div class="analysis-partition">
+      <hr width="42%" align="right">
+      <div>영화 분석</div>
+      <hr width="42%" align="left">
+    </div>
+
+    <div class="analysis-list">
+      <div class="analysis-list-top">
+        <div class="analysis-list-box">
+          <div class="box-detail">
+            <h4>어제 이 영화에 대한 관객수와 매출액은?</h4>
+          </div>
+        </div>
+        <div class="analysis-list-box"></div>
+        <div class="analysis-list-box"></div>
+      </div>
+      <div class="analysis-list-middle">
+        <div class="analysis-list-middle-box"></div>
+      </div>
+      <div class="analysis-list-bottom">
+        <div class="analysis-list-bottom-box"></div>
+        <div class="analysis-list-bottom-box"></div>
+      </div>
+      <div class="analysis-list-bottom-last">
+      </div>
+    </div>
+
+    <!-- footer -->
+    <footer>
+      <div class="footer-menu">
+        <div>
+          <h1 class="footer-logo"><a href="../main/main.html"><img src="../assets/img/logo/mini_logo.png" ></a></h1>
+        </div>
+        <ul style="padding-left: 0;">
+          <li><a href="#1">회사소개</a></li>
+          <li><a href="#2">제휴문의</a></li>
+          <li><a href="../user/agreement.html">이용약관</a></li>
+          <li><a href="../user/private_agreement.html">개인정보 처리방침</a></li>
+          <li><a href="../user/notice_list.html">고객센터</a></li>
+        </ul>
+        <p>
+          <span class="first">서울특별시 서초구 서초동 비트교육센터 윈더무비팀 &nbsp;| </span>
+          <span class="last">공동 대표 도낙원 우승미 김재선</span><br>
+          <span class="middle"> 고객센터 1234-5678(평일 09:00~18:00 / 점심 12:00~13:00 / 주말 및 공휴일 휴무)</span><br>
+          <span class="middle">사업자 등록 번호 123-123-456123</span>
+          <span class="last lotate">Copyright 영화플랫폼(주) All rights reserved</span>
+        </p>
+      </div>
+    </footer>
+
+  </div>
+  </div>
+  <script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1;
+    var yyy = today.getFullYear();
+  </script>
+</body>
+</html>

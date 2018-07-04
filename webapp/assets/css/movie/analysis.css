@@ -1,0 +1,131 @@
+body{
+  background: #f4f3f3;
+}
+.analysis-title{
+  position: relative;
+  overflow: hidden;
+  margin: 0 auto;
+  width: 100%;
+  height: 200px;
+  min-width: 1240px;
+  max-width: 2340px;
+  background: #244CBA;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 50px;
+  margin-top : 75px;
+}
+.analysis-box{
+  margin-bottom: 5px;
+}
+.title-box{
+  display: inline-block;
+  margin-top: 70px;
+}
+.analysis-date{
+  font-size: 30px;
+}
+
+.analysis-poster{
+  align-items: center;
+  display: flex;
+  width: 1240px;
+  margin: 0 auto;
+  height: 320px;
+  margin-bottom: 30px;
+}
+.analysis-poster div:first-child{
+  margin-left: 35px;
+}
+.poster{
+  float: left;
+  position: relative;
+  width: 210px;
+  height: 290px;
+  background: #7f8285;
+  margin-right: 30px;
+}
+.analysis-list-top div:first-child,
+.analysis-partition hr:first-child{
+  float: left;
+}
+.analysis-partition div{
+  float: left;
+  width: 15%;
+  font-size: 20px;
+  margin-top: -5px;
+  font-weight: 600;
+}
+.analysis-list-top div:last-child,
+.analysis-partition hr:last-child{
+  float: right;
+}
+.analysis-partition{
+  vertical-align: middle;
+  margin: 0 auto;
+  width: 1240px;
+  text-align: center;
+  margin-bottom: 100px;
+}
+
+.analysis-list{
+  width: 1240px;
+  margin: 0 auto;
+  height: 1000px;
+}
+.analysis-list-top{
+  height: 250px;
+  margin-bottom: 20px;
+}
+.analysis-list-top div:first-child{
+  margin-right: 40px;
+}
+.analysis-list-top div{
+  float: left;
+}
+
+.analysis-list-box{
+  width: 31%;
+  height: 250px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  background: #fff;
+  text-align: left;
+}
+
+.analysis-list-middle-box{
+  width: 63%;
+  background: #fff;
+  height: 420px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  float: left;
+}
+
+.analysis-list-middle-box:hover,
+.analysis-list-box:hover,
+.analysis-list-bottom-box:hover,
+.analysis-list-bottom-last:hover {
+  background: #fff;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.12), 0 10px 10px rgba(0,0,0,0.11);
+}
+.analysis-list-bottom-box{
+  float: right;
+  width: 35%;
+  height: 200px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  margin-bottom: 20px;
+}
+.analysis-list-bottom-last{
+  width: 100%;
+  height: 200px;
+  background: #fff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  clear: both;
+}
+.box-detail h4{
+  border-bottom: 1px solid #7f8285;
+}

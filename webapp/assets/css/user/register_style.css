@@ -1,0 +1,144 @@
+
+/* header */
+
+
+.login-wrap {
+    position: relative;
+    background-color: #f5f5f5;
+
+    min-height: 100%;
+    overflow: hidden;
+}
+.login-box{
+    /*position: absolute;*/
+    z-index: 20;
+    /*transform: translateX(-50%) translateY(-50%);*/
+    padding: auto;
+    width: 450px;
+    height: 650px;
+    border: 1px solid #e5e5e5;
+    margin : 60px auto;
+    overflow: hidden;
+    background-color: #ffffff;
+}
+.login-wrap a{
+    text-decoration: none;
+}
+.login-wrap div{
+    display: block;
+}
+.content{
+    height: 300px;
+    margin-bottom: 50px;
+}
+#header1,
+.container {
+    margin:0 0 0px;
+    width:430px;
+
+}
+#header1,#header1 a {
+    position: center;
+    box-sizing: border-box;
+    height: 110px;
+    padding: 10px 0 0;
+    color: #244CBA;
+}
+
+#header1 .h_logo {
+    line-height: 999px;
+    display: block;
+    overflow: hidden;
+    width: 240px;
+    height: 44px;
+    margin: 0 auto;
+    background-position: -1px -1px;
+}
+.login-wrap h1 {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 5px 0 10px auto;
+    padding: 0;
+}
+#header1.logo{
+    overflow: hidden;
+    width: 240px;
+    height: 44px;
+    margin: 0 auto;
+    background-position: -1px -1px;
+    text-align: center;
+}
+.container input{
+    width:350px;
+    height:42px;
+    line-height:46px;
+    border-radius:6px;
+    background-color:#fff;
+    border: solid 1px #e5e5e5;
+    font-size:16px;
+    letter-spacing:-0.3px;
+    font-family:'NanumSquare';
+    color:#23212a;
+    padding-left:10px;
+    box-sizing:inherit;
+    margin: 3px auto;
+    margin-bottom: -10px;
+}
+
+.container .content table tr td input:first-child{
+    margin-top: 15px;
+}
+.content p{
+    color: red;
+    margin-left: 5px;
+    font-size: 14px;
+    margin-top: 15px;
+}
+.container td{
+    align-content: center;
+    padding-bottom: 10px;
+    height: 90px;
+}
+.content table{
+    border-top:2px solid #23212a;
+    margin-top: -10px;
+
+}
+.submit input{
+    background-color: #244CBA;
+    color: white;
+    font-size: large;
+    letter-spacing: 3px;
+
+}
+.content .checking{
+    margin-top: 20px;
+    margin-bottom: -10px;
+    text-align: center;
+    color: crimson;
+}
+.submit{
+
+    height: 100px;
+}
+.content table:last-child > td{
+    vertical-align: center;
+}
+
+.content table tr:last-child td {
+    height: 80px;
+}
+
+.login-wrap label{
+    position: relative;
+    top: -3px;
+}
+
+.login-wrap input[type='checkbox']{
+    margin: auto; padding: 0;
+    width:22px; height:22px;
+    font-size: 13px;
+    color: #23212a; font-family: 'NanumSquare';
+}

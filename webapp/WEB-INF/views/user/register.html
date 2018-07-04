@@ -1,0 +1,127 @@
+<html>
+<head>
+    <title>회원가입</title>
+</head>
+<link rel="stylesheet" href="../assets/css/user/register_style.css">
+<link rel="stylesheet" href="../assets/css/include/navi_style.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<body>
+  <!-- navigation -->
+  <div class="header">
+    <h1 class="logo"><a href="../main/main.html"><img src="../assets/img/logo/logo_main.png" ></a></h1>
+    <ul class="header_left">
+      <li><a href="../movie/reservepage.html">예매</a></li>
+      <li><a href="../movie/analysis.html">평점분석</a></li>
+      <li><a href="../movie/current_movie.html">상영작/예정작</a></li>
+      <li><a href="../movie/recommend.html">추천영화</a></li>
+    </ul>
+    <ul class="header_right">
+      <li>
+        <a>
+          <i class="fa fa-map-marker-alt"></i>
+          위치 검색
+        </a>
+      </li>
+      <li class="myinfo">
+         <div class="before_login">
+          <a href="../user/login.html">
+            <i>로그인</i>
+          </a>
+          <a href="../user/register.html" class="on">
+            <i>회원가입</i>
+          </a>
+        </div>
+           <!-- <a>
+             <i class="fas fa-user"></i>
+             JIIMY 고객님<i class="fas fa-angle-down"></i>
+           </a>
+           <ul class="dropdown-content">
+             <li><a href="#">예매내역</a></li>
+             <li><a href="#">회원정보</a></li>
+             <li><a href="#">나의 영화관</a></li>
+             <li><a href="#">1:1 문의</a></li>
+             <li><a href="#">로그아웃</a></li>
+           </ul> -->
+      </li>
+    </ul>
+  </div>
+
+
+<div class="login-wrap" align="center">
+    <div class="login-box">
+        <div id="header1">
+            <h1>
+                <p href="#" class="logo">회원가입</p>
+            </h1>
+        </div>
+        <div class="container">
+            <div class="content">
+                <table>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="이메일 주소" maxlength="200" name="" id="" required>
+                            <p class="email-text">아이디는 10~15자의 영문/숫자를 조합하여 입력하세요.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="비밀번호" maxlength="20" name="" id="" required>
+                            <p class="pw-text">비밀번호를 입력해주세요.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="비밀번호 확인" maxlength="20" name="" id="" required>
+                            <p class="pw-check-text">비밀번호를 확인하세요.</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="text" placeholder="이름" maxlength="20" name="" id="" required>
+                            <p class="user-name-text">이름은 한글 10자 이내, 영문 30자 이내 가능</p>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                           <input type="checkbox" class="regist-agree" id="agree" name=""value="1" required>
+                            <label for="agree">
+                                서비스 이용약관에 동의합니다.
+                            </label>
+                        </td>
+                    </tr>
+
+                </table>
+                <div class="submit">
+                    <input type="submit" value="회원가입">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- footer -->
+<footer>
+  <div class="footer-menu">
+    <div>
+      <h1 class="footer-logo"><a href="../main/main.html"><img src="../assets/img/logo/logo_main.png" ></a></h1>
+    </div>
+    <ul style="padding-left: 0;">
+      <li><a href="#1">회사소개</a></li>
+      <li><a href="#2">제휴문의</a></li>
+      <li><a href="../user/agreement.html">이용약관</a></li>
+      <li><a href="../user/private_agreement.html">개인정보 처리방침</a></li>
+      <li><a href="../user/notice_list.html">고객 센터</a></li>
+    </ul>
+    <p>
+      <span class="first">서울특별시 서초구 서초동 비트교육센터 윈더무비팀</span>
+      <span class="last">공동 대표 도낙원 우승미 김재선</span><br>
+      <span class="middle"> 고객센터 1234-5678(평일 09:00~18:00 / 점심 12:00~13:00 / 주말 및 공휴일 휴무)</span><br>
+      <span class="middle">사업자 등록 번호 123-123-456123</span>
+      <span class="last lotate">Copyright 영화플랫폼(주) All rights reserved</span>
+    </p>
+  </div>
+</footer>
+</body>
+</html>

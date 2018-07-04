@@ -8,6 +8,6 @@ public class HelloWorld {
 	@RequestMapping( "/hello")
     public String helloController(){
         System.out.println("/hellospring/hello");
-        return "/WEB-INF/views/main.jsp";
+        return "movie/analysis";
     }
 }

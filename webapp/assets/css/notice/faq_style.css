@@ -1,0 +1,178 @@
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+html, body{
+  font-family: 'NanumSquare', sans-serif;
+  margin:0;
+  padding:0;
+}
+input[type=text]{
+  padding: 0 20px;
+  margin: 0;
+  cursor: text;
+  text-rendering: auto;
+  letter-spacing: normal;
+  word-spacing: normal;
+  text-transform: none;
+  text-indent: 0px;
+  text-shadow: none;
+  display: inline-block;
+  text-align: start;
+  font: 400 13.3333px Arial;
+}
+.cs-top{
+  margin-bottom: 40px;
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  padding: 40px 169px;
+}
+
+.cs-top-input,
+.cs-top-text{
+  padding-bottom: 24px;
+}
+
+.cs-top-text{
+  font-size: 26px;
+  text-align: center;
+  color: #23212a;
+}
+.cs-top-input input[type=text]{
+  float: left;
+  width: 440px;
+  height: 46px;
+  padding-left: 20px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #e5e5e5;
+  color: #23212a;
+}
+
+.cs-search-btn{
+  float: right;
+  display: inline-block;
+  width: 119px;
+  height: 46px;
+  border-radius: 100px;
+  background-color: #244CBA;
+  color: #fff;
+}
+p{
+  font-style: normal;
+  display: block;
+}
+
+.cs-top-input:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.faq-top{
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+}
+
+.faq-top-list{
+  padding-left: 20px;
+}
+
+.faq-top-tit,
+.faq-top-list{
+  display: table-cell;
+  vertical-align: top;
+}
+
+.faq-top-tit{
+  width: 115px;
+  font-size: 18px;
+  text-align: left;
+  color: #23212a;
+}
+
+.faq-top-list li{
+  display: inline-block;
+  margin-left: 20px;
+  border-bottom: 1px solid #888;
+  margin-bottom: 5px;
+}
+
+.faq-top-list a{
+  font-size: 14px;
+  color: #666;
+}
+
+.cs-2depth{
+  padding-bottom: 40px;
+}
+
+.cs-2depth li{
+  float: left;
+  margin-right: 12px;
+  padding-right: 12px;
+  border-right: 1px solid #e5e5e5;
+}
+button{
+  border: 0 none;
+  cursor: pointer;
+}
+
+.cs-2depth li.cs-2depth-on button{
+  color: #244CBA;
+}
+
+.cs-2depth button{
+  font-size: 20px;
+  color: #666;
+}
+.cs-2depth button{
+  font-size: 20px;
+}
+
+button{
+  margin: 0;
+  background: transparent;
+  border: 0 none;
+  cursor: pointer;
+}
+
+.cs-table{
+  border-top: 2px solid #23212a;
+}
+
+.cs-tit-wrap{
+  display: table;
+  width: 100%;
+  border-bottom: 1px solid #e5e5e5;
+  background: url(../img/down-arrow.png)no-repeat 100%;
+}
+.cs-tit,
+.cs-type{
+  display: table-cell;
+  vertical-align: top;
+  font-size: 15px;
+  text-align: left;
+}
+span{
+  font-style: normal;
+}
+.cs-tit{
+  padding: 27px 0;
+  color: #666;
+  padding-right: 40px;
+}
+.cs-type{
+  padding: 27px 0;
+  color: #23212a;
+  padding-left: 27px;
+  width: 187px;
+}
+
+.cs-desc{
+  display: none;
+  background-color: #f8f8f8;
+  padding: 25px 56px 25px 188px;
+  font-size: 15px;
+  line-height: 1.47em;
+  color: #666;
+  border-bottom: 1px solid #e5e5e5;
+}

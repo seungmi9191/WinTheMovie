@@ -1,0 +1,85 @@
+.cs-2depth{
+  padding-bottom: 20px;
+}
+.cs-2depth li{
+  float: left;
+  margin-right: 12px;
+  padding-right: 12px;
+  border-right: 1px solid #e5e5e5;
+}
+.cs-2depth button{
+  font-size: 20px;
+  color: #666;
+
+}
+.cs-2depth:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cs-2depth li.cs-2depth-on a{
+  color: #244CBA;
+}
+.cs-2depth a{
+  font-size: 20px;
+  color: #666;
+}
+.wrap a, a:link{
+  text-decoration: none;
+}
+.wrap a{
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.policy-tit{
+  font-size: 24px;
+  color: #23212a;
+  margin-bottom: 19px;
+  margin-top: 30px;
+}
+.policy-tit>small{
+  font-size: 14px;
+  color: #666;
+}
+.wrap h3{
+  display: block;
+  font-weight: bold;
+}
+.print-btn{
+  float: right;
+  font-size: 16px;
+  color: #244CBA;
+}
+.wrap img{
+  vertical-align: middle;
+  border:0 none;
+  padding: 0;
+  margin: 0;
+}
+.policy-desc{
+  font-size: 14px;
+  line-height: 1.71em;
+  color: #23212a;
+  border-radius: 6px;
+  background-color: #f8f8f8;
+  padding: 28px 40px;
+}
+.wrap li{
+  display: list-list-item;
+}
+
+.wrap ol{
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: block;
+}
+.policy-desc p{
+  margin: 24px 0;
+}
+.wrap p{
+  font-style: normal;
+}

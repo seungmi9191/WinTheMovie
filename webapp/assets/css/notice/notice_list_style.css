@@ -1,0 +1,144 @@
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+html, body{
+  font-family: 'NanumSquare', sans-serif;
+  margin:0;
+  padding:0;
+}
+.cs-2depth{
+  padding-bottom: 20px;
+}
+.cs-2depth li{
+  float: left;
+  margin-right: 12px;
+  padding-right: 12px;
+  border-right: 1px solid #e5e5e5;
+}
+.cs-2depth button{
+  font-size: 20px;
+  color: #666;
+
+}
+.cs-2depth:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+.cs-table02-wrap{
+  position: relative;
+  padding-bottom: 40px;
+}
+.noti-search{
+  width: 340px;
+  position: absolute;
+  right: 0;
+  top: -48px;
+}
+.noti-search input[type=text]{
+  float: left;
+  width: 280px;
+  height: 34px;
+  border-radius: 6px;
+  background-color: #fff;
+  border: 1px solid #e0e0e0;
+  padding-left: 20px;
+  color: #23212a;
+  padding: 0 20px;
+  margin: 0;
+}
+.noti-search-btn{
+  float: right;
+  width: 54px;
+  height: 34px;
+  border-radius: 28px;
+  background-color: #244CBA;
+  font-size: 14px;
+  letter-spacing: -.2px;
+  color: #fff;
+}
+.noti-search:after{
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.cs-table-02{
+  table-layout: fixed;
+  width: 100%;
+  border-top: 2px solid #24212a;
+}
+.cs-table-02 thead tr{
+  border-bottom: 1px solid #23212a;
+}
+
+.cs-table-02 th{
+  text-align: center;
+  font-weight: 400;
+  font-size: 15px;
+  color: #23212a;
+  padding: 15px 0;
+  border: 1px solid #e0e0e0;
+}
+.cs-table-02 tbody tr{
+  border-bottom: 1px solid #e5e5e5;
+}
+.cs-table-02 tbody td{
+  padding: 15px 0;
+  margin-right: 10px;
+  font-size: 14px;
+  padding-left: 20px;
+  cursor: pointer;
+}
+.noti-top{
+  background-color: #f8f8f8;
+}
+.noti-date{
+  text-align: center;
+  font-size: 14px;
+  color: #23212a;
+}
+p{
+  font-style: normal;
+  display: 0;
+}
+caption{
+  overflow: hidden;
+  visibility: hidden;
+  font-size: 0;
+  line-height: 0;
+  height: 0;
+  width: 0;
+  text-indent: -999em;
+}
+div{
+  display: block;
+}
+colgroup{
+  display: table-column-group;
+}
+
+table{
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+thead{
+  display: table-header-group;
+  vertical-align: middle;
+  border-spacing: inherit;
+}
+tr{
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+td{
+  border: 0 none;
+  margin: 0;
+  display: table-cell;
+  vertical-align: inherit;
+}
+tbody{
+  display: table-row-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
