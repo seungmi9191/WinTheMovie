@@ -16,7 +16,7 @@
     <div class="analysis-title">
         <div class="title-box">
           <div class="analysis-box">
-            <span class="analysis-date">오늘(18.06.22)의 영화분석</span>
+            <span class="analysis-date">오늘(<span id="today"></span>)의 영화분석</span>
           </div>
           <div>
             <span>현재 상영되는 영화에 대한 다양한 분석을 보여드립니다!</span>
@@ -56,16 +56,16 @@
       <div class="analysis-list-bottom-last">
       </div>
     </div>
+    
+    <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
-     <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-
-  </div>
-  </div>
   <script type="text/javascript">
     var today = new Date();
-    var dd = today.getDate();
-    var mm = today.getMonth()+1;
-    var yyy = today.getFullYear();
+    var day = today.getDate();
+    var month = today.getMonth()+1;
+    var year = today.getFullYear();
+    
+    
   </script>
 </body>
 </html>

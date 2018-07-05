@@ -5,9 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class HelloWorld {
-	@RequestMapping( "/hello")
+	@RequestMapping( "/main")
     public String helloController(){
-        System.out.println("/hellospring/hello");
-        return "movie/analysis";
+        return "main/main";
     }
 }
