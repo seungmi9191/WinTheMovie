@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/include/navi_style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movie/analysis.css">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <title>Movie Analysis</title>
 </head>
 <body>
