@@ -383,7 +383,7 @@
         </div>
         <div class="col-i-4">
           <span> 이 영화에 대해 더 알고싶다면? </span>
-          <button type="button" class="btn-ans btn-view" onclick="#">
+          <button type="button" class="btn-ans btn-view">
             영화 분석 더 알아보기</button>
         </div>
 
@@ -426,14 +426,14 @@
         <!--동영상/스틸컷-->
         <div class="popup-box row4">
           <h3>
-              <a class="btn_steelCut active" onclick="#" href="http://www.naver.com" title="스틸컷 보기">
+              <a class="btn_steelCut active" a href="http://www.naver.com" title="스틸컷 보기">
                 스틸컷
               <span class="stillCount">7</span>
               </a>
 
               <span class="line"> &nbsp;&nbsp;|&nbsp;&nbsp; </span>
 
-              <a class="btn_play" onclick="#" href="http://www.naver.com" target="_blank" title="동영상 보기">
+              <a class="btn_play" href="http://www.naver.com" target="_blank" title="동영상 보기">
                 동영상
               <span class="trailerCount">3</span>
               </a>

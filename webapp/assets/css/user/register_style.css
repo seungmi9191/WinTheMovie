@@ -1,51 +1,71 @@
 
-/* header */
 
-
-.login-wrap {
-    position: relative;
-    background-color: #f5f5f5;
-
-    min-height: 100%;
-    overflow: hidden;
+.register_wrap {
+  position: relative;
+  padding: 0;
+  background-color: #f5f5f5;
+  margin-top: 0px;
+  min-height: 75%;
+  overflow: hidden;
+  min-width: 1240px;
 }
-.login-box{
+
+.register_wrap label{
+    position: relative;
+    top: -6px;
+    font-size: 15px;
+}
+
+.register_wrap input[type='checkbox']{
+    margin: auto;
+    padding: 0;
+    width: 22px;
+    height:20px;
+    font-size: 16px;
+    color: #23212a; font-family: 'NanumSquare';
+}
+
+.register_wrap h1 {
+    text-align: center;
+    display: block;
+    font-size: 2em;
+    font-weight: bold;
+    margin: 5px 0 10px auto;
+    padding: 0;
+}
+
+.register_box {
     /*position: absolute;*/
     z-index: 20;
     /*transform: translateX(-50%) translateY(-50%);*/
-    padding: auto;
+    padding: 28px 0 10px 0;
     width: 450px;
     height: 650px;
     border: 1px solid #e5e5e5;
-    margin : 60px auto;
+    margin : 150px auto;
     overflow: hidden;
     background-color: #ffffff;
 }
-.login-wrap a{
-    text-decoration: none;
-}
-.login-wrap div{
+
+.register_wrap div{
     display: block;
 }
-.content{
-    height: 300px;
+
+.register_content {
+    height: 50px;
     margin-bottom: 50px;
 }
-#header1,
-.container {
-    margin:0 0 0px;
-    width:430px;
 
-}
-#header1,#header1 a {
-    position: center;
-    box-sizing: border-box;
-    height: 110px;
-    padding: 10px 0 0;
+.register_header,
+.registe_container {
+    /* margin:0 0 0px; */
+    width: 430px;
     color: #244CBA;
+    height: 110px;
+    padding: 5px 0 0;
 }
 
-#header1 .h_logo {
+.register_header .h_logo {
     line-height: 999px;
     display: block;
     overflow: hidden;
@@ -54,15 +74,7 @@
     margin: 0 auto;
     background-position: -1px -1px;
 }
-.login-wrap h1 {
-    text-align: center;
-    display: block;
-    font-size: 2em;
-    font-weight: bold;
-    margin: 5px 0 10px auto;
-    padding: 0;
-}
-#header1.logo{
+.register_header.logo{
     overflow: hidden;
     width: 240px;
     height: 44px;
@@ -70,75 +82,73 @@
     background-position: -1px -1px;
     text-align: center;
 }
-.container input{
+.register_container input{
     width:350px;
     height:42px;
     line-height:46px;
-    border-radius:6px;
+    /* border-radius:6px; */
     background-color:#fff;
     border: solid 1px #e5e5e5;
-    font-size:16px;
+    font-size: 15px;
     letter-spacing:-0.3px;
-    font-family:'NanumSquare';
+    font-family: 'NanumSquare', sans-serif;
     color:#23212a;
     padding-left:10px;
+    padding-right:10px;
     box-sizing:inherit;
     margin: 3px auto;
     margin-bottom: -10px;
 }
 
-.container .content table tr td input:first-child{
+.register_container .register_content table tr td input:first-child{
     margin-top: 15px;
 }
-.content p{
+.register_content p{
     color: red;
     margin-left: 5px;
     font-size: 14px;
     margin-top: 15px;
 }
-.container td{
+.register_container td{
     align-content: center;
-    padding-bottom: 10px;
     height: 90px;
 }
-.content table{
-    border-top:2px solid #23212a;
-    margin-top: -10px;
+.register_content table{
+    /* border-top:1px solid #23212a; */
+    margin-top: -20px;
 
 }
-.submit input{
+.register_submit input{
     background-color: #244CBA;
+    border-color: #244CBA;
     color: white;
-    font-size: large;
-    letter-spacing: 3px;
-
+    font-size: 16px;
+    letter-spacing: .3px;
+    font-family: 'NanumSquare', sans-serif;
+    height: 45px;
+    cursor: pointer;
 }
-.content .checking{
+
+.register_submit input:hover {
+    color: #fff;
+  	background-color: #063d8a;
+  	border-color: #063d8a;
+}
+
+.register_content .checking{
     margin-top: 20px;
     margin-bottom: -10px;
     text-align: center;
     color: crimson;
 }
-.submit{
-
-    height: 100px;
+.sregister_submit {
+    margin: 7px 0 0 0 ;
 }
-.content table:last-child > td{
+
+.register_content table:last-child > td{
     vertical-align: center;
 }
 
-.content table tr:last-child td {
-    height: 80px;
-}
-
-.login-wrap label{
-    position: relative;
-    top: -3px;
-}
-
-.login-wrap input[type='checkbox']{
-    margin: auto; padding: 0;
-    width:22px; height:22px;
-    font-size: 13px;
-    color: #23212a; font-family: 'NanumSquare';
+.register_content table tr:last-child td {
+    height: 60px;
 }
