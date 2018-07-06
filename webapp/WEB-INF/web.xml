@@ -45,12 +45,18 @@
 	</filter-mapping>
 
 	<!-- Context Listener 등록 -->
-	<listener>
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
+     <listener>
+          <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+     </listener>
+     <context-param>
+           <param-name>contextConfigLocation</param-name>
+          <param-value>/WEB-INF/applicationContext.xml</param-value>
+     </context-param>
+     
+     <resource-ref>
+           <res-ref-name>jdbc/oracle</res-ref-name>
+           <res-type>javax.sql.DataSource</res-type>
+           <res-auth>Container</res-auth>
+      </resource-ref>
 
-	<context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/applicationContext.xml</param-value>
-	</context-param>
 </web-app>

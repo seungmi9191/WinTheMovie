@@ -4,12 +4,12 @@
 <!-- navigation -->
 <div id="header_wrap">
  <div class="header">
-    <h1 class="logo"><a href="../main/main.html"><img src="${pageContext.request.contextPath}/assets/img/logo/logo2.png" style="margin-top:1px;"></a></h1>
+    <h1 class="logo"><a href="${pageContext.request.contextPath}/main"><img src="${pageContext.request.contextPath}/assets/img/logo/logo2.png" style="margin-top:1px;"></a></h1>
     <ul class="header_left">
-      <li><a href="../moive/reservepage.html">예매</a></li>
-      <li><a href="../movie/analysis.html">평점분석</a></li>
-      <li><a href="../movie/current_movie.html">상영작/예정작</a></li>
-      <li><a href="../movie/recommend.html">추천영화</a></li>
+      <li><a href="${pageContext.request.contextPath}/reserve">예매</a></li>
+      <li><a href="${pageContext.request.contextPath}/">평점분석</a></li>
+      <li><a href="${pageContext.request.contextPath}/">상영작/예정작</a></li>
+      <li><a href="${pageContext.request.contextPath}/">추천영화</a></li>
     </ul>
     <!--로그인 전-->
     <!-- <ul class="header_right">
