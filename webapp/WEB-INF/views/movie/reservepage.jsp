@@ -19,23 +19,26 @@
  	<div id="reserve-wrap" class="wrap">
     <div id="container">
         <div class="search-box" id="">
+        <form action="${pageContext.request.contextPath}/movie/search" id="search-form" method="get">
             <span class="search-window">
                 <input class="input-text" id="search" name="search" type="text" title="검색" placeholder="자주가는 영화관 지점을 입력해주세요. ex) CGV 강남점">
             </span>
             <button id="search-btn" type="submit" title="검색버튼" tabindex="3" class="sch-btn">
                 <i class="fas fa-search "></i>
             </button>
+        </form>
         </div>
 
         <div class="total-wrap" id="total-wrap">
             <div class="map-container" id="map-container">
                 <div class="map-section-wrap" id="map-section-wrap">
                     <div class="map-section" id="naver_map">
-                    	<input type="hidden" value=""> 
                     </div>
                 </div>
             </div>
-
+            <input type="text" id="theaterxgps" class="theaterxgps" value="${requestScope.theatervo.theaterxgps}"> 
+            <input type="text" id="theaterygps" class="theaterygps" value="${requestScope.theatervo.theaterygps}"> 
+            
             <div class="movie-info-wrap" id="movie-info-wrap">
                 <a href="">
                     <div class="movie-info" id="movie-info">
@@ -64,35 +67,23 @@
 <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 <script type="text/javascript">
-	$("[type=submit]").on("click",function(){
-		var $search = $("[name=search]").val();
-		//검색 구현
-		console.log($search);
-		
-		$.ajax({
-			url : "${pageContext.request.contextPath}/movie/search",
-			type : "post",
-			dataType : "json",
-			data :{
-				search : $search
-			},
-			success : function(){
-				
-			}
-		});
-	});
-	
+	var $xgps = $(".theaterxgps").val(),
+		$ygps = $('.theaterygps').val();
+	console.log($xgps)
+	console.log($ygps)
+	if($xgps == "" && $ygps == ""){
+		$xgps = 37.3595704;
+		$ygps = 127.105399;
+	}	
 	var naver_map = new naver.maps.Map('naver_map', {
-		  center: new naver.maps.LatLng(37.3595704, 127.105399),
-		  zoom: 10
+		center: new naver.maps.LatLng($xgps, $ygps),
+		zoom: 10
 	});
 	var marker = new naver.maps.Marker({
-		  position: new naver.maps.LatLng(37.3595704, 127.105399),
+		  position: new naver.maps.LatLng($xgps, $ygps),
 		  map: naver_map
 	});
 	
-	
-
 </script>
 </body>
 </html>
