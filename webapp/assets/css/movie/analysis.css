@@ -49,6 +49,17 @@ body{
 .analysis-partition hr:first-child{
   float: left;
 }
+
+.panel-heading {
+  font-family : 'NanumSquare', sans-serif;
+  font-size: 14px;
+  color : #282828;
+  font-weight: 700;
+  padding: 10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+}
 .analysis-partition div{
   float: left;
   width: 15%;

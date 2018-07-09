@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page import="kr.or.kobis.kobisopenapi.consumer.rest.KobisOpenAPIRestService" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -273,24 +273,16 @@
 			</div>
 			<div class="officeCont">
 				<ol class="officeRk">
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
-					<li><a href="" class="tit"> <em>1.</em> <span
-							class="grade_15">15</span> <span class="myTit">탐정: 리턴즈</span>
-					</a> <span class="memRk">예매율<em>23.9%</em></span></li>
+				<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+					<li>
+						<a href="" class="tit"> 
+							<em>${boxoffice.rank}</em> 
+							<span class="grade_15">15</span> 
+							<span class="myTit">${boxoffice.movieNm}</span>
+						</a> 
+						<span class="memRk">예매율<em>${boxoffice.saleShare}</em></span>
+					</li>
+				</c:forEach>
 				</ol>
 			</div>
 		</div>
