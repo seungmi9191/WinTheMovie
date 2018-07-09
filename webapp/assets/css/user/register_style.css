@@ -25,6 +25,10 @@
     color: #23212a; font-family: 'NanumSquare';
 }
 
+input[type='password']{
+    color: #23212a;
+}
+
 .register_wrap h1 {
     text-align: center;
     display: block;
