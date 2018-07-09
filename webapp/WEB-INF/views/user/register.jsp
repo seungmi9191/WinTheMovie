@@ -27,7 +27,7 @@
                     <table>
                         <tr>
                             <td>
-                                <input type="text" onblur="return check_email()" placeholder="이메일 주소" maxlength="200"
+                                <input type="text" onblur="return check_email();return check_email_db()" placeholder="이메일 주소" maxlength="200"
                                        name="email" id="email"
                                        required>
                                 <p class="email-text"></p>
@@ -36,7 +36,7 @@
                         <tr>
                             <td>
                                 <input type="password" onblur="return check_pw()" placeholder="비밀번호" maxlength="20"
-                                       name="userpw" id="userpw" style="color: #23212a" required>
+                                       name="userpw" id="userpw" style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif; letter-spacing: 1px;"  required>
                                 <p class="pw-text"></p>
                             </td>
                         </tr>
@@ -97,35 +97,62 @@
         }
         alert("mail_check="+mail_check)
     }
+
+    function check_email_db(){
+        var email=$("#email").val();
+        console.log(email)
+        $.ajax({
+            url:"/winthemovie/user/emailcheck",
+            type:"post",
+            data:{email:email},
+            dataType: "json",
+            success: function(result){
+                if(result==true) {
+                    console.log(email);
+                    $(".email-text").text("");
+                }else{
+                    console.log(email);
+                    $(".email-text").text("이미 사용중인 이메일 입니다.");
+                }
+            }
+            ,error: function (XHR, status, error) {
+                console.error(status+" : "+ error)
+
+            }
+        })
+    }
+
     function check_email() {
 
         var email = document.f.email.value;
         var regex = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
         if (regex.test(email) === false) {
-            $(".email-text").text("hello");
+            $(".email-text").text("올바른 이메일 주소를 입력해주세요.");
+
             mail_check = 1;
             return false;
         }
         if (!(regex.test(email) === false)) {
-            $(".email-text").text("");
+            check_email_db();
+            // $(".email-text").text("");
             mail_check = 0;
             return false;
         }
     }
     function check_pw() {
-        if (document.f.pw.value.length < 4 || document.f.pw.value.length > 12) {
+        if (document.f.userpw.value.length < 4 || document.f.userpw.value.length > 12) {
             $(".pw-text").text("비밀번호는 4자 이상 12자 이하로 생성하세요");
             pw_check = 1;
             return false;
         }
-        if (!(document.f.pw.value.length < 4 || document.f.pw.value.length > 12)) {
+        if (!(document.f.userpw.value.length < 4 || document.f.userpw.value.length > 12)) {
             $(".pw-text").text("");
             pw_check = 0;
             return false;
         }
     }
     function check_pw_re() {
-        var pw = document.f.pw.value;
+        var pw = document.f.userpw.value;
         var pw_check = document.f.confirm_pw.value;
 
         if (pw == pw_check) {
@@ -154,7 +181,31 @@
             return false;
         }
     }
+
+    // $("#email").on("onblur",function(checkemail){
+    //     var email=$("#email").val();
+    //     console.log(email)
+    //     $.ajax({
+    //         url:"/winthemovie/user/emailcheck",
+    //         type:"post",
+    //         data:{email:email},
+    //         dataType: "json",
+    //         success: function(result){
+    //             if(result==true) {
+    //                 $(".email-text").text("");
+    //             }else{
+    //                 $(".email-text").text("이미 사용중인 이메일 입니다.");
+    //             }
+    //         }
+    //         ,error: function (XHR, status, error) {
+    //             console.error(status+" : "+ error)
+    //
+    //         }
+    //     })
+    // })
 </script>
+
+
 </body>
 
 </html>
