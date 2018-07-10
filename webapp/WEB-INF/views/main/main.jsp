@@ -267,12 +267,12 @@
 			<div class="officeTop">
 				<h2>BOX OFFICE</h2>
 				<ul class="officeTab">
-					<li class="on"><a href="#1">예매순</a></li>
-					<li><a href="#2">평점순</a></li>
+					<li class="sale on"><a href="#1">예매순</a></li>
+					<li class="star "><a href="#2">평점순</a></li>
 				</ul>
 			</div>
 			<div class="officeCont">
-				<ol class="officeRk">
+				<ol class="officeRk salecontent">
 				<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
 					<li>
 						<a href="" class="tit"> 
@@ -280,7 +280,20 @@
 							<span class="grade_15">15</span> 
 							<span class="myTit">${boxoffice.movieNm}</span>
 						</a> 
-						<span class="memRk">예매율<em>${boxoffice.saleShare}</em></span>
+						<span class="memRk">예매율<em>${boxoffice.salesShare} %</em></span>
+					</li>
+				</c:forEach>
+				</ol>
+				
+				<ol class="officeRk starcontent">
+				<c:forEach items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+					<li>
+						<a href="" class="tit"> 
+							<em>${boxoffice.rank}</em> 
+							<span class="grade_15">15</span> 
+							<span class="myTit">${boxoffice.movieNm}</span>
+						</a> 
+						<span class="memRk">예매율<em>${boxoffice.salesShare} </em></span>
 					</li>
 				</c:forEach>
 				</ol>
@@ -370,10 +383,8 @@
 									<li><strong>상영관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong> 6관
 										8층</li>
 								</ul>
-								<button type="button" class="btn-movie btn-reservation"
-									onclick="#">영화관 위치보기</button>
-								<button type="button" class="btn-ticket btn-reservation"
-									onclick="#">예매하기</button>
+								<button type="button" class="btn-movie btn-reservation" onclick="">영화관 위치보기</button>
+								<button type="button" class="btn-ticket btn-reservation" onclick="">예매하기</button>
 							</div>
 						</div>
 						<!--기본정보 끝-->
@@ -645,6 +656,21 @@
 		<!--body 끝-->
 </body>
 <script type="text/javascript">
+	// Box Office
+	$(document).ready(function(){
+		$('.sale').on("click", function(){
+			$('.sale').addClass("on");
+			$('.salecontent').show();
+			$('.star').removeClass("on");
+			$('.starcontent').hide();
+		});
+		$('.star').on("click", function(){
+			$('.star').addClass("on");
+			$('.starcontent').show();
+			$('.sale').removeClass("on");
+			$('.salecontent').hide();
+		});
+	});
     // slick library
     $('.swiper-slide').slick({
         dots: false,
