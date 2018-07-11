@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user/register_style.css">
+
+
     <title>Insert title here</title>
 </head>
 <body>
@@ -22,7 +24,7 @@
             </h1>
         </div>
         <div class="register_container">
-            <form action="/winthemovie/user/joinbyemail" method="post" name="f" onsubmit="return check()"class="register-submit" id="register-submit">
+            <form action="${pageContext.request.contextPath}/user/joinbyemail" method="post" name="f" onsubmit="return check()"class="register-submit" id="register-submit">
                 <div class="register_content">
                     <table>
                         <tr>
@@ -44,7 +46,7 @@
                             <td>
                                 <input type="password" onblur="return check_pw_re()" placeholder="비밀번호 확인" maxlength="20"
                                        name="confirm_pw"
-                                       id="confirm_pw" required>
+                                       id="confirm_pw" style="font-family: 'DejaVu Sans', Arial, Helvetica, sans-serif; letter-spacing: 1px;"   required>
                                 <p class="pw-check-text"></p>
                             </td>
                         </tr>
@@ -82,9 +84,9 @@
     var pw_check = 0;
     var pw_re_check = 0;
     var name_check = 0;
-
+    var mail_flag=0;
     function check() {
-        if (mail_check == 1 || pw_check == 1 || pw_re_check==1||name_check == 1) {
+        if (mail_check == 1 || pw_check == 1 || pw_re_check==1||name_check == 1||mail_flag==0) {
 
             alert("회원가입폼을 확인해주세요")
 
@@ -95,24 +97,26 @@
 
             return false;
         }
-        alert("mail_check="+mail_check)
+        alert("회원가입이 완료되었습니다.");
     }
 
     function check_email_db(){
         var email=$("#email").val();
+
         console.log(email)
         $.ajax({
-            url:"/winthemovie/user/emailcheck",
+            url:"${pageContext.request.contextPath}/user/emailcheck",
             type:"post",
             data:{email:email},
             dataType: "json",
             success: function(result){
                 if(result==true) {
                     console.log(email);
-                    $(".email-text").text("");
+                    mail_flag=1;
+                    $(".email-text").text("사용 가능한 이메일입니다.");
                 }else{
                     console.log(email);
-                    $(".email-text").text("이미 사용중인 이메일 입니다.");
+                    $(".email-text").text("이미 사용중인 이메일입니다.");
                 }
             }
             ,error: function (XHR, status, error) {

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="users">
+
+    <insert id="joinbyemail" parameterType="kr.co.winthemovie.vo.UserVo">
+        <![CDATA[
+          INSERT INTO MEMBER
+            values(SEQ_member_NO.nextval,
+            #{email},
+             #{userpw},
+             #{username},
+             '111-222-333',
+             CURRENT_DATE,
+             '1',
+             '1',
+             '111')
+        ]]>
+    </insert>
+
+    <insert id="joinbynaver" parameterType="kr.co.winthemovie.vo.UserVo">
+        <![CDATA[
+          INSERT INTO MEMBER
+            values(SEQ_member_NO.nextval,
+            #{email},
+             NULL ,
+             #{username},
+             '111-222-333',
+             CURRENT_DATE,
+             '1',
+             '1',
+             '111')
+        ]]>
+    </insert>
+
+    <select id="emailcheck" parameterType="String" resultType="String">
+        <![CDATA[
+          select email from MEMBER
+          where EMAIL = #{email}
+        ]]>
+    </select>
+
+    <select id="login" parameterType="kr.co.winthemovie.vo.UserVo" resultType="kr.co.winthemovie.vo.UserVo">
+        <![CDATA[
+          SELECT * from MEMBER WHERE EMAIL=#{email}
+        ]]>
+    </select>
+
+    <select id="loginbynaver" parameterType="kr.co.winthemovie.vo.UserVo" resultType="kr.co.winthemovie.vo.UserVo">
+        <![CDATA[
+          SELECT * from MEMBER WHERE EMAIL=#{email}
+        ]]>
+    </select>
+</mapper>

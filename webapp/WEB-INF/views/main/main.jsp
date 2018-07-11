@@ -628,6 +628,7 @@
       </div>
     </div>
   </div> <!--body 끝-->
+  </div>
 </body>
 <script type="text/javascript">
     // slick library
