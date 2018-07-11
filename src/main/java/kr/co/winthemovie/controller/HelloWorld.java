@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @Controller
 public class HelloWorld {
+  
     @RequestMapping("/main")
     public String helloController() {
         System.out.println("/hellospring/hello");

@@ -19,7 +19,8 @@
 - Oracle
 
 ## 사용된 API
-- 네이버 지도 / 네이버 로그인(네아로)
+- 네이버 지도 / 네이버 로그인(네아로) (https://developers.naver.com/main/)
+- 영화진흥위원회 API(http://www.kobis.or.kr/kobisopenapi/)
 
 ## 프로젝트 업데이트
 - 기획 (2018/06/01~2018/06/15)

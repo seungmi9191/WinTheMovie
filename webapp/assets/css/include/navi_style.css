@@ -280,7 +280,7 @@ html, body{
 footer{
   font-family: 'NanumSquare', sans-serif;
   padding-top: 10px;
-  padding-bottom: 15px;
+ /*  padding-bottom: 15px; */
   min-width: 1240px;
   background: #666;
   height: 235px;

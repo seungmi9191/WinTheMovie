@@ -9,7 +9,7 @@ html, body{
     padding: 0;
     background-color: #f5f5f5;
     margin-top: 0px;
-    min-height: 75%;
+    min-height: auto;
     overflow: hidden;
     min-width: 1240px;
 }
