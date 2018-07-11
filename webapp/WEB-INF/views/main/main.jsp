@@ -5,12 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet"
-	href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-	integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
-	crossorigin="anonymous">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/assets/css/include/navi_style.css">
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main/main_style.css">
 <link rel="stylesheet"
@@ -19,17 +14,13 @@
 	href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/modal/movie_detail_style.css">
-
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script type="text/javascript"
-	src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
 <title>Main Page</title>
 </head>
 
 <body>
-
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 	<!-- main banner -->
@@ -699,26 +690,6 @@
         }]
     });
 
-    // navigation javascript
-      $(function(){
-        $(document).mouseup(function(e) {
-          if ($(e.target).parents('.header_right').length == 0) {
-            $('.header_right li').removeClass('expand');
-            $('.header_right ul').hide();
-          }
-        });
-        $(".header_right ul li:has(ul)")
-          $(".header_right li>a").click(function(){
-            var li = $(this).parent();
-            var ul = li.parent()
-            ul.find('li').removeClass('expand');
-            ul.find('ul').not(li.find('ul')).hide();
-            li.children('ul').toggle();
-            if( li.children('ul').is(':visible') || li.has('ul')) {
-              li.addClass('expand');
-            }
-          });
-      });
 
       // mouseover function
       $(".poster-box").mouseover(function(){
