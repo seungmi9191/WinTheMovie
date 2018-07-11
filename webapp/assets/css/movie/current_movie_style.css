@@ -1,0 +1,246 @@
+body {
+    line-height: 1.2;
+    color: #fff;
+    font-family: 'NanumSquare', sans-serif;
+    margin: 0;
+    padding: 0;
+    padding-bottom: 30px;
+    vertical-align: baseline;
+    font-size: 12px;
+    height: 100%;
+}
+
+.current_movie_container {
+    width: 100%;
+    background-color: #fff;
+}
+
+.current_movie_contents {
+    clear: both;
+    padding-bottom: 50px;
+    position: relative;
+    width: 1240px;
+    margin: 100px auto 60px auto;
+    height: 100%;
+}
+
+[class|="sect"][class*="chart"] > ol {
+    padding-top: 30px;
+    margin-left: -30px;
+    margin-right: -30px;
+    /*border-bottom: 3px solid #244CBA;*/
+    zoom: 1;
+
+}
+
+[class|="wrap-movie"][class*="chart"] .sect-movie-chart {
+    margin-top: 30px;
+    height: 100%;
+}
+
+[class|="wrap-movie"][class*="chart"] {
+    position: relative;
+    overflow: hidden;
+}
+
+.tit-heading-wrap {
+    position: relative;
+    height: 40px;
+    margin-top: 50px;
+    /* border-bottom: 2px solid #858585; */
+    margin-bottom: 15px;
+}
+
+.tit-heading-wrap > .current_submenu {
+    position: absolute;
+    top: 18px;
+    right: 0;
+}
+
+.tit-heading-wrap > .current_submenu > ul {
+    overflow: hidden;
+}
+
+.current_submenu ul {
+    list-style: none;
+    font-size: 18px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+
+.tit-heading-wrap > .current_submenu > ul > li:first-child {
+    margin-left: 0;
+}
+
+.tit-heading-wrap > .current_submenu > ul > li:first-child > a {
+    color: #244CBA;
+    font-weight: 700;
+}
+
+.tit-heading-wrap > .current_submenu > ul > li {
+    float: left;
+    font-size: 18px;
+    margin-left: 15px;
+    color: #888;
+}
+
+ol {
+    font-size: 100%;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+    list-style: none;
+    height: 350px;
+}
+
+ol > li :first-child {
+    margin-left: 0;
+}
+
+ol > li {
+    float: left;
+    width: 197px;
+    margin-left: 32px;
+    margin-right : 31px;
+    padding-bottom: 30px;
+}
+
+strong {
+    display: block;
+    border: 2px solid #244CBA;
+    vertical-align: center;
+    line-height: 20px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.tit-heading-wrap > h3 {
+    display: inline-block;
+    position: relative;
+    height: inherit;
+    margin: 0;
+    background-image: none;
+    color: #23212a;
+    font-family: NanumSquare;
+    font-size: 32px;
+    text-align: left;
+    vertical-align: middle;
+
+}
+
+.rank {
+    display: block;
+    height: 28px;
+    margin-bottom: 4px;
+    border: 2px solid #244CBA;
+    color: #fff;
+    background-color: #244CBA;
+    font-size: 17px;
+    text-align: center;
+    line-height: 28px;
+
+}
+
+.box-image a {
+    display: block;
+}
+
+.current_submenu ul li a {
+    color: #888;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.ico-grade .grade-15 {
+    background-position: -72px 0;
+}
+
+.ico-grade {
+    display: block;
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 34px;
+    height: 34px;
+    background: url("https://blogfiles.pstatic.net/MjAxODA2MjdfMjMy/MDAxNTMwMDYwOTk0MTI1.UXBr83w8HZBtmeqbIhr4zlYnMdyN7ZLUlTBBwj0WlM4g.CG749OeQroNmZCqsbRMr9zvkuPyQ--CsKaHN23Rg3xAg.PNG.victorym91/test.png") no-repeat;
+    font: 0/0 a;
+    zoom: 1;
+    z-index: 2;
+}
+
+.thumb-image {
+    border: 2px solid #244CBA;
+    display: block;
+    position: relative;
+}
+
+.thumb-image img{
+    width: 197px;
+    height: auto;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.box-contents{
+    margin-top: 10px;
+}
+
+.title {
+    height: 22px;
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: block;
+    vertical-align: center;
+    color: #23212a;
+    line-height: 22px;
+    font-size: 16px;
+    word-break: break-all;
+    border: 2px solid #244CBA;
+    text-decoration: none;
+}
+
+.title:hover {
+    background-color: #244CBA;
+    background-border: #244CBA;
+    color : #fff;
+}
+
+div {
+    font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+
+.view_more.full_width {
+    width: 20%;
+    display: block;
+}
+
+.view_more {
+    cursor: pointer;
+    display: block;
+    color: #ffffff;
+    height: 45px;
+    margin: 80px auto 0 !important;
+    line-height: 45px;
+    text-align: center;
+    font-size: 18px;
+    background-color: #acacac;
+    border: none;
+    max-width: 860px;
+}
+
+.view_more:hover {
+   background-color : #575757;
+   background-border : #575757;
+}

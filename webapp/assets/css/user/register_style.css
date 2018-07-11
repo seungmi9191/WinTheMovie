@@ -42,7 +42,7 @@
     width: 450px;
     height: 650px;
     border: 1px solid #e5e5e5;
-    margin : 150px auto;
+    margin : 150px auto 50px auto;
     overflow: hidden;
     background-color: #ffffff;
 }
