@@ -6,11 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/include/navi_style.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movie/analysis.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movie/reservepage_style.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/movie/reserve_page_style.css">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<title>reservepage</title>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
+<title>ReservePage</title>
 </head>
 <body>
  	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
@@ -18,28 +17,26 @@
  	<div id="reserve-wrap" class="wrap">
     <div id="container">
         <div class="search-box" id="">
+        <form action="${pageContext.request.contextPath}/movie/search" id="search-form" method="get">
             <span class="search-window">
-                <input class="input-text" id="query" name="query" type="text" title="검색"
-                       placeholder="자주가는 영화관 지점을 입력해주세요.">
+                <input class="input-text" id="search" name="search" type="text" title="검색" placeholder="자주가는 영화관 지점을 입력해주세요. ex) CGV 강남점">
             </span>
-
             <button id="search-btn" type="submit" title="검색버튼" tabindex="3" class="sch-btn">
                 <i class="fas fa-search "></i>
             </button>
-
+        </form>
         </div>
 
         <div class="total-wrap" id="total-wrap">
             <div class="map-container" id="map-container">
                 <div class="map-section-wrap" id="map-section-wrap">
-                    <div class="map-section" id="map-section">
-                        <%--지도 맵 표시--%>
+                    <div class="map-section" id="naver_map">
                     </div>
                 </div>
-
-
             </div>
-
+            <input type="text" id="theaterxgps" class="theaterxgps" value="${requestScope.theatervo.theaterxgps}"> 
+            <input type="text" id="theaterygps" class="theaterygps" value="${requestScope.theatervo.theaterygps}"> 
+            
             <div class="movie-info-wrap" id="movie-info-wrap">
                 <a href="">
                     <div class="movie-info" id="movie-info">
@@ -63,10 +60,28 @@
                 </a>
             </div>
         </div>
-    </div>
-</div>
- 		
- 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+    	</div>
+	</div>
+<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
+<script type="text/javascript">
+	var $xgps = $(".theaterxgps").val(),
+		$ygps = $('.theaterygps').val();
+	console.log($xgps)
+	console.log($ygps)
+	if($xgps == "" && $ygps == ""){
+		$xgps = 37.3595704;
+		$ygps = 127.105399;
+	}	
+	var naver_map = new naver.maps.Map('naver_map', {
+		center: new naver.maps.LatLng($xgps, $ygps),
+		zoom: 10
+	});
+	var marker = new naver.maps.Marker({
+		  position: new naver.maps.LatLng($xgps, $ygps),
+		  map: naver_map
+	});
+	
+</script>
 </body>
 </html>
