@@ -32,7 +32,6 @@
   font-weight: 400;
   cursor: pointer;
 }
-
 .policy-tit{
   font-size: 24px;
   color: #23212a;
@@ -45,7 +44,6 @@
 }
 .wrap h3{
   display: block;
-  font-weight: bold;
 }
 .print-btn{
   float: right;

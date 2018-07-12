@@ -1,139 +1,331 @@
-*{-webkit-box-sizing: border-box; -moz-box-sizing:border-box; box-sizing:border-box;}
-.page-title{font-family:'NanumSquareBold'; font-weight:normal; font-size:32px; letter-spacing:-0.5px;  text-align:center;
-    color: #244CBA; padding-bottom:10px;}
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
 
-.cs-body{width:1024px; margin:0 auto 40px; padding:30px 0 20px;}
-.cs-body li{
-    color: #000;
+.page-title {
+	font-family: 'NanumSquare';
+	font-weight: normal;
+	font-size: 32px;
+	letter-spacing: -0.5px;
+	text-align: center;
+	color: #244CBA;
+	padding-bottom: 10px;
+}
+
+.cs-body {
+	width: 1024px;
+	margin: 0 auto 40px;
+	padding: 30px 0 20px;
+}
+
+.cs-body li {
+	color: #000;
 }
 
 /*공통*/
-.top-padding{padding-top:-20px;margin-top: -20px;}
-.wi100-per{width:100% !important;}
-body{
-    font-family: 'NanumSquareOTF';
+.top-padding {
+	margin-bottom: 80px;
 }
-a{
-    text-decoration: none;
+
+.wi100-per {
+	width: 100% !important;
+}
+
+body {
+	font-family: 'NanumSquareOTF';
+}
+
+a {
+	text-decoration: none;
 }
 /*체크박스 공통*/
-input[type='checkbox']{margin:0; padding:0; -webkit-appearance:none; -moz-appearance: none; appearance:none; -webkit-border-radius:0; border-radius:0; border:none;}
-input[type="checkbox"]{position:absolute; clip:rect(0,0,0,0);}
-.check-style input[type="checkbox"] + label {position:relative; font-size:13px;	letter-spacing:-0.2px; color:#ffffff; font-family:'NanumSquare';}
-.check-style input[type="checkbox"] + label:before {content:' '; display:inline-block; width:22px; height:22px; margin-right:8px;}
+input[type='checkbox'] {
+	margin: 0;
+	padding: 0;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	-webkit-border-radius: 0;
+	border-radius: 0;
+	border: none;
+}
+
+input[type="checkbox"] {
+	position: absolute;
+	clip: rect(0, 0, 0, 0);
+}
+
+.check-style input[type="checkbox"]+label {
+	position: relative;
+	font-size: 13px;
+	letter-spacing: -0.2px;
+	color: #ffffff;
+	font-family: 'NanumSquare';
+}
+
+.check-style input[type="checkbox"]+label:before {
+	content: ' ';
+	display: inline-block;
+	width: 22px;
+	height: 22px;
+	margin-right: 8px;
+}
 /*보라색 체크박스*/
-.check-style input[type="checkbox"].check-purple + label:before{background: #ffffff; border: 1px solid #d9d9d9;	vertical-align:middle;}
-.check-style input[type="checkbox"].check-purple:focus + label:before{border:1px solid #8045dd;}
-.check-style input[type="checkbox"].check-purple:checked + label:before{background:url(../images/common/check-purple.png) #8045dd no-repeat center; background-size:22px; border:1px solid #8045dd;}
+.check-style input[type="checkbox"].check-purple+label:before {
+	background: #ffffff;
+	border: 1px solid #d9d9d9;
+	vertical-align: middle;
+}
 
+.check-style input[type="checkbox"].check-purple:focus+label:before {
+	border: 1px solid #8045dd;
+}
 
-.cs-1depth:after{content:""; display:block; clear:both;}
-.cs-1depth{margin-bottom:10px;}
-.cs-1depth li{float:left; width:25%; text-align:center; border:1px solid #e5e5e5; margin-left:-1px; overflow:hidden;}
-.cs-1depth a{display:block; height:50px; line-height:50px; font-size:16px; color:#244CBA;}
-.cs-1depth li.customer-1depth-on{border:1px solid #8045dd; background-color:#8045dd; position:relative; z-index:10;}
-.cs-1depth li.customer-1depth-on a{color:#fff; }
-.cs-1depth li:first-child{border-radius:8px 0 0 8px;}
-.cs-1depth li:last-child{border-radius:0 8px 8px 0;}
+.check-style input[type="checkbox"].check-purple:checked+label:before {
+	background: url(../images/common/check-purple.png) #8045dd no-repeat
+		center;
+	background-size: 22px;
+	border: 1px solid #8045dd;
+}
+
+.cs-1depth:after {
+	content: "";
+	display: block;
+	clear: both;
+}
+
+.cs-1depth {
+	margin-bottom: 10px;
+}
+
+.cs-1depth li {
+	float: left;
+	width: 25%;
+	text-align: center;
+	border: 1px solid #e5e5e5;
+	margin-left: -1px;
+	overflow: hidden;
+}
+
+.cs-1depth a {
+	display: block;
+	height: 50px;
+	line-height: 50px;
+	font-size: 16px;
+	color: #244CBA;
+}
+
+.cs-1depth li.customer-1depth-on {
+	border: 1px solid #8045dd;
+	background-color: #8045dd;
+	position: relative;
+	z-index: 10;
+}
+
+.cs-1depth li.customer-1depth-on a {
+	color: #fff;
+}
+
+.cs-1depth li:first-child {
+	border-radius: 8px 0 0 8px;
+}
+
+.cs-1depth li:last-child {
+	border-radius: 0 8px 8px 0;
+}
 
 /*1:1문의*/
-.qa-top{width: 1024px; margin: 0 auto 40px; text-align:left;}
-.qa-top h4{width: 100%; font-size:26px; color:#23212a; text-align: left; margin: 0 auto 14px;}
-.qa-top .qa-ment {font-size:16px; line-height:1.2em; color:#666;text-align: left; float: left; width: 70%;}
-
-
-.es-dot{display:inline-block; width:5px; height:5px; background-color:#8045dd; border-radius:100px; vertical-align:middle; margin-left:-10px; margin-right:5px;}
-.es-text{text-align:right;  font-size:14px; color:#23212a;  margin-bottom:10px;
-    float: right;}
-
-.blind{overflow: hidden;width:0;height:0;
-    font-size: 0;line-height: 0;}
-colgroup{display: table-column-group;}
-.qa-table-wrap{width: 1024px; margin: 0 auto;
-}
-.qa-table-wrap input[type="text"]::-webkit-input-placeholder{color:#888; }
-.qa-table-wrap input[type="text"]::-moz-placeholder{color:#888;}
-.qa-table-text{font-size:14px; letter-spacing:-0.2px; color:#888; margin-top:9px; line-height:1.5em;}
-
-.qa-table{border-top:2px solid #23212a; border-bottom:1px solid #e5e5e5;  width:100%;}
-.qa-table th{
-    text-align: left;
-    padding: 24px 0 12px 40px;
-    font-family: 'NanumSquareBold';
-    font-size:16px;
-    color:#23212a;
-    vertical-align: top;
-}
-.qa-table td{
-    padding: 12px 28px 12px 0;
-}
-.qa-table-wrap input[type="text"] ,
-.qa-table-wrap input[type="tel"],
-.qa-table-wrap select{
-    width:435px;
-    height:46px;
-    line-height:46px;
-    border-radius:6px;
-    background-color:#fff;
-    border: solid 1px #e5e5e5;
-    font-size:16px;
-    letter-spacing:-0.3px;
-    font-family:'NanumSquare';
-    color:#23212a;
-    padding-left:20px;
-    box-sizing:inherit;
-    margin:auto;
+.qa-top {
+	width: 1024px;
+	margin: 0 auto 40px;
+	text-align: left;
 }
 
+.qa-top h4 {
+	width: 100%;
+	font-size: 26px;
+	color: #23212a;
+	text-align: left;
+	margin: 0 auto 14px;
+}
 
-.qa-table-wrap .check-style{
-    float:left;
-    margin-bottom:10px;
+.qa-top .qa-ment {
+	font-size: 16px;
+	line-height: 1.2em;
+	color: #666;
+	text-align: left;
+	float: left;
+	width: 70%;
 }
-.qa-table-wrap textarea{
-    width:715px;
-    border-radius:6px;
-    background-color:#fff;
-    border: solid 1px #e5e5e5;
-    resize:none;
-    color:#23212a;
-    padding:12px 20px;
-    font-family:'NanumSquare';
-    font-size:16px;
-}
-.qa-table-wrap .check-style input[type="checkbox"] + label{font-size:16px; color:#23212a; margin-right:25px; font-family:'NanumSquare'; }
-.qa-table-wrap textarea::-webkit-input-placeholder{color:#888; }
-.qa-table-wrap textarea::-moz-placeholder{color:#888;}
-.qa-table-wrap textarea.qa-table-textarea03{height:350px; margin-top:10px;}
 
-.qa-btn-wrap{text-align:center;}
-.qa-btn-wrap ul{display:inline-block; margin:40px auto 0; text-align:center;}
-.qa-btn-wrap ul li{float:left; margin:0 5px;}
-.qa-btn-wrap ul li a,
-.qa-btn-wrap ul li button,
-.qa-btn-wrap ul li input[type="submit"]{
-    display:inline-block;
-    width:250px;
-    height:52px;
-    line-height:52px;
-    border-radius:32.5px;
-    font-family:'NanumSquareBold';
-    font-size:18px;
-    word-break: break-all;
-    cursor:pointer;
+.es-dot {
+	display: inline-block;
+	width: 5px;
+	height: 5px;
+	background-color: #244CBA;
+	border-radius: 100px;
+	vertical-align: middle;
+	margin-left: -10px;
+	margin-right: 5px;
 }
-.qa-cancel{
-    border: 1px solid #244CBA;
+
+.es-text {
+	text-align: right;
+	font-size: 14px;
+	color: #23212a;
+	margin-bottom: 10px;
+	float: right;
 }
-.qa-btn-wrap ul li input[type="submit"]{
-    background-color: #244CBA;
-    color: #d9d9d9;
+
+.blind {
+	overflow: hidden;
+	width: 0;
+	height: 0;
+	font-size: 0;
+	line-height: 0;
 }
+
+colgroup {
+	display: table-column-group;
+}
+
+.qa-table-wrap {
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.qa-table-wrap input[type="text"]::-webkit-input-placeholder {
+	color: #888;
+}
+
+.qa-table-wrap input[type="text"]::-moz-placeholder {
+	color: #888;
+}
+
+.qa-table-text {
+	font-size: 14px;
+	letter-spacing: -0.2px;
+	color: #888;
+	margin-top: 9px;
+	line-height: 1.5em;
+}
+
+.qa-table {
+	border-top: 2px solid #23212a;
+	border-bottom: 1px solid #e5e5e5;
+	width: 100%;
+}
+
+.qa-table th {
+	text-align: left;
+	padding: 24px 0 12px 40px;
+	font-family: 'NanumSquare';
+	font-size: 16px;
+	color: #23212a;
+	vertical-align: top;
+}
+
+.qa-table td {
+	padding: 12px 28px 12px 0;
+}
+
+.qa-table-wrap input[type="text"], .qa-table-wrap input[type="tel"],
+	.qa-table-wrap select {
+	width: 435px;
+	height: 46px;
+	line-height: 46px;
+	border-radius: 6px;
+	background-color: #fff;
+	border: solid 1px #e5e5e5;
+	font-size: 16px;
+	letter-spacing: -0.3px;
+	font-family: 'NanumSquare';
+	color: #23212a;
+	padding-left: 20px;
+	box-sizing: inherit;
+	margin: auto;
+}
+
+.qa-table-wrap .check-style {
+	float: left;
+	margin-bottom: 10px;
+}
+
+.qa-table-wrap textarea {
+	width: 715px;
+	border-radius: 6px;
+	background-color: #fff;
+	border: solid 1px #e5e5e5;
+	resize: none;
+	color: #23212a;
+	padding: 12px 20px;
+	font-family: 'NanumSquare';
+	font-size: 16px;
+}
+
+.qa-table-wrap .check-style input[type="checkbox"]+label {
+	font-size: 16px;
+	color: #23212a;
+	margin-right: 25px;
+	font-family: 'NanumSquare';
+}
+
+.qa-table-wrap textarea::-webkit-input-placeholder {
+	color: #888;
+}
+
+.qa-table-wrap textarea::-moz-placeholder {
+	color: #888;
+}
+
+.qa-table-wrap textarea.qa-table-textarea03 {
+	height: 350px;
+	margin-top: 10px;
+}
+
+.qa-btn-wrap {
+	text-align: center;
+}
+
+.qa-btn-wrap ul {
+	display: inline-block;
+	margin: 40px auto 0;
+	text-align: center;
+}
+
+.qa-btn-wrap ul li {
+	float: left;
+	margin: 0 5px;
+}
+
+.qa-btn-wrap ul li a, .qa-btn-wrap ul li button, .qa-btn-wrap ul li input[type="submit"]
+	{
+	display: inline-block;
+	width: 250px;
+	height: 52px;
+	line-height: 52px;
+	border-radius: 32.5px;
+	font-family: 'NanumSquare';
+	font-size: 18px;
+	word-break: break-all;
+	cursor: pointer;
+	color: black;
+}
+
+.qa-cancel {
+	border: 1px solid #244CBA;
+}
+
+.qa-btn-wrap ul li input[type="submit"] {
+	text-align: center;
+	background-color: #244CBA;
+	color: #d9d9d9;
+}
+
 .qa-btn-wrap ul li input[type="submit"]:before {
-    background-color: #244CBA;
-    color: #d9d9d9;
+	background-color: #244CBA;
+	color: #d9d9d9;
 }
-.qa-btn-wrap ul li input[type="submit"]:hover {
-    background-color: #d9d9d9;
-    color: #244CBA;
-}
+
