@@ -69,11 +69,11 @@
         <div class="login_sns">
             <div class="login_sns_con">
                 <ul>
-                    <li>
-                        <div id="naver_id_login" style="text-align:center">
-                            <img onclick="loginbynaver();" width="223"
-                                 src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-                        </div>
+                    <li><a href="#">
+                        <img onclick="loginbynaver();" width="223"
+                             src="${pageContext.request.contextPath}/assets/img/user/naver.png"/>
+                    </a>
+
                     </li>
                     <li>
                         <a href="">
@@ -126,17 +126,8 @@
         }
     }
 
-    // var naver_id_login = new naver_id_login("29ED47vcAOiiJdxtOrrS", "http://localhost:8088/callback");
-    // var state = naver_id_login.getUniqState();
-    // naver_id_login.setButton("white", 2, 40);
-    // naver_id_login.setDomain("http://localhost:8088/user/loginform");
-    // naver_id_login.setState(state);
-    // naver_id_login.setPopup();
-    // naver_id_login.init_naver_id_login();
-
-    function loginbynaver(){
-        console.log("loginbynaver222")
-        window.open("${pageContext.request.contextPath}/users/naverlogin2", "a", "width=400, height=300, left=100, top=50");
+    function loginbynaver() {
+        window.open("${pageContext.request.contextPath}/users/naverlogin", "a", "width=400, height=300, left=100, top=50");
     }
 
 </script>
