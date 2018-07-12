@@ -645,6 +645,7 @@
 			</div>
 		</div>
 		<!--body 끝-->
+	</div>
 </body>
 <script type="text/javascript">
 	// Box Office

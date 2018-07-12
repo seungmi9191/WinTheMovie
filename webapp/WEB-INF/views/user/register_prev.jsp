@@ -30,7 +30,7 @@
         <div class="registe_prev_container">
             <div class="regist_content">
                 <div class="email_reg">
-                    <input type="submit" value="이메일로 회원가입" onclick="window.location.href='${pageContext.request.contextPath}/user/register'">
+                    <input type="submit" value="이메일로 회원가입" onclick="window.location.href='${pageContext.request.contextPath}/user/join'">
                 </div>
                 <span class="or-line"> 또는 </span>
             </div>
@@ -39,10 +39,10 @@
             <div class="registe_prev_sns_con">
                 <ul>
                     <li>
-                        <div id="naver_id_login" style="text-align:center">
-                            <img onclick="registbynaver(); showPopup();" width="223"
-                                 src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-                        </div>
+                        <a href="#">
+                            <img onclick="showPopup();" width="223"
+                                 src="${pageContext.request.contextPath}/assets/img/user/naver.png"/>
+                        </a>
                     </li>
                     <li>
                         <a href="">
