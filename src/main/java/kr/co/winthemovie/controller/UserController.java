@@ -17,7 +17,7 @@ import kr.co.winthemovie.vo.UserVo;
 @Controller
 @RequestMapping(value="/user")
 public class UserController {
-
+ 
     @Autowired
     private UserService userService;
 
