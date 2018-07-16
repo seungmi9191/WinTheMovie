@@ -23,12 +23,12 @@ public class UserController {
 
     @RequestMapping(value="/join",method = RequestMethod.GET)
     public String joinform(){
-        return "user/register_prev";
+        return "user/register";
     }
 
     @RequestMapping(value="/register",method = RequestMethod.GET)
     public String joinbyemailform(){
-        return "user/register";
+        return "user/register_prev";
     }
 
     @RequestMapping(value = "/joinbyemail",method = RequestMethod.POST)

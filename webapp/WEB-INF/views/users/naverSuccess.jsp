@@ -47,7 +47,7 @@
 
         setTimeout(function(){$("body").fadeOut(1000);},1000);
         <%--setTimeout(function(){location.href= "${pageContext.request.contextPath}/main"},2000);--%>
-        setTimeout(function(){window.opener.location.href="${pageContext.request.contextPath}/user/loginform";window.close()},2000);
+        setTimeout(function(){window.opener.location.href="${pageContext.request.contextPath}/main";window.close()},2000);
 
         // 2초 뒤에 메인 화면 으로 가자
 
