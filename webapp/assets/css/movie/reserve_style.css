@@ -1,0 +1,443 @@
+
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
+/* 2.0 Style Guide */
+
+/* html, body {
+  font-family : 'NanumSquare', sans-serif;
+  height : 100%;
+  box-sizing : border-box;
+}
+
+body {
+  width : 100%;
+  display : block;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #282828;
+} */
+
+.final_body {
+    color: #282828;
+    vertical-align: baseline;
+    font-size: 12px;
+}
+
+.final_body  h1, h2, h3, h4, h5, h6 {
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  color : inherit;
+}
+
+.final_body  ul, ol, dl, li, p {
+  padding : 0;
+  margin : 0;
+  list-style: none;
+}
+
+.final_body  ul {
+  display : block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 0px;
+}
+
+.final_body  p {
+  margin : 0 0 10px;
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+}
+
+
+.final_body  *, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing : border-box;
+  box-sizing : border-box;
+}
+
+.final_body  .clearfix:before, .clearfix:after {
+  display : table;
+  content : " ";
+}
+
+.final_body  .clearfix:after {
+  clear:both;
+}
+
+/*div*/
+.final_body  div {
+  display : block;
+}
+
+/*button*/
+.final_body  button {
+  width : 50px;
+  height : 30px;
+  margin : 0;
+  border: 0 none;
+  cursor: pointer;
+  background: transparent;
+}
+
+/*img*/
+.final_body  img {
+  vertical-align: middle;
+  border: 0 none;
+  padding : 0;
+  margin : 0;
+}
+
+/* 3.0 Basic Element */
+
+.final_body input[type="button"] :: button {
+  align-items: flex-start;
+  text-align: center;
+}
+.modal-mask {
+  width: 100%;
+  height: auto;
+  min-width: 1240px;
+  min-height: 550px;
+ /*  overflow: auto;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,.5); */
+  /* display : table;  /*가운데정렬*/ */
+}
+
+.modal-mask .modal-wrapper {
+  width : 1240px;
+  margin :  30px auto 0 auto;
+  padding : 90px 0 55px 0;
+
+}
+
+.popup-close {
+  position : absolute;
+  top: -65px;
+  right: -50px;
+}
+
+.blind {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -1000em;
+  left: -1000em;
+}
+
+/* 영화관정보 background */
+ .modal-wrapper .modal-time {
+  width : 100%;
+  position: relative;
+  border-radius: 4px 4px 0 0;
+  background-color: #f4f3f3;
+  padding : 20px 40px 10px 25px;
+  border: 1px solid #e5e5e5;
+  overflow : hidden;
+}
+
+.modal-mask .modal-wrapper .modal-container {
+  width : 100%;
+  position: relative;
+  height: 619px;
+  background-color: #fff;
+  /* border-radius: 0 0 4px 4px; */
+  transition: all .3s ease;
+  padding : 20px 0 5px 30px;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* 스크롤바 전체 */
+ ::-webkit-scrollbar {
+  width : 7px;
+  height : 0px;
+  background-color: #f5f5f5;
+}
+
+/* 몸통 부분에서 실제로 움직임 */
+ ::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  height : 0px;
+  background-color: #f5f5f5;
+}
+
+/* 화살표를 제외한 몸통 부분 */
+ ::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.final_body  .time-name {
+  margin : 5px 0 0 5px;
+  font-size: 25px;
+  vertical-align: middle;
+  color : #282828;
+  font-weight: 700;
+}
+
+.final_body  .left_wrap{
+  float: left;
+  margin-top: 5px;
+  width: 890px;
+  height: 33px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
+}
+.final_body  .left_wrap .group{
+  float: left;
+  display: block;
+}
+.final_body  .left_wrap .group .title{
+  float: left;
+  margin-top: -2px;
+  width: 40px;
+  height: 22px;
+  line-height: 22px;
+  font-size: 16px;
+  color: #282828;
+  letter-spacing: -0.1em;
+}
+
+.final_body  .left_wrap .group ul{
+  margin-top: -1px;
+  float: left;
+  width: auto;
+  height: 22px;
+  line-height: 22px;
+  overflow: hidden;
+  list-style: none;
+}
+.final_body  .left_wrap .group ul li{
+  float: left;
+  margin-right: 6px;
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  border: 1px solid #d6d3ce;
+  background-color: #f2f0e5;
+}
+.final_body  .left_wrap .group ul li.selected{
+  border-color: #244CBA;
+  background-color: #244CBA;
+}
+.final_body  .left_wrap .group ul li.selected a{
+  margin:1px;
+  border: 1px solid #244CBA;
+  width: 16px;
+  height: 16px;
+  line-height: 16px;
+  color: #fff;
+}
+.final_body  .left_wrap .group ul li a{
+  display: block;
+  height: 100%;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+}
+.final_body  .left_wrap .group span.contents{
+  font-size: 12px;
+  clear: both;
+  margin-top: 20px;
+  margin-left: 530px;
+}
+.group2{
+  position: relative;
+  width: 890px;
+  height: 450px;
+  overflow: auto;
+  margin-bottom: 60px;
+}
+.screen-box{
+  width: 890px;
+  height: 450px;
+}
+.screen-box button.alert_seat{
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  width: 600px;
+  height: 412px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
+  background: url(http://image2.megabox.co.kr/mop/home/common/blk_op6.png);
+  color: #fff;
+}
+.screen-box button i{
+  font-size: 16px;
+  vertical-align: bottom;
+}
+
+.screen{
+  overflow: hidden;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
+  margin: 0 auto 41px auto;
+  background: #ececec url(http://image2.megabox.co.kr/mop/home/tx_screen.png) 50% 50% no-repeat;
+  text-indent: -999em;
+}
+.seat-wrap{
+  padding: 10px 0 0 0;
+}
+.group3{
+  width: 890px;
+  height: 50px;
+}
+.group3 .seats-info-title{
+  margin-top :20px;
+  padding-top: 17px;
+  /* margin-bottom: 10px; */
+  border-top: 1px solid #ccc;
+  font-weight: 700;
+}
+.seats-info{
+  display: block;
+  width: 600px;
+  height: 30px;
+  padding-left : 70px;
+  margin-top : -16px;
+}
+.group3 .seats-info div{
+  float: left;
+  margin-left: 5px;
+}
+.group3 .seats-info div:first-child{
+  margin-left: 0;
+}
+.group3 .seats-selected{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  left: 0;
+  background-color: #503396;
+}
+.group3 .seats-info .box{
+  margin-left: 20px;
+}
+.group3 .seats-soldout{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  left: 0;
+  background-color: #ccc;
+  background-image: url("https://blogfiles.pstatic.net/MjAxODA3MTdfMjUg/MDAxNTMxODIxOTY3NTIz.hCG6508k7EMvww3UMyANDLkXuAxrxFlYxjCWLp653WAg.74bRZKdiG6me27tZt6DmcqdS84QZIzNpZDL-eaFVjakg.PNG.victorym91/selected.png");
+}
+.group3 .seats-possible{
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  left: 0;
+  top: -1px;
+  background-color: #707271;
+}
+.group3 .seats-info div.seats-info-contents{
+  width: 50px;
+  height: 30px;
+  vertical-align: middle;
+}
+.right_wrap{
+  float: right;
+  margin-top: -20px;
+  /* margin-right: 30px; */
+  width: 283px;
+  height: 618px;
+  background: #404040;
+}
+.right_wrap .row1 img{
+  /* margin: 15px; */
+  width: 283px;
+  height: 412px;
+}
+.right_wrap .row2 .booking-movie-title{
+  margin: -20px 0 5px 20px;
+  font-size: 14px;
+  line-height: 16px;
+  color: #fff;
+}
+.right_wrap .row2{
+  padding: 27px 15px 0 15px;
+}
+.row2 .booking-movie-title i{
+  float: left;
+  margin-left: -15px;
+  margin-top: -2px;
+}
+
+.age{
+   background: url('https://blogfiles.pstatic.net/MjAxODA3MTdfODIg/MDAxNTMxODE3MzIyNDA5.AP9vCRyCVpcvgWrirBLGqUh6c8WrhKnnqzeOiB4zF8wg.JO2a1MGOAd8DHvUYC8AGLRdZAQvCQEa7SvdyldR-7Ncg.PNG.victorym91/grade_all_final.png')
+  0 -999px no-repeat;
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  text-indent: -99999px;
+  overflow: hidden;
+  vertical-align: middle;
+  zoom : 1;
+}
+
+.age_all {
+  background-position: 0 0;
+}
+
+.age_12 {
+  background-position: -19px 0; 
+}
+
+.age_15 {
+  background-position: -38px 0;
+}
+
+.age_19 {
+  background-position: -59px 0; 
+}
+
+.booking-movie-content{
+  margin-left: 5px;
+  margin-top : -5px;
+  overflow: hidden;
+  overflow-y: auto;
+  color: #fff;
+  font-size: 14px;
+}
+.pay-btn{
+  margin-left: 5px;
+  margin-top : 7px;
+  width: 245px;
+}
+.pay-btn button{
+  margin-top: 10px;
+  background: #fff;
+  width: 115px;
+  height: 30px;
+  float: left;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.pay-btn .btn-close:hover{
+  background: #ccc;
+}
+
+.pay-btn .btn-next{
+  margin-left: 15px;
+  color: #fff;
+  background: #244CBA;
+}
+
+.pay-btn .btn-next:hover{
+  background: #143394;
+}
