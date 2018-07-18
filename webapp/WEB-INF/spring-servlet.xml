@@ -32,7 +32,4 @@
 		<property name="order" value="1" />
 	</bean>
 
-	<!--네이버-->
-	<context:component-scan base-package="kr.co.winthemovie" />
-	<bean id="naverLoginBO" class="kr.co.winthemovie.BO.NaverLoginBO"/>
 </beans>

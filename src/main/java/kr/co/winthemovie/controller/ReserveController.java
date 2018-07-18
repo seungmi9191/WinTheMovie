@@ -12,4 +12,5 @@ public class ReserveController {
 	public String reserveform() {
 		return "movie/reservepage";
 	}
+	
 }
