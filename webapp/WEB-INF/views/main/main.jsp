@@ -334,9 +334,7 @@
 					태블릿 가로보드 지원 안내</a></li>
 		</ul>
 	</div>
-
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-s	<!--body 끝-->
 </body>
 <script type="text/javascript">
 	// Box Office

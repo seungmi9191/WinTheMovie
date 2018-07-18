@@ -15,6 +15,7 @@
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script> <%--kakao --%>
     <title>Insert title here</title>
 </head>
 <body>
@@ -30,7 +31,7 @@
         <div class="registe_prev_container">
             <div class="regist_content">
                 <div class="email_reg">
-                    <input type="submit" value="이메일로 회원가입" onclick="window.location.href='${pageContext.request.contextPath}/user/register'">
+                    <input type="submit" value="이메일로 회원가입" onclick="window.location.href='${pageContext.request.contextPath}/user/join'">
                 </div>
                 <span class="or-line"> 또는 </span>
             </div>
@@ -39,14 +40,14 @@
             <div class="registe_prev_sns_con">
                 <ul>
                     <li>
-                        <div id="naver_id_login" style="text-align:center">
-                            <img onclick="registbynaver(); showPopup();" width="223"
-                                 src="https://developers.naver.com/doc/review_201802/CK_bEFnWMeEBjXpQ5o8N_20180202_7aot50.png"/>
-                        </div>
+                        <a href="#">
+                            <img onclick="showPopup();" width="223"
+                                 src="${pageContext.request.contextPath}/assets/img/user/naver.png"/>
+                        </a>
                     </li>
                     <li>
-                        <a href="">
-                            <img src="${pageContext.request.contextPath}/assets/img/user/kakao.png">
+                        <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                            <img src="${pageContext.request.contextPath}/assets/img/user/kakao.png"/>
                         </a>
                     </li>
                     <li>
@@ -69,6 +70,84 @@
 <script type="text/javascript">
     function showPopup() {
         window.open("${pageContext.request.contextPath}/users/naverlogin", "a", "width=400, height=300, left=100, top=50");
+    }
+
+    <%-- kakao login Start--%>
+    Kakao.init('75dba51b685ac97d77a9dbaff302ffd6');
+    // 카카오 로그인 버튼을 생성합니다.
+    function loginWithKakao() {
+        Kakao.Auth.login({
+
+            success: function (authObj) {
+                Kakao.API.request({
+                    url: '/v1/user/me',
+                    success: function (res) {
+
+                        $.ajax({
+                            url: "${pageContext.request.contextPath}/user/emailcheck",
+                            type: "post",
+                            data: {email: res.id},
+                            dataType: "json",
+                            async: false,
+                            success: function (result) {
+                                if (result == true) {      <%--email(id code) 이 없고 회원가입이 가능할 경우 --%>
+                                    var email = res.id;
+                                    var name = res.properties['nickname'];
+                                    regist(email, name);
+                                    <%--locatoin.href="${pageContext.request.contextPath}/main";--%>
+                                } else {                  <%--email(id code)이 이미 존재하는 경우 --%>
+                                    var email = res.id;
+                                    login(email);
+                                    <%--locatoin.href="${pageContext.request.contextPath}/main";--%>
+                                }
+                            }
+                            , error: function (XHR, status, error) {
+                                console.error(status + " : " + error)
+                            }
+                        })
+                    }
+                })
+            },
+            fail: function (error) {
+                alert(JSON.stringify(error));
+            }
+        })
+    };
+    <%-- kakao login End --%>
+
+    <%-- kakao로 로그인 시도시 회원가입 함수 --%>
+
+    function regist(email, name) {
+        console.log("regist함수 = " + email);
+        $.ajax({
+            url: "${pageContext.request.contextPath}/user/joinbykakao",
+            type: "post",
+            data: {email: email, username: name},
+            dataType: "json",
+            success: function () {
+                login(email);
+            }, error: function (XHR, status, error) {
+                // console.error(status+" 123: "+ error)
+            }
+        })
+    }
+
+    <%-- kakao로 로그인  --%>
+
+    function login(email) {
+        console.log("login 함수" + email);
+        $.ajax({
+            url: "${pageContext.request.contextPath}/user/loginbykakao",
+            type: "post",
+            data: {email: email},
+            dataType: "json",
+            success: function (result) {
+                location.href = "${pageContext.request.contextPath}/main";
+
+            }, error: function (XHR, status, error) {
+                console.error(status + " 123: " + error)
+            }
+        })
     }
 </script>
 </html>

@@ -13,22 +13,25 @@ Version : 1.0.0
 4.0 Theme(layout)
 4.1 Theme(layout_detail)
 */
-.body {
-  display: none;
+
+.modal_body {
   width : 100%;
+  /* display : block; */
+  display : none;
   font-size: 14px;
   line-height: 1.4;
   color: #282828;
 }
 
-.body h1, h2, h3, h4, h5, h6 {
+
+.modal_body h1, h2, h3, h4, h5, h6 {
   font-family: 'NanumSquare', sans-serif;
   font-weight: 700;
   line-height: 1.1;
   color : inherit;
 }
 
-.body ul, ol, dl, li, p {
+.modal_body ul, ol, dl, li, p {
   padding : 0;
   margin : 0;
   list-style: none;
@@ -43,17 +46,17 @@ Version : 1.0.0
   -webkit-padding-start: 0px;
 }
 
-.body li {
+.modal_body li {
   display: list-item;
   text-align: -webkit-match-parent;
 }
 
-.body ul, ol {
+.modal_body ul, ol {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-.body p {
+.modal_body p {
   margin : 0 0 10px;
   display: block;
   -webkit-margin-before: 1em;
@@ -62,28 +65,35 @@ Version : 1.0.0
   -webkit-margin-end: 0px;
 }
 
-.body a {
+ .modal_body a {
   color : #2e4b9b;
   text-decoration: none;
   background: transparent;
 }
 
-.row {
+.modal_body .row {
   margin-right: -15px;
   margin-left: -15px;
 }
 
 /* 영화분석 */
-.ans-wrap {
-  height : 310px;
-  margin-bottom: 40px;
+.modal_body .ans-wrap {
+  /* height : 310px; */
+  margin-bottom: 55px;
 }
 
-.ans-wrap h3 {
+.modal_body .ans-wrap h3 {
   margin : 0 0 15px 0;
   font-size: 18px;
   color: #282828;
   font-weight: 700;
+}
+
+.ans-wrap .ans-wrap-div {
+  width: 920px;
+  height: 275px;
+  position: relative;
+  margin-bottom: 40px;
 }
 
 .col-i-1 {
@@ -175,14 +185,17 @@ Version : 1.0.0
 }
 
 /*div*/
-.body div {
+.modal_body div {
   display : block;
 }
 
 /*button*/
-.popup-close {
+.modal_body .popup-close {
   width : 50px;
   height : 30px;
+  position : absolute;
+  top: -75px;
+  right: -50px;
   margin : 0;
   border: 0 none;
   cursor: pointer;
@@ -190,7 +203,7 @@ Version : 1.0.0
 }
 
 /*img*/
-.body img {
+.modal_body img {
   vertical-align: middle;
   border: 0 none;
   padding : 0;
@@ -199,12 +212,12 @@ Version : 1.0.0
 
 /* 3.0 Basic Element */
 
-.body input[type="button"] :: button {
+.modal_body input[type="button"] :: button {
   align-items: flex-start;
   text-align: center;
 }
 
-.btn-movie {
+.modal_body .btn-movie {
   background-color: #888888;
   text-align: center;
   font-size: 14px;
@@ -214,16 +227,18 @@ Version : 1.0.0
   color: #fff;
   float : right;
   margin-top : -95px;
+  border: 1px solid #888888;
+  cursor: pointer;
 }
 
-.btn-movie:hover {
+.modal_body .btn-movie:hover {
   color: #fff;
 	background-color: #5b5b5b;
 	border-color: #5b5b5b;
 	text-decoration: none;
 }
 
-.btn-ans { /*평점분석 보러가기*/
+.modal_body .btn-ans { /*평점분석 보러가기*/
   background-color: #d9d9d9;
   text-align: center;
   font-size: 16px;
@@ -234,16 +249,18 @@ Version : 1.0.0
   float : right;
   margin-top : 27px;
   font-weight : 600;
+  border: 1px solid #d9d9d9;
+  cursor: pointer;
 }
 
-.btn-ans:hover {
+.modal_body .btn-ans:hover {
   color: #282828;
 	background-color: #9c9c9c;
 	border-color: #9c9c9c;
 	text-decoration: none;
 }
 
-.btn-review { /*리뷰작성*/
+.modal_body .btn-review { /*리뷰작성*/
   background-color: #2e4b9b;
   text-align: center;
   font-size: 16px;
@@ -256,16 +273,18 @@ Version : 1.0.0
   margin-right: 10px;
   font-weight : 500;
   border: 2px solid #fff;
+  cursor : pointer;
 }
 
-.btn-review:hover {
+.modal_body .btn-review:hover {
   color: #fff;
 	background-color: #063d8a;
 	border-color: #f5f5f5;
 	text-decoration: none;
+	 cursor : pointer;
 }
 
-.btn-ticket {
+.modal_body .btn-ticket {
   background-color: #2e4b9b;
   text-align: center;
   font-size: 18px;
@@ -273,9 +292,11 @@ Version : 1.0.0
   height: 50px;
   color: #fff;
   margin : 33px 0 0 0;
+  border : 1px solid #2e4b9b;
+  cursor: pointer;
 }
 
-.btn-ticket:hover {
+.modal_body .btn-ticket:hover {
   color: #fff;
 	background-color: #063d8a;
 	border-color: #063d8a;
@@ -284,7 +305,7 @@ Version : 1.0.0
 
 /* 4.0 Theme */
 
-.modal-mask {
+.modal_body .modal-mask {
   position: fixed;
   z-index : 1600;
   top : 0;
@@ -306,13 +327,13 @@ Version : 1.0.0
 
 }
 
-.popup-close {
+/* .modal_body .popup-close {
   position : absolute;
   top: -75px;
   right: -50px;
-}
+}  */
 
-.blind {
+.modal_body .blind {
   display: block;
   overflow: hidden;
   position: absolute;
@@ -321,7 +342,7 @@ Version : 1.0.0
 }
 
 /* 영화관정보 background */
-.modal-mask .modal-wrapper .modal-time {
+.modal_body .modal-mask .modal-wrapper .modal-time {
   width : 100%;
   position: relative;
   background-color: #f4f3f3;
@@ -331,7 +352,7 @@ Version : 1.0.0
   overflow : hidden;
 }
 
-.modal-mask .modal-wrapper .modal-container {
+.modal_body .modal-mask .modal-wrapper .modal-container {
   width : 100%;
   position: relative;
   /* height: 700px; */
@@ -365,85 +386,85 @@ Version : 1.0.0
 /* 4.1 Theme(layout_detail) */
 
 /* 영화관/남은시간 background */
-.popup-box-top {
+.modal_body .popup-box-top {
   margin-bottom : 15px;
 }
 
-.popup-box1  {
+.modal_body .popup-box1  {
 margin-bottom: 105px;
 }
 
-.popup-box {
+.modal_body .popup-box {
   margin-bottom: 60px;
   /* margin-top : -25px; */
 }
 
-.popup-box2 {
+.modal_body .popup-box2 {
   margin-bottom: 40px;
   /* margin-top : -25px; */
 }
 
-.popup-box h3 {
+.modal_body .popup-box h3 {
   margin : 0 0 15px 0;
   font-size: 18px;
   color: #282828;
   font-weight: 700;
 }
 
-.popup-box2 h3 {
+.modal_body .popup-box2 h3 {
   margin : 0 0 15px 0;
   font-size: 18px;
   color: #282828;
   font-weight: 700;
 }
 
-.popup-box1 h3 {
+.modal_body .popup-box1 h3 {
   margin : 0 0 15px 0;
   font-size: 18px;
   color: #282828;
   font-weight: 700;
 }
 
-.popup-box1 h3 span {
+.modal_body .popup-box1 h3 span {
   color : #282828;
   font-size: 14px;
 }
 
-.popup-box2 h3 span {
+.modal_body .popup-box2 h3 span {
   color : #282828;
   font-size: 14px;
 }
 
 /* 줄거리 */
-.center-wrap {
+.modal_body .center-wrap {
   float: left;
   width: 400px;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .left-wrap {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .left-wrap {
   float: left;
   width: 267px;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .left-wrap img {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .left-wrap img {
   width : 100%;
   height: 389px;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .right-wrap {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .right-wrap {
   float : right;
   width : 615px;
 }
 
 /* 영화 기본정보 */
-.modal-mask .modal-wrapper .modal-container .row1 .title {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .title {
   overflow: visible;
   position: relative;
   min-height: 69px;
   /* border-bottom: 1px solid #e5e5e5; */
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .title h2 {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .title h2 {
   margin : 0;
   padding-left: 40px;
   font-size: 30px;
@@ -462,7 +483,7 @@ margin-bottom: 105px;
   float: left;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .text {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .text {
   position: relative;
   border-bottom: 1px solid #e5e5e5;
   padding-bottom: 19px;
@@ -471,12 +492,12 @@ margin-bottom: 105px;
   border-top: 1px solid #e5e5e5;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .text .reservation-wrap {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .text .reservation-wrap {
   overflow: hidden;
   margin-top: -4px;
 }
 
-.reservation-wrap .left-p {
+.modal_body .reservation-wrap .left-p {
   text-align: left;
   position: relative;
   float: left;
@@ -486,14 +507,14 @@ margin-bottom: 105px;
   font-weight: 700;
 }
 
-.reservation-wrap .left-p span {
+.modal_body .reservation-wrap .left-p span {
   font-size: 16px;
   float: left;
   magin-top : 20px;
 }
 
 
-.reservation-wrap .right-p {
+.modal_body .reservation-wrap .right-p {
   position: relative;
   float: left;
   width: 300px;
@@ -504,19 +525,19 @@ margin-bottom: 105px;
   font-weight: 700;
 }
 
-.reservation-wrap .right-p span {
+.modal_body .reservation-wrap .right-p span {
   font-size: 16px;
   float: left;
 }
 
-.small_star {
+.modal_body .small_star {
   float: left;
   font-size : 14px;
   color : #2e4b9b;
   margin : 0 0 0 10px;
 }
 
-.modal-mask .modal-wrapper .modal-container .row1 .text .reservation-wrap .left-p .span-title {
+.modal_body .modal-mask .modal-wrapper .modal-container .row1 .text .reservation-wrap .left-p .span-title {
   font-size : 16px;
   float: left;
   margin-top : 30px;
@@ -524,20 +545,20 @@ margin-bottom: 105px;
   font-weight: 700;
 }
 
-.span-sl {
+.modal_body .span-sl {
   font-size : 50px;
   float: left;
   color: #a4a4a4;
 }
 
-.span-basic {
+.modal_body .span-basic {
   font-size : 14px;
   float: left;
   color : #282828;
   margin : -7px 3px 0 0;
 }
 
-.strong-big {
+.modal_body .strong-big {
   font-size : 34px;
   float: left;
   font-weight: 900;
@@ -714,6 +735,23 @@ margin-bottom: 105px;
   font-size: 14px;
   color : #282828;
   padding: 15px;
+  height: 216.28px;
+}
+
+.panel-body img {
+  height: 185px;
+}
+
+.panel-body_s {
+  font-family : 'NanumSquare', sans-serif;
+  font-size: 14px;
+  color : #282828;
+  padding: 15px;
+  height: 123.44px;
+}
+
+.panel-body_s img {
+  height: 92px;
 }
 
 .panel-heading {
@@ -1021,57 +1059,57 @@ margin-bottom: 105px;
 }
 
 /* Important styles */
-#toggle {
+.toggle2 {
   display: inline-block;
-  width: 5px;
+  width: 15px;
   height: 5px;
   margin: 0 2px 0 320px;
 }
 
-#toggle span:after,
-#toggle span:before {
+.toggle2 span:after,
+.toggle2 span:before {
   content: "";
   position: absolute;
   left: 0;
   top: -9px;
 }
-#toggle span:after{
+.toggle2 span:after{
   top: 9px;
 }
-#toggle span {
+.toggle2 span {
   position: relative;
   display: block;
 }
 
-#toggle span,
-#toggle span:after,
-#toggle span:before {
-  width: 5px;
-  height: 5px;
+.toggle2 span,
+.toggle2 span:after,
+.toggle2 span:before {
+  width: 10px;
+  height: 4px;
   background-color: #888;
   transition: all 0.3s;
   backface-visibility: hidden;
-  -webkit-border-radius:100px;
-  -moz-border-radius:100px;
+  -webkit-border-radius:50px;
+  -moz-border-radius:5px;
 }
 
 /* on activation */
-#toggle.on span {
+.toggle2.on span {
   background-color: #2e4b9b;
 }
-#toggle.on span:before {
+.toggle2.on span:before {
 
 }
-#toggle.on span:after {
+.toggle2.on span:after {
 
 }
-#toggle.on + #menu {
+.toggle2.on + .menu {
   opacity: 1;
   visibility: visible;
 }
 
 /* menu appearance*/
-#menu {
+.menu {
   position: relative;
   color: #999;
   width: 150px;
@@ -1087,7 +1125,7 @@ margin-bottom: 105px;
   visibility: hidden;
   transition: opacity .4s;To
 }
-#menu:after {
+.menu:after {
   content: '';
   position: absolute;
   border-style: solid;
@@ -1100,20 +1138,22 @@ margin-bottom: 105px;
   top: 5px;
 }
 
-.body ul, li, li a {
+.modal_body .toggle2 ul, li, li a {
   list-style: none;
   display: block;
   margin: 0;
   padding: 0;
 }
-.body li a {
+
+.modal_body .toggle2 li a {
   padding: 5px;
   color: #fff;
   text-decoration: none;
   transition: all .2s;
 }
-.body li a:hover,
-.body li a:focus {
+
+.modal_body .toggle2 li a:hover,
+.modal_body .toggle2  li a:focus {
   background: #fff;
   color: #2e4b9b;
 }

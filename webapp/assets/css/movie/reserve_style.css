@@ -3,7 +3,7 @@
 
 /* 2.0 Style Guide */
 
-html, body {
+/* html, body {
   font-family : 'NanumSquare', sans-serif;
   height : 100%;
   box-sizing : border-box;
@@ -15,22 +15,28 @@ body {
   font-size: 14px;
   line-height: 1.4;
   color: #282828;
+} */
+
+.final_body {
+    color: #282828;
+    vertical-align: baseline;
+    font-size: 12px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.final_body  h1, h2, h3, h4, h5, h6 {
   font-family: 'NanumSquare', sans-serif;
   font-weight: 500;
   line-height: 1.1;
   color : inherit;
 }
 
-ul, ol, dl, li, p {
+.final_body  ul, ol, dl, li, p {
   padding : 0;
   margin : 0;
   list-style: none;
 }
 
-ul {
+.final_body  ul {
   display : block;
   -webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
@@ -39,7 +45,7 @@ ul {
   -webkit-padding-start: 0px;
 }
 
-p {
+.final_body  p {
   margin : 0 0 10px;
   display: block;
   -webkit-margin-before: 1em;
@@ -48,28 +54,29 @@ p {
   -webkit-margin-end: 0px;
 }
 
-*, *:before, *:after {
+
+.final_body  *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing : border-box;
   box-sizing : border-box;
 }
 
-.clearfix:before, .clearfix:after {
+.final_body  .clearfix:before, .clearfix:after {
   display : table;
   content : " ";
 }
 
-.clearfix:after {
+.final_body  .clearfix:after {
   clear:both;
 }
 
 /*div*/
-div {
+.final_body  div {
   display : block;
 }
 
 /*button*/
-button {
+.final_body  button {
   width : 50px;
   height : 30px;
   margin : 0;
@@ -79,7 +86,7 @@ button {
 }
 
 /*img*/
-img {
+.final_body  img {
   vertical-align: middle;
   border: 0 none;
   padding : 0;
@@ -88,28 +95,24 @@ img {
 
 /* 3.0 Basic Element */
 
-input[type="button"] :: button {
+.final_body input[type="button"] :: button {
   align-items: flex-start;
   text-align: center;
 }
 .modal-mask {
-  position: fixed;
-  z-index : 1040;
-  top : 0;
-  right : 0;
-  left : 0;
-  bottom: 0;
-  width : 100%;
-  height : 100%;
-  overflow: auto;
+  width: 100%;
+  height: auto;
+  min-width: 1240px;
+  min-height: 550px;
+ /*  overflow: auto;
   overflow-y: scroll;
-  background-color: rgba(0,0,0,.5);
+  background-color: rgba(0,0,0,.5); */
   /* display : table;  /*가운데정렬*/ */
 }
 
 .modal-mask .modal-wrapper {
-  width : 1000px;
-  margin :  0 auto;
+  width : 1240px;
+  margin :  30px auto 0 auto;
   padding : 90px 0 55px 0;
 
 }
@@ -134,19 +137,22 @@ input[type="button"] :: button {
   position: relative;
   border-radius: 4px 4px 0 0;
   background-color: #f4f3f3;
-  padding : 25px 40px 5px 40px;
-  border-bottom: 1px solid #e5e5e5;
+  padding : 20px 40px 10px 25px;
+  border: 1px solid #e5e5e5;
   overflow : hidden;
 }
 
 .modal-mask .modal-wrapper .modal-container {
   width : 100%;
   position: relative;
-  height: 600px;
+  height: 619px;
   background-color: #fff;
-  border-radius: 0 0 4px 4px;
+  /* border-radius: 0 0 4px 4px; */
   transition: all .3s ease;
-  padding : 40px 0 5px 30px;
+  padding : 20px 0 5px 30px;
+  border-left: 1px solid #e5e5e5;
+  border-right: 1px solid #e5e5e5;
+  border-bottom: 1px solid #e5e5e5;
 }
 
 /* 스크롤바 전체 */
@@ -169,7 +175,7 @@ input[type="button"] :: button {
   background-color: #fff;
 }
 
-.time-name {
+.final_body  .time-name {
   margin : 5px 0 0 5px;
   font-size: 25px;
   vertical-align: middle;
@@ -177,30 +183,30 @@ input[type="button"] :: button {
   font-weight: 700;
 }
 
-.left_wrap{
+.final_body  .left_wrap{
   float: left;
-  margin-top: -20px;
-  width: 600px;
-  height: 30px;
+  margin-top: 5px;
+  width: 890px;
+  height: 33px;
   margin-bottom: 10px;
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #ccc;
 }
-.left_wrap .group{
+.final_body  .left_wrap .group{
   float: left;
   display: block;
 }
-.left_wrap .group .title{
+.final_body  .left_wrap .group .title{
   float: left;
   margin-top: -2px;
-  width: 44px;
+  width: 40px;
   height: 22px;
   line-height: 22px;
   font-size: 16px;
-  color: #666;
+  color: #282828;
   letter-spacing: -0.1em;
 }
 
-.left_wrap .group ul{
+.final_body  .left_wrap .group ul{
   margin-top: -1px;
   float: left;
   width: auto;
@@ -209,7 +215,7 @@ input[type="button"] :: button {
   overflow: hidden;
   list-style: none;
 }
-.left_wrap .group ul li{
+.final_body  .left_wrap .group ul li{
   float: left;
   margin-right: 6px;
   width: 20px;
@@ -218,19 +224,19 @@ input[type="button"] :: button {
   border: 1px solid #d6d3ce;
   background-color: #f2f0e5;
 }
-.left_wrap .group ul li.selected{
-  border-color: #000;
-  background-color: #333;
+.final_body  .left_wrap .group ul li.selected{
+  border-color: #244CBA;
+  background-color: #244CBA;
 }
-.left_wrap .group ul li.selected a{
+.final_body  .left_wrap .group ul li.selected a{
   margin:1px;
-  border: 1px solid #5c5c5c;
+  border: 1px solid #244CBA;
   width: 16px;
   height: 16px;
   line-height: 16px;
   color: #fff;
 }
-.left_wrap .group ul li a{
+.final_body  .left_wrap .group ul li a{
   display: block;
   height: 100%;
   color: #333;
@@ -239,22 +245,22 @@ input[type="button"] :: button {
   text-align: center;
   text-decoration: none;
 }
-.left_wrap .group span.contents{
+.final_body  .left_wrap .group span.contents{
   font-size: 12px;
   clear: both;
-  margin-top:2px;
-  margin-left: 250px;
+  margin-top: 20px;
+  margin-left: 530px;
 }
 .group2{
   position: relative;
-  width: 600px;
-  height: 412px;
+  width: 890px;
+  height: 450px;
   overflow: auto;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 .screen-box{
-  width: 600px;
-  height: 412px;
+  width: 890px;
+  height: 450px;
 }
 .screen-box button.alert_seat{
   position: absolute;
@@ -284,22 +290,25 @@ input[type="button"] :: button {
   text-indent: -999em;
 }
 .seat-wrap{
-  padding:40px;
+  padding: 10px 0 0 0;
 }
 .group3{
-  width: 600px;
+  width: 890px;
   height: 50px;
 }
 .group3 .seats-info-title{
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid black;
+  margin-top :20px;
+  padding-top: 17px;
+  /* margin-bottom: 10px; */
+  border-top: 1px solid #ccc;
   font-weight: 700;
 }
 .seats-info{
   display: block;
   width: 600px;
   height: 30px;
+  padding-left : 70px;
+  margin-top : -16px;
 }
 .group3 .seats-info div{
   float: left;
@@ -324,7 +333,7 @@ input[type="button"] :: button {
   display: inline-block;
   left: 0;
   background-color: #ccc;
-  background-image: url("../img/x-mark.png");
+  background-image: url("https://blogfiles.pstatic.net/MjAxODA3MTdfMjUg/MDAxNTMxODIxOTY3NTIz.hCG6508k7EMvww3UMyANDLkXuAxrxFlYxjCWLp653WAg.74bRZKdiG6me27tZt6DmcqdS84QZIzNpZDL-eaFVjakg.PNG.victorym91/selected.png");
 }
 .group3 .seats-possible{
   width: 16px;
@@ -332,7 +341,7 @@ input[type="button"] :: button {
   display: inline-block;
   left: 0;
   top: -1px;
-  background-color: #ccc;
+  background-color: #707271;
 }
 .group3 .seats-info div.seats-info-contents{
   width: 50px;
@@ -342,15 +351,15 @@ input[type="button"] :: button {
 .right_wrap{
   float: right;
   margin-top: -20px;
-  margin-right: 30px;
-  width: 300px;
-  height: 560px;
+  /* margin-right: 30px; */
+  width: 283px;
+  height: 618px;
   background: #404040;
 }
 .right_wrap .row1 img{
-  margin: 7px;
+  /* margin: 15px; */
   width: 283px;
-  height: 370px;
+  height: 412px;
 }
 .right_wrap .row2 .booking-movie-title{
   margin: -20px 0 5px 20px;
@@ -359,48 +368,76 @@ input[type="button"] :: button {
   color: #fff;
 }
 .right_wrap .row2{
-  padding: 10px 15px 0 10px;
+  padding: 27px 15px 0 15px;
 }
 .row2 .booking-movie-title i{
   float: left;
-  margin-left: -20px;
+  margin-left: -15px;
+  margin-top: -2px;
 }
-i{
-  zoom: 1;
-}
+
 .age{
-  background: url(http://image2.megabox.co.kr/mop/home/bg_age2.png) 0 -999px no-repeat;
+   background: url('https://blogfiles.pstatic.net/MjAxODA3MTdfODIg/MDAxNTMxODE3MzIyNDA5.AP9vCRyCVpcvgWrirBLGqUh6c8WrhKnnqzeOiB4zF8wg.JO2a1MGOAd8DHvUYC8AGLRdZAQvCQEa7SvdyldR-7Ncg.PNG.victorym91/grade_all_final.png')
+  0 -999px no-repeat;
   display: inline-block;
-  width: 17px;
+  width: 18px;
   height: 18px;
-  margin-right: 4px;
+  margin-right: 8px;
   text-indent: -99999px;
   overflow: hidden;
   vertical-align: middle;
+  zoom : 1;
 }
+
+.age_all {
+  background-position: 0 0;
+}
+
+.age_12 {
+  background-position: -19px 0; 
+}
+
+.age_15 {
+  background-position: -38px 0;
+}
+
+.age_19 {
+  background-position: -59px 0; 
+}
+
 .booking-movie-content{
   margin-left: 5px;
+  margin-top : -5px;
   overflow: hidden;
   overflow-y: auto;
-  height: 75px;
   color: #fff;
   font-size: 14px;
 }
 .pay-btn{
   margin-left: 5px;
-  width: 270px;
+  margin-top : 7px;
+  width: 245px;
 }
 .pay-btn button{
   margin-top: 10px;
   background: #fff;
-  width: 130px;
+  width: 115px;
   height: 30px;
   float: left;
   font-size: 14px;
-  font-weight: bold;
+  font-weight: 500;
 }
+
+.pay-btn .btn-close:hover{
+  background: #ccc;
+}
+
 .pay-btn .btn-next{
-  margin-left: 10px;
+  margin-left: 15px;
   color: #fff;
   background: #244CBA;
+}
+
+.pay-btn .btn-next:hover{
+  background: #143394;
 }
