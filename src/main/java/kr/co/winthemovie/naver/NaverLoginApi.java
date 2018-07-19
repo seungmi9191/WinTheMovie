@@ -1,4 +1,4 @@
-package kr.co.winthemovie.api;
+package kr.co.winthemovie.naver;
 import com.github.scribejava.core.builder.api.DefaultApi20;
 
 public class NaverLoginApi extends DefaultApi20{

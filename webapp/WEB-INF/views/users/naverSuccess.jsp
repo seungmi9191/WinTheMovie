@@ -33,21 +33,12 @@
 
 </head>
 <body>
-<div
-        style="background-color: #234cba; width: 100%; height: 50px; text-align: center; color: white; vertical-align: center;">
-    <h3>Naver_Login Success</h3>
-</div>
-<br>
-<h2 style="text-align: center" id="name"></h2>
-<h4 style="text-align: center" id="email"></h4>
 <script>
     $(function () {
         $("body").hide();
-        $("body").fadeIn(1000);  // 1초 뒤에 사라 지자
-
-        setTimeout(function(){$("body").fadeOut(1000);},1000);
+        $("body").fadeIn(10);  // 1초 뒤에 사라 지자
         <%--setTimeout(function(){location.href= "${pageContext.request.contextPath}/main"},2000);--%>
-        setTimeout(function(){window.opener.location.href="${pageContext.request.contextPath}/main";window.close()},2000);
+        setTimeout(function(){window.opener.location.href="${pageContext.request.contextPath}/main";window.close()},2);
 
         // 2초 뒤에 메인 화면 으로 가자
 

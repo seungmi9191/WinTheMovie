@@ -23,13 +23,13 @@
                   <div class="current_submenu">
                       <ul>
                           <li class="on">
-                              <a href="#" title="선택">현재 상영작</a>
+                              <a href="${pageContext.request.contextPath}/movie/current_movie" title="선택">현재 상영작</a>
                           </li>
                           <li>
                               |
                           </li>
                           <li>
-                              <a href="#">상영 예정작</a>
+                              <a href="${pageContext.request.contextPath}/movie/future_movie">상영 예정작</a>
                           </li>
 
                       </ul>

@@ -7,7 +7,7 @@
   margin: 0 0px;
   width: 100%;
   min-width: 1240px;
-  max-width: 100%
+  max-width: 100%;
   overflow: hidden;
 }
 
@@ -296,7 +296,7 @@ button.slick-prev:hover {
 
 .hover .layer_hover > a{
   display: block;
-  margin-left: 0 15px;
+  margin-left: 15px;
   border: 1px solid #fff;
   height: 48px;
   line-height: 48px;

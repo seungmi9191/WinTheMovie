@@ -33,16 +33,24 @@ public class UserController {
 
     @RequestMapping(value = "/joinbyemail",method = RequestMethod.POST)
     public String joinbyemail(@ModelAttribute UserVo userVo){
-        System.out.println(userVo.toString());
+        System.out.println("joinbyemail 들어오긴함"+userVo.toString());
         userService.userJoin(userVo);
         return "user/login";
     }
 
-    @RequestMapping(value = "/joinbynaver2",method = RequestMethod.POST)
-    public String loginbynaver(@ModelAttribute UserVo userVo){
-        System.out.println(userVo.toString());
-        userService.loginbynaver(userVo);
-        return "user/login";
+    @ResponseBody
+    @RequestMapping(value = "/joinbykakao",method = RequestMethod.POST)
+    public boolean joinbykakao(@ModelAttribute UserVo userVo){
+        System.out.println("joinbykakao 들어오긴함"+userVo.toString());
+        boolean result = false;
+
+        if (userService.userJoin(userVo)!= 0){
+            result = true;
+        }else{
+            result = false;
+        }
+        System.out.println("joinbykakao result= " +result);
+        return result;
     }
 
     @RequestMapping(value = "/loginform",method = RequestMethod.GET)
@@ -53,27 +61,38 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String login(@ModelAttribute UserVo userVo, HttpSession session){
 
-        System.out.println("login controller:" + userVo.toString());
         UserVo authUser = userService.login(userVo);
         if(authUser !=null){
             session.setAttribute("authUser",authUser);
-            return "redirect: /main";
+            return "redirect:/main";
         }else{
             return "redirect: user/login";
+        }
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/loginbykakao", method = RequestMethod.POST)
+    public boolean loginbykakao(@ModelAttribute UserVo userVo, HttpSession session){
+
+        boolean result = false;
+        UserVo authUser = userService.login(userVo);
+        if(authUser !=null){
+            result = true;
+            session.setAttribute("authUser",authUser);
+            return result;
+        }else{
+            return result;
         }
     }
     @ResponseBody
     @RequestMapping(value = "/emailcheck",method = RequestMethod.POST)
     public boolean emailcheck(@RequestParam("email") String email){
-        System.out.println("email 체크하러 컨트롤 입장");
         boolean result = userService.emailcheck(email);
-        System.out.println("email체크 결과="+result);
         return result;
     }
 
     @RequestMapping(value = "/joinbynaver", method = RequestMethod.POST)
     public void joinbynaver(@ModelAttribute UserVo userVo){
-        System.out.println(userVo.toString());
         userService.userJoin(userVo);
 //        return "user/login";
     }
@@ -83,10 +102,5 @@ public class UserController {
         session.invalidate();
         return "redirect:/main";
     }
-
-//    @RequestMapping(value = "/callback",method = RequestMethod.POST)
-//    public void registerbyapi(String access_token){
-//        System.out.println("access_tk = "+access_token);
-//    }
 
 }

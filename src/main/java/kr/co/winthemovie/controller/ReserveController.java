@@ -12,4 +12,14 @@ public class ReserveController {
 	public String reserveform() {
 		return "movie/reservepage";
 	}
+
+	@RequestMapping(value = "/current_movie",method = RequestMethod.GET)
+	public String current_movie(){
+		return "movie/current_movie";
+	}
+
+	@RequestMapping(value = "/future_movie",method = RequestMethod.GET)
+	public String future_movie(){
+		return "movie/future_movie";
+	}
 }

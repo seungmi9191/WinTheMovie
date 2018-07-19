@@ -5,7 +5,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/assets/css/main/main_style.css">
 <link rel="stylesheet"
@@ -56,7 +55,7 @@
 									<a href="" class="btn-reserve" onclick="return false;">예매하기</a>
 								</div>
 								<div>
-									<a href="" class="btn-view" onclick="return false;">상세보기</a>
+									<a href="" class="btn-location" onclick="return false;">상세보기</a>
 								</div>
 							</div>
 						</div>
@@ -310,6 +309,7 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	<!-- madal function -->
+
 	<div class="body">
 		<!--영화 상세 모달창 레이아웃-->
 		<div class="modal-mask">
@@ -646,6 +646,7 @@
 		</div>
 		<!--body 끝-->
 	</div>
+
 </body>
 <script type="text/javascript">
 	// Box Office
@@ -704,6 +705,9 @@
       $('.btn-reserve, .popup-close').click(function(){
         $('.body').toggle();
       });
+    $('.btn-location, .popup-close-loc').click(function(){
+        $('.body_location').style.display="block";
+    });
       
       // naver_map
       var naver_map = new naver.maps.Map('naver_map', {

@@ -14,13 +14,13 @@
 		<ul class="header_left">
 			<li><a href="${pageContext.request.contextPath}/movie/reserve">예매</a></li>
 			<li><a href="${pageContext.request.contextPath}/movie/analysis">평점분석</a></li>
-			<li><a href="${pageContext.request.contextPath}/movie/">상영작/예정작</a></li>
+			<li><a href="${pageContext.request.contextPath}/movie/current_movie">상영작/예정작</a></li>
 			<li><a href="${pageContext.request.contextPath}/movie/">추천영화</a></li>
 		</ul>
 
 		<ul class="header_login">
-			<li><a><i class="fa fa-map-marker-alt"></i> 
-				<span> 위치검색</span> </a>
+			<li><a href="#" onclick="return false;"><i class="fa fa-map-marker-alt"></i>
+				<span id = "btn-location"> 위치검색</span> </a>
 			</li>
 			<c:if test="${sessionScope.authUser == null}">
 				<li class="myinfo">
@@ -46,16 +46,17 @@
 		</ul>
 	</div>
 </div>
+<%--<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>--%>
 <script>
-	$(document).ready(function(){
+    $(document).ready(function(){
 		$(".dropbtn").on("click", function(){
 			var submenu = $(this).next('ul');
-			
+
 			if( submenu.is(":visible")){
 				submenu.slideUp();
 			} else {
 				submenu.slideDown();
 			}
 		});
-	});
+    });
 </script>

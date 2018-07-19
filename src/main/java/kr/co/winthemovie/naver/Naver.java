@@ -1,4 +1,4 @@
-package kr.co.winthemovie.controller;
+package kr.co.winthemovie.naver;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;

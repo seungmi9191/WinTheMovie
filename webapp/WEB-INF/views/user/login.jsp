@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
           integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/user/login_style.css">
-
-
     <script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js"
             charset="utf-8"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+    <%--kakao --%>
 
     <title>Insert title here</title>
 </head>
@@ -76,9 +76,10 @@
 
                     </li>
                     <li>
-                        <a href="">
-                            <img src="${pageContext.request.contextPath}/assets/img/user/kakao.png">
+                        <a id="kakao-login-btn" href="javascript:loginWithKakao()">
+                            <img src="${pageContext.request.contextPath}/assets/img/user/kakao.png"/>
                         </a>
+
                     </li>
                     <li>
                         <a href="">
@@ -128,7 +129,91 @@
 
     function loginbynaver() {
         window.open("${pageContext.request.contextPath}/users/naverlogin", "a", "width=400, height=300, left=100, top=50");
+
     }
 
+    <%-- kakao login Start--%>
+    Kakao.init('75dba51b685ac97d77a9dbaff302ffd6');
+
+    // 카카오 로그인 버튼을 생성합니다.
+    function loginWithKakao() {
+        Kakao.Auth.login({
+
+            success: function (authObj) {
+                Kakao.API.request({
+                    url: '/v1/user/me',
+                    success: function (res) {
+
+                        // alert(JSON.stringify(res)); //<---- kakao.api.request 에서 불러온 결과값 json형태로 출력
+                        // alert(JSON.stringify(authObj)); //<----Kakao.Auth.createLoginButton에서 불러온 결과값 json형태로 출력
+                        // console.log(res.id);//<---- 콘솔 로그에 id 정보 출력(id는 res안에 있기 때문에  res.id 로 불러온다)
+                        // console.log(res.kaccount_email);//<---- 콘솔 로그에 email 정보 출력
+                        // console.log(res.properties['nickname']);//<---- 콘솔 로그에 닉네임 출력(properties에 있는 nickname 접근
+                        // // res.properties.nickname으로도 접근 가능 )
+                        // console.log(authObj.access_token);//<---- 콘솔 로그에 토큰값 출력
+                        $.ajax({
+                            url: "${pageContext.request.contextPath}/user/emailcheck",
+                            type: "post",
+                            data: {email: res.id},
+                            dataType: "json",
+                            async: false,
+                            success: function (result) {
+                                if (result == true) {      <%--email(id code) 이 없고 회원가입이 가능할 경우 --%>
+                                    var email = res.id;
+                                    var name = res.properties['nickname'];
+                                    regist(email, name);
+                                } else {                  <%--email(id code)이 이미 존재하는 경우 --%>
+                                    var email = res.id;
+                                    login(email);
+                                }
+                            }
+                            , error: function (XHR, status, error) {
+                                console.error(status + " : " + error)
+                            }
+                        })
+                    }
+                })
+            },
+            fail: function (error) {
+                alert(JSON.stringify(error));
+            }
+        })
+    };
+    <%-- kakao login End --%>
+
+    <%-- kakao로 로그인 시도시 회원가입 함수 --%>
+
+    function regist(email, name) {
+        console.log("regist함수 = " + email);
+        $.ajax({
+            url: "${pageContext.request.contextPath}/user/joinbykakao",
+            type: "post",
+            data: {email: email, username: name},
+            dataType: "json",
+            success: function () {
+                console.log(email, name + "regist");
+            }, error: function (XHR, status, error) {
+                // console.error(status+" 123: "+ error)
+            }
+        })
+    }
+
+    <%-- kakao로 로그인  --%>
+
+    function login(email) {
+        console.log("login 함수" + email);
+        $.ajax({
+            url: "${pageContext.request.contextPath}/user/loginbykakao",
+            type: "post",
+            data: {email: email},
+            dataType: "json",
+            success: function (result) {
+                location.href = "${pageContext.request.contextPath}/main";
+
+            }, error: function (XHR, status, error) {
+                console.error(status + " 123: " + error)
+            }
+        })
+    }
 </script>
 </html>

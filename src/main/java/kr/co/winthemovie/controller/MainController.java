@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.co.winthemovie.kobis.KobisAPI;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class MainController {
@@ -20,4 +21,10 @@ public class MainController {
 		}
 		return "main/main";
 	}
+
+	@RequestMapping(value = "/location",method= RequestMethod.GET)
+	public String locationform(){
+		return "modal/location";
+	}
+
 }

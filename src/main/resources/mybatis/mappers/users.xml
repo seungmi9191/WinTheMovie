@@ -5,7 +5,7 @@
 
     <insert id="joinbyemail" parameterType="kr.co.winthemovie.vo.UserVo">
         <![CDATA[
-          INSERT INTO MEMBER
+          INSERT INTO users
             values(SEQ_member_NO.nextval,
             #{email},
              #{userpw},
@@ -20,7 +20,7 @@
 
     <insert id="joinbynaver" parameterType="kr.co.winthemovie.vo.UserVo">
         <![CDATA[
-          INSERT INTO MEMBER
+          INSERT INTO users
             values(SEQ_member_NO.nextval,
             #{email},
              NULL ,
@@ -35,20 +35,20 @@
 
     <select id="emailcheck" parameterType="String" resultType="String">
         <![CDATA[
-          select email from MEMBER
+          select email from users
           where EMAIL = #{email}
         ]]>
     </select>
 
     <select id="login" parameterType="kr.co.winthemovie.vo.UserVo" resultType="kr.co.winthemovie.vo.UserVo">
         <![CDATA[
-          SELECT * from MEMBER WHERE EMAIL=#{email}
+          SELECT * from users WHERE EMAIL=#{email}
         ]]>
     </select>
 
     <select id="loginbynaver" parameterType="kr.co.winthemovie.vo.UserVo" resultType="kr.co.winthemovie.vo.UserVo">
         <![CDATA[
-          SELECT * from MEMBER WHERE EMAIL=#{email}
+          SELECT * from users WHERE EMAIL=#{email}
         ]]>
     </select>
 </mapper>

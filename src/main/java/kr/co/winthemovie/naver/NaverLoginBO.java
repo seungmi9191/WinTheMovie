@@ -1,11 +1,11 @@
-package kr.co.winthemovie.BO;
+package kr.co.winthemovie.naver;
 
 import java.io.IOException;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
-import kr.co.winthemovie.api.NaverLoginApi;
+import kr.co.winthemovie.naver.NaverLoginApi;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.StringUtils;
 
@@ -15,6 +15,8 @@ import com.github.scribejava.core.model.OAuthRequest;
 import com.github.scribejava.core.model.Response;
 import com.github.scribejava.core.model.Verb;
 import com.github.scribejava.core.oauth.OAuth20Service;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Repository
 public class NaverLoginBO {
@@ -32,6 +34,7 @@ public class NaverLoginBO {
     private final static String PROFILE_API_URL = "https://openapi.naver.com/v1/nid/me";/// Api 종류 기본 !!
 
     /* 네이버 아이디로 인증  URL 생성  Method */
+    @RequestMapping(value = "/users/naverBO", method = {RequestMethod.GET, RequestMethod.POST})
     public String getAuthorizationUrl(HttpSession session) {
 
         /* 세션 유효성 검증을 위하여 난수를 생성 */

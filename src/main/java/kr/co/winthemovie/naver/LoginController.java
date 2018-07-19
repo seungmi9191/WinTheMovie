@@ -1,23 +1,16 @@
-package kr.co.winthemovie.controller;
+package kr.co.winthemovie.naver;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 //import com.fasterxml.jackson.core.*;
 //import com.fasterxml.jackson.core.type.TypeReference;
 //import com.fasterxml.jackson.databind.JsonMappingException;
 //import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.co.winthemovie.BO.NaverLoginBO;
+import kr.co.winthemovie.controller.UserController;
+import kr.co.winthemovie.naver.NaverLoginBO;
 
 import kr.co.winthemovie.vo.UserVo;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -29,8 +22,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
-
-import static com.sun.javafx.fxml.expression.KeyPath.parse;
 
 
 /**
@@ -50,9 +41,6 @@ public class LoginController {
 
     @Autowired
     UserController userController;
-
-    @Autowired
-    UserVo userVo;
 
     //로그인 첫 화면 요청 메소드
     @RequestMapping(value = "/users/naverlogin", method = {RequestMethod.GET, RequestMethod.POST})
@@ -86,6 +74,7 @@ public class LoginController {
         /* 네이버 로그인 성공 페이지 View 호출 */
 
         JSONParser jsonparser = new JSONParser();
+        System.out.println(apiResult);
         JSONObject jsonobject = (JSONObject)jsonparser.parse(apiResult);
 
         JSONObject json =  (JSONObject) jsonobject.get("response");
@@ -94,7 +83,7 @@ public class LoginController {
         String age = (String) json.get("age");
         String username = (String)json.get("name");
 
-        userVo = new UserVo(email,username);
+        UserVo userVo = new UserVo(email,username);
 
         boolean email_check = false;
         email_check = userController.emailcheck(email);
@@ -107,6 +96,4 @@ public class LoginController {
         }
         return "users/naverSuccess";
     }
-
-
 }

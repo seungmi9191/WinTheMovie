@@ -185,28 +185,6 @@
             return false;
         }
     }
-
-    // $("#email").on("onblur",function(checkemail){
-    //     var email=$("#email").val();
-    //     console.log(email)
-    //     $.ajax({
-    //         url:"/winthemovie/user/emailcheck",
-    //         type:"post",
-    //         data:{email:email},
-    //         dataType: "json",
-    //         success: function(result){
-    //             if(result==true) {
-    //                 $(".email-text").text("");
-    //             }else{
-    //                 $(".email-text").text("이미 사용중인 이메일 입니다.");
-    //             }
-    //         }
-    //         ,error: function (XHR, status, error) {
-    //             console.error(status+" : "+ error)
-    //
-    //         }
-    //     })
-    // })
 </script>
 
 
