@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.winthemovie.BO.NaverLoginBO;
 
-import kr.co.winthemovie.BO.NaverLoginBO2;
 import kr.co.winthemovie.vo.UserVo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -42,7 +41,6 @@ public class LoginController {
 
     /* NaverLoginBO */
     private NaverLoginBO naverLoginBO;
-    private NaverLoginBO2 naverLoginBO2;
     private String apiResult = null;
 
     @Autowired
@@ -79,37 +77,34 @@ public class LoginController {
         System.out.println("여기는 callback");
         OAuth2AccessToken oauthToken;
         oauthToken = naverLoginBO.getAccessToken(session, code, state);
-        System.out.println("access token = " + oauthToken.getAccessToken());
+
         //로그인 사용자 정보를 읽어온다.
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
-        System.out.println("result : " + apiResult);
+
         /* 네이버 로그인 성공 페이지 View 호출 */
-        System.out.println("투스트링 : " + apiResult.toString());
 
         JSONParser jsonparser = new JSONParser();
         JSONObject jsonobject = (JSONObject)jsonparser.parse(apiResult);
-        System.out.println(jsonobject);
+
         JSONObject json =  (JSONObject) jsonobject.get("response");
-        System.out.println(json);
 
         String email = (String) json.get("email");
         String age = (String) json.get("age");
         String username = (String)json.get("name");
-        System.out.println("email: "+email+" age: "+age+" name: "+username);
-
-        if(userController.emailcheck(email)==true){
-            System.out.println("사용할 수 있는 이메일입니다.");
-        };
 
         userVo = new UserVo(email,username);
 
-        System.out.println(userVo.toString());
-
-        userController.joinbyemail(userVo);
-        System.out.println("여긴 오니?");
-
+        boolean email_check = false;
+        email_check = userController.emailcheck(email);
+        if (email_check == false) {
+            userController.login(userVo, session);
+            return "users/naverSuccess";
+        }else if(email_check == true){
+            userController.joinbyemail(userVo);
+            userController.login(userVo, session);
+        }
         return "users/naverSuccess";
     }
 

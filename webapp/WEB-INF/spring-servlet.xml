@@ -36,7 +36,4 @@
     <mvc:resources mapping="/upload/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/brand/" /> <!-- 사용자가 치는 주소 / 물리적인 주소 -->
     <mvc:resources mapping="/upload/poster/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/poster/" />
 
-	<!--네이버-->
-	<context:component-scan base-package="kr.co.winthemovie" />
-	<bean id="naverLoginBO" class="kr.co.winthemovie.BO.NaverLoginBO"/>
 </beans>

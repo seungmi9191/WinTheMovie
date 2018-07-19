@@ -175,6 +175,7 @@ body {
 }
 .mini-title{
 	font-size: 12px;
+	margin-bottom: 10px;
 }
 .panel-heading {
 	font-size: 14px;
@@ -211,13 +212,13 @@ body {
 	width: 50%;
 	height: 200px;
 	float: left;
-	margin-top: 40px;
+	margin-top: 20px;
 }
 .body-right{
 	float:left;
 	width: 50%;
 	height: 200px;
-	margin-top: 40px;
+	margin-top: 20px;
 }
 .panel-body ul{
 	margin: 0 auto;
