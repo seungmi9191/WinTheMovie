@@ -30,14 +30,22 @@
 	</context:component-scan>
   
 	<!-- oracle datasource -->
-	<bean id="oracleDatasource"
-		class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+	<!--<bean id="oracleDatasource"-->
+		<!--class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">-->
+		<!--<property name="URL"-->
+			<!--value="jdbc:oracle:thin:@localhost:1521:xe" />-->
+		<!--<property name="user" value="winthemovie" /> &lt;!&ndash;내 db 아이디 &ndash;&gt;-->
+		<!--<property name="password" value="winthemovie1" /> &lt;!&ndash;내 db 패스워드 &ndash;&gt;-->
+		<!--<property name="connectionCachingEnabled" value="true" />-->
+		<!--<qualifier value="main-db" />-->
+	<!--</bean>-->
+	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="URL"
-			value="jdbc:oracle:thin:@localhost:1521:xe" />
-		<property name="user" value="winthemovie" /> <!--내 db 아이디 -->
-		<property name="password" value="winthemovie1" /> <!--내 db 패스워드 -->
-		<property name="connectionCachingEnabled" value="true" />
-		<qualifier value="main-db" />
+				  value="jdbc:oracle:thin:@chonnomvv.cq5vm8kpdkgi.ap-northeast-2.rds.amazonaws.com:1521:orcl"/>
+		<property name="user" value="chonnomvv"/>
+		<property name="password" value="12345678"/>
+		<property name="connectionCachingEnabled" value="true"/>
+		<qualifier value="main-db"/>
 	</bean>
 
 	<!-- MyBatis SqlSessionFactoryBean 설정 -->
