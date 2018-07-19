@@ -7,5 +7,6 @@
         </typeAliases>
     <mappers>
         <!--xml 파일이 추가될 경우 아래에 계속 mapper 시켜줘야한다.-->
+        <mapper resource="mybatis/mappers/Theater.xml"></mapper>
     </mappers>
 </configuration>

@@ -270,7 +270,8 @@
 			<div class="officeCont">
 				<ol class="officeRk salecontent">
 					<c:forEach
-						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}" var="boxoffice">
+						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}"
+						var="boxoffice">
 						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> <span
 								class="grade_15">15</span> <span class="myTit">${boxoffice.movieNm}</span>
 						</a> <span class="memRk">예매율<em>${boxoffice.salesShare} %</em></span>
@@ -336,7 +337,7 @@
 	</div>
 
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-s	<!--body 끝-->
+	<!--body 끝-->
 </body>
 <script type="text/javascript">
 	// Box Office
@@ -353,6 +354,8 @@ s	<!--body 끝-->
 			$('.sale').removeClass("on");
 			$('.salecontent').hide();
 		});
+
+		naver_func();
 	});
 	// slick library
 	$('.swiper-slide').slick({
@@ -395,34 +398,87 @@ s	<!--body 끝-->
 	});
 
 	// naver_map
-	var naver_map = new naver.maps.Map('naver_map', {
-		center : new naver.maps.LatLng(37.3595704, 127.105399),
-		zoom : 10
-	});
-	var marker = new naver.maps.Marker({
-		position : new naver.maps.LatLng(37.3595704, 127.105399),
-		map : naver_map
-	});
+	function naver_func(){
+		var $xgps, $ygps,
+			$markers=[], $infoWindow=[];
+		var naver_map = new naver.maps.Map('naver_map', {
+			center : new naver.maps.LatLng(37.3595704, 127.105399),
+			zoom : 10
+		});
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/selectTheater",
+			success : function(list){
+				 for(var i=0;i<list.length;i++){
+					 $xgps = Number(list[i].theaterygps),
+					 $ygps = Number(list[i].theaterxgps);
+					 var marker = new naver.maps.Marker({
+						position : new naver.maps.LatLng($xgps , $ygps),
+						map : naver_map
+					});
+					
+					var contentString = [
+						'<div class="iw_inner">',
+						' <h3>'+list[i].theatername+'</h3>',
+						'<p>'+list[i].theateraddress+'</p>',
+						'</div>'
+					].join('');
+					var infoWindow = new naver.maps.InfoWindow({
+				        content: contentString
+					});
+					
+					$markers.push(marker);
+					$infoWindow.push(infoWindow);
+				 }
+				
+				for (var i=0, ii=$markers.length; i<ii; i++) {
+				    naver.maps.Event.addListener($markers[i], 'click', getClickHandler(i));
+				} 
+				naver.maps.Event.addListener(naver_map, 'idle', function() {
+				    updateMarkers(naver_map, $markers);
+				});
 
-	var contentString = [
-			'<div class="iw_inner">',
-			'   <h3>서울특별시청</h3>',
-			'   <p>서울특별시 중구 태평로1가 31 | 서울특별시 중구 세종대로 110 서울특별시청<br />',
-			'       <img src="" width="55" height="55" alt="서울시청" class="thumb" /><br />',
-			'       02-120 | 공공,사회기관 &gt; 특별,광역시청<br />',
-			'       <a href="http://www.seoul.go.kr" target="_blank">www.seoul.go.kr/</a>',
-			'   </p>', '</div>' ].join('');
+				function updateMarkers(map, markers) {
+				    var mapBounds = map.getBounds();
+				    var marker, position;
 
-	var infowindow = new naver.maps.InfoWindow({
-		content : contentString
-	});
+				    for (var i = 0; i < markers.length; i++) {
+				        marker = markers[i]
+				        position = marker.getPosition();
 
-	naver.maps.Event.addListener(marker, "click", function(e) {
-		if (infowindow.getMap()) {
-			infowindow.close();
-		} else {
-			infowindow.open(naver_map, marker);
-		}
-	});
+				        if (mapBounds.hasLatLng(position)) {
+				            showMarker(map, marker);
+				        } else {
+				            hideMarker(map, marker);
+				        }
+				    }
+				}
+
+				function showMarker(map, marker) {
+				    if (marker.setMap()) return;
+				    marker.setMap(map);
+				}
+
+				function hideMarker(map, marker) {
+				    if (!marker.setMap()) return;
+				    marker.setMap(null);
+				}
+
+				function getClickHandler(seq) {
+				    return function(e) {
+				        var marker = $markers[seq],
+				            infoWindow = $infoWindow[seq];
+
+				        if (infoWindow.getMap()) {
+				            infoWindow.close();
+				        } else {
+				            infoWindow.open(naver_map, marker);
+				        }
+				    }
+				} 
+			}
+		});
+	} 
+	
 </script>
 </html>
