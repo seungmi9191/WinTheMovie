@@ -31,5 +31,9 @@
 		<property name="suffix" value=".jsp" />
 		<property name="order" value="1" />
 	</bean>
+	
+	<!-- url매핑 -->
+    <mvc:resources mapping="/upload/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/brand/" /> <!-- 사용자가 치는 주소 / 물리적인 주소 -->
+    <mvc:resources mapping="/upload/poster/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/poster/" />
 
 </beans>

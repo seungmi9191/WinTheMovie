@@ -1,3 +1,4 @@
+
 package kr.co.winthemovie.vo;
 
 public class TheaterVo {
@@ -64,3 +65,4 @@ public class TheaterVo {
 				+ "]";
 	}
 }
+
