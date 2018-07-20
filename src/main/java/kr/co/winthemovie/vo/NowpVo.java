@@ -1,7 +1,7 @@
 package kr.co.winthemovie.vo;
 
 public class NowpVo {
-	
+
 	private int nowplayingno;
 	private int roomno;
 	private int movieno;
@@ -11,18 +11,20 @@ public class NowpVo {
 	private int theaterno;
 	private int brandno;
 	private String theatername;
-	private String theaterlocate;
+	private String theateraddress;
 	private String theaterxgps;
 	private String theaterygps;
 	private String brandlogo;
 	private String brandname;
 	
 	public NowpVo() {
+		
 	}
-
+	
 	public NowpVo(int nowplayingno, int roomno, int movieno, String playingtime, String playingdate, String poster,
-			int theaterno, int brandno, String theatername, String theaterlocate, String theaterxgps,
+			int theaterno, int brandno, String theatername, String theateraddress, String theaterxgps,
 			String theaterygps, String brandlogo, String brandname) {
+		super();
 		this.nowplayingno = nowplayingno;
 		this.roomno = roomno;
 		this.movieno = movieno;
@@ -32,11 +34,20 @@ public class NowpVo {
 		this.theaterno = theaterno;
 		this.brandno = brandno;
 		this.theatername = theatername;
-		this.theaterlocate = theaterlocate;
+		this.theateraddress = theateraddress;
 		this.theaterxgps = theaterxgps;
 		this.theaterygps = theaterygps;
 		this.brandlogo = brandlogo;
 		this.brandname = brandname;
+	}
+
+	@Override
+	public String toString() {
+		return "NowpVo [nowplayingno=" + nowplayingno + ", roomno=" + roomno + ", movieno=" + movieno + ", playingtime="
+				+ playingtime + ", playingdate=" + playingdate + ", poster=" + poster + ", theaterno=" + theaterno
+				+ ", brandno=" + brandno + ", theatername=" + theatername + ", theateraddress=" + theateraddress
+				+ ", theaterxgps=" + theaterxgps + ", theaterygps=" + theaterygps + ", brandlogo=" + brandlogo
+				+ ", brandname=" + brandname + "]";
 	}
 
 	public int getNowplayingno() {
@@ -111,12 +122,12 @@ public class NowpVo {
 		this.theatername = theatername;
 	}
 
-	public String getTheaterlocate() {
-		return theaterlocate;
+	public String getTheateraddress() {
+		return theateraddress;
 	}
 
-	public void setTheaterlocate(String theaterlocate) {
-		this.theaterlocate = theaterlocate;
+	public void setTheateraddress(String theateraddress) {
+		this.theateraddress = theateraddress;
 	}
 
 	public String getTheaterxgps() {
@@ -150,16 +161,5 @@ public class NowpVo {
 	public void setBrandname(String brandname) {
 		this.brandname = brandname;
 	}
-
-	@Override
-	public String toString() {
-		return "NowpVo [nowplayingno=" + nowplayingno + ", roomno=" + roomno + ", movieno=" + movieno + ", playingtime="
-				+ playingtime + ", playingdate=" + playingdate + ", poster=" + poster + ", theaterno=" + theaterno
-				+ ", brandno=" + brandno + ", theatername=" + theatername + ", theaterlocate=" + theaterlocate
-				+ ", theaterxgps=" + theaterxgps + ", theaterygps=" + theaterygps + ", brandlogo=" + brandlogo
-				+ ", brandname=" + brandname + "]";
-	}
-	
-	
 
 }
