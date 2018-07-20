@@ -17,19 +17,18 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css"> 
-<script type="text/javascript"
-	src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
+<script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
 
 <title>Main Page</title>
 </head>
 
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-
-	 <!-- main banner -->
+	
+	<!-- main banner -->
   <div class="g-contents">
     <div class="multi-banner">
-      <div class="swiper-slide">
+     <div class="swiper-slide">
        <c:forEach items="${theaterList}" var="theaterList" >
         <div>
           <div class="poster-box">
@@ -37,10 +36,10 @@
             <div class="location-info">
               <div class="location-logo"><div class="logo-wrap"><img src="${pageContext.request.contextPath}/upload/${theaterList.brandlogo}"></div></div>
               <c:choose>
-              	<c:when test="${fn:length(theaterList.theaterlocate) > 1}"> 
+              	<c:when test="${fn:length(theaterList.theateraddress) > 1}"> 
 	              <div class="location-name">
 	              	<p class="con">
-		              	<c:set var="splitloc" value="${fn:split(theaterList.theaterlocate,' ')[1]}"></c:set> <!--locate에서 공백기준으로 배열 index[1] 받아옴 -->
+		              	<c:set var="splitloc" value="${fn:split(theaterList.theateraddress,' ')[1]}"></c:set> <!--locate에서 공백기준으로 배열 index[1] 받아옴 -->
 		              	<c:set var="len" value="${fn:length(splitloc)}"></c:set> <!--받아온 index[1]의 단어길이 확인 -->
 						<c:set var="substringloc" value="${fn:substring(splitloc,0,len-1) }"></c:set> <!--'구' 삭제위해 index 전체길이-1 -->
 	              		<c:out value="${substringloc}"></c:out>
@@ -49,7 +48,7 @@
                	<c:otherwise>
 	              <div class="location-name">
 	              	<p class="con">
-	              		<c:out value="${theaterList.theaterlocate}"></c:out>
+	              		<c:out value="${theaterList.theateraddress}"></c:out>
 	              	</p></div>
                	</c:otherwise>
               </c:choose>
@@ -80,12 +79,7 @@
 	<div class="middle-banner">
 		<div class="middle-banner-title">
 			<h2>
-
 				<span>영화 티켓은 SITE WIN THE MOVIE.</span>
-				
-
-				<span>Event</span>
-
 			</h2>
 		</div>
 		<div class="middle-banner-logo">
@@ -127,7 +121,7 @@
 
 		</div>
 
-		<div class="recommand-box">
+		 <div class="recommand-box">
 			<div class="plus">
 				<a href="${pageContext.request.contextPath}/">+ 더보기</a>
 			</div>
@@ -157,7 +151,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> 
 	</div>
 
 	<!--footer-notice -->
@@ -170,9 +164,10 @@
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
+	<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>
 	
-<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
-<!-- madal function -->
+	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
+	<!-- madal function -->
 
 
 </body>
@@ -191,42 +186,10 @@
 			$('.sale').removeClass("on");
 			$('.salecontent').hide();
 		});
-
 		
-		reverse_counter();
-	});
-    // slick library
-    $('.swiper-slide').slick({
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 5,
-        slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 2000,
-        arrows: true,
-        dots: true,
-        responsive: [{
-          breakpoint: 600,
-          settings: {
-            slidesToShow: 2,
-            slidesToScroll: 1
-          }
-        },
-        {
-           breakpoint: 400,
-           settings: {
-              arrows: false,
-              slidesToShow: 1,
-              slidesToScroll: 1
-           }
-        }]
-    });
-
-
-
 		naver_func();
 	});
+	
 	// slick library
 	$('.swiper-slide').slick({
 		dots : false,
@@ -255,16 +218,28 @@
 	});
 
 
-
 	// modal function
 	$('.btn-reserve, .popup-close').click(function() {
 		$('.body').toggle();
 	});
-
+	
+	$('.btn-address').on("click", function(){
+		$('.body-loc').toggle();
+	})
 	// naver_map
 	function naver_func(){
-		var $xgps, $ygps,
+		var $xgps, $ygps, $myxgps, $myygps,
 			$markers=[], $infoWindow=[];
+		
+		$myxgps = $('.setx').val();
+		$myygps = $('.sety').val();
+		
+		console.log($myxgps);
+		console.log($myygps);
+		/* if( $myxgps && $myygps == null){
+			$myxgps = 
+			$myygps
+		} */
 		var naver_map = new naver.maps.Map('naver_map', {
 			center : new naver.maps.LatLng(37.3595704, 127.105399),
 			zoom : 10
@@ -343,6 +318,7 @@
 			}
 		});
 	} 
+	
 	
 
 </script>

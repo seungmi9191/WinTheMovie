@@ -9,8 +9,8 @@ public class UserVo {
     private String phone;
     private String regdate;
     private String authority;
-    private String userx;
-    private String usery;
+    private String userxgps;
+    private String userygps;
 
     public String getUsername() {
         return username;
@@ -20,20 +20,20 @@ public class UserVo {
         this.username = username;
     }
 
-    public String getUserx() {
-        return userx;
+    public String getUserxgps() {
+        return userxgps;
     }
 
-    public void setUserx(String userx) {
-        this.userx = userx;
+    public void setUserxgps(String userx) {
+        this.userxgps = userygps;
     }
 
     public String getUsery() {
-        return usery;
+        return userygps;
     }
 
     public void setUsery(String usery) {
-        this.usery = usery;
+        this.userygps = userygps;
     }
 
     public int getUserno() {
@@ -84,7 +84,7 @@ public class UserVo {
         this.authority = authority;
     }
 
-    public UserVo(int userno, String email, String userpw, String username, String phone, String regdate, String authority, String userx, String usery) {
+    public UserVo(int userno, String email, String userpw, String username, String phone, String regdate, String authority, String userxgps, String userygps) {
         this.userno = userno;
         this.email = email;
         this.userpw = userpw;
@@ -92,8 +92,8 @@ public class UserVo {
         this.phone = phone;
         this.regdate = regdate;
         this.authority = authority;
-        this.userx = userx;
-        this.usery = usery;
+        this.userxgps = userxgps;
+        this.userygps = userygps;
     }
 
     public UserVo() {
@@ -114,8 +114,8 @@ public class UserVo {
                 ", phone='" + phone + '\'' +
                 ", regdate='" + regdate + '\'' +
                 ", authority='" + authority + '\'' +
-                ", userx='" + userx + '\'' +
-                ", usery='" + usery + '\'' +
+                ", userx='" + userxgps + '\'' +
+                ", usery='" + userygps + '\'' +
                 '}';
     }
 }

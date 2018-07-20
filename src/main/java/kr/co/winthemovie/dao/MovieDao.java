@@ -16,8 +16,6 @@ public class MovieDao {
 	private SqlSession sqlSession;
 	
 	public List<NowpVo> getTheaterList() {
-		List<NowpVo> list = sqlSession.selectList("movie.getTheaterList");
-		return list;
+		return sqlSession.selectList("movie.getTheaterList");
 	}
-
 }

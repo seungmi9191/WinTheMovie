@@ -24,10 +24,11 @@ public class JusoController {
     public HashMap<String, String> juso(@RequestParam String getAddr , Model model) {
         String clientId = "29ED47vcAOiiJdxtOrrS";//애플리케이션 클라이언트 아이디값";
         String clientSecret = "ZO_EGQVw9Y";//애플리케이션 클라이언트 시크릿값";
+        HashMap<String,String> map = new HashMap<String,String>();
+
         try {
             String addr = URLEncoder.encode(getAddr, "UTF-8");
             String apiURL = "https://openapi.naver.com/v1/map/geocode?query=" + addr; //json
-            //String apiURL = "https://openapi.naver.com/v1/map/geocode.xml?query=" + addr; // xml
             URL url = new URL(apiURL);
             HttpURLConnection con = (HttpURLConnection)url.openConnection();
             con.setRequestMethod("GET");
@@ -51,9 +52,6 @@ public class JusoController {
             JSONObject json1 = (JSONObject)jsonobject.get("result");
             JSONArray json2 = (JSONArray)json1.get("items");
 
-            HashMap<String,String> map = new HashMap<String,String>();
-
-
             for(int i=0; i<json2.size();i++){
                 JSONObject json3 = (JSONObject)json2.get(i);
                 JSONObject json4 = (JSONObject) json3.get("point");
@@ -63,13 +61,9 @@ public class JusoController {
                 map.put("userX", String.valueOf(json4.get("x")));
                 map.put("userY", String.valueOf(json4.get("y")));
             }
-
-            System.out.println(map.get("userX"));
-            return map;
         } catch (Exception e) {
             System.out.println(e);
         }
-
-        return null;
+        return map;
     }
 }

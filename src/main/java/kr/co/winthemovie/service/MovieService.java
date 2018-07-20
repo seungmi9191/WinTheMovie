@@ -19,5 +19,4 @@ public class MovieService {
 	public List<NowpVo> getTheaterList() {
 		return movieDao.getTheaterList();
 	}
-
 }

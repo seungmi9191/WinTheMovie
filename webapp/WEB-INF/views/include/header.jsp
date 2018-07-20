@@ -18,7 +18,7 @@
 
 		<ul class="header_login">
 			<li><a><i class="fa fa-map-marker-alt"></i> 
-				<span> 위치검색</span> </a>
+				<span class="btn-address"> 위치검색</span> </a>
 			</li>
 			<c:if test="${sessionScope.authUser == null}">
 				<li class="myinfo">

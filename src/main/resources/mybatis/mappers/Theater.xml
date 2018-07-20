@@ -24,7 +24,7 @@
 					  )]]>
 			</foreach>
 	</insert> -->
-	<insert id="InsertByTheater" parameterType="kr.co.winthemovie.vo.TheaterVo">
+	<insert id="InsertByTheater" parameterType="theaterVo">
 			<![CDATA[
 				INSERT INTO theater 
 				(theaterno, 
@@ -44,10 +44,19 @@
 				  )
 				  ]]>
 	</insert>
-	<select id="SelectByTheater" resultType="kr.co.winthemovie.vo.TheaterVo">
+	
+	<select id="SelectByTheater" resultType="theaterVo">
 		<![CDATA[
 			SELECT *
 			FROM theater
+		]]>
+	</select>
+	
+	<select id="SelectByOneTheater" parameterType="String" resultType="theaterVo">
+		<![CDATA[
+			SELECT *
+			FROM theater
+			WHERE theatername = #{theatername}
 		]]>
 	</select>
 </mapper>

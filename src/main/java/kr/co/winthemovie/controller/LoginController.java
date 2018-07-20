@@ -48,12 +48,6 @@ public class LoginController {
         this.naverLoginBO = naverLoginBO;
     }
 
-    @Autowired
-    UserController userController;
-
-    @Autowired
-    UserVo userVo;
-
     //로그인 첫 화면 요청 메소드
     @RequestMapping(value = "/users/naverlogin", method = {RequestMethod.GET, RequestMethod.POST})
     public String login(Model model, HttpSession session) {
@@ -94,9 +88,10 @@ public class LoginController {
         String age = (String) json.get("age");
         String username = (String)json.get("name");
 
-        userVo = new UserVo(email,username);
+        UserVo userVo = new UserVo(email,username);
 
         boolean email_check = false;
+        UserController userController = new UserController();
         email_check = userController.emailcheck(email);
         if (email_check == false) {
             userController.login(userVo, session);
