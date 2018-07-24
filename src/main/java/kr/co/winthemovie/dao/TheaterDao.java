@@ -24,7 +24,6 @@ public class TheaterDao {
 	}
 	
 	public List<TheaterVo> selectTheater(){
-		ArrayList<TheaterVo> list = new ArrayList<TheaterVo>();
 		return sqlsession.selectList("theater.SelectByTheater");
 	}
 }

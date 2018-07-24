@@ -17,8 +17,10 @@
 		</ul>
 
 		<ul class="header_login">
-			<li><a><i class="fa fa-map-marker-alt"></i> 
-				<span class="btn-address"> 위치검색</span> </a>
+			<li><a><i class="fa fa-map-marker-alt"></i>
+					<input type="hidden" class="setx">
+                    <input type="hidden" class="sety">
+				<span class="btn-address">위치검색</span></a>
 			</li>
 			<c:if test="${sessionScope.authUser == null}">
 				<li class="myinfo">
@@ -56,4 +58,5 @@
 			}
 		});
 	});
+	
 </script>
