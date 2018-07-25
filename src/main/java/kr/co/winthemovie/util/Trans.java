@@ -22,7 +22,7 @@ public class Trans {
 		BufferedReader br;
 		String inputLine;
 		StringBuffer response = new StringBuffer();
-		
+		System.out.println(keyword);
 		try {
 			String addr = URLEncoder.encode(keyword, "UTF-8");
 			String apiURL = search + addr;
@@ -43,7 +43,12 @@ public class Trans {
 				response.append(inputLine);
 			}
 			br.close();
-			System.out.println(response.toString());
+			
+			br.close();
+			JSONParser jsonParser = new JSONParser();
+			JSONObject jsonObject = (JSONObject) jsonParser.parse(String.valueOf(response));
+			JSONArray jsonArray = (JSONArray) jsonObject.get("items");
+			System.out.println(jsonArray.get(0).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

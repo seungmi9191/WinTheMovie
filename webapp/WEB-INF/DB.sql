@@ -393,7 +393,7 @@ insert into movie values (3, 3, 3, '미션 임파서블: 폴아웃', 'Mission:Im
 
 
 --상영영화 데이터
-insert into nowplaying values (1, 1, 1, to_date('2018-07-18 13:50:00','yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
+insert into nowplaying values (1, 1, 1, to_date('2018-07-18 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
 insert into nowplaying values (2, 1, 1, to_date('2018-07-18 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
 insert into nowplaying values (3, 2, 5, to_date('2018-07-18 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
 insert into nowplaying values (4, 3, 3, to_date('2018-07-18 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
@@ -430,9 +430,5 @@ commit
 				t.theateraddress, t.theaterxgps, t.theaterygps, b.brandlogo, b.brandname
 		from nowplaying n, movie m, THEATERROOM tr, theater t, brand b
 		where n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno;
-select *
-from THEATER;
-
-	SELECT *
-			FROM theater
-			WHERE theatername = 'CGV 강남'
+SELECT *
+FROM NOWPLAYING

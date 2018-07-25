@@ -52,11 +52,11 @@
 		]]>
 	</select>
 	
-	<select id="SelectByOneTheater" parameterType="String" resultType="theaterVo">
+	<select id="SelectByReserveTheater" parameterType="String" resultType="theaterVo">
 		<![CDATA[
 			SELECT *
 			FROM theater
-			WHERE theatername = #{theatername}
+			WHERE theateraddress LIKE #{address}||'%'
 		]]>
 	</select>
 </mapper>

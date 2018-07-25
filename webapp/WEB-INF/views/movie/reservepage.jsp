@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,9 +22,7 @@
 	<div id="reserve-wrap" class="wrap">
 		<div id="container">
 			<div class="search-box" id="">
-				
-				<form action="${pageContext.request.contextPath}/movie/search" id="search-form" method="get">
-					<select id='si' name="si">
+				<select id='si' name="si">
 						<option value="0">선택</option>
 						<option value="1">서울특별시</option>
 						<option value="2">부산광역시</option>
@@ -49,10 +48,9 @@
 					<span class="search-window">
 						<input class="input-text" id="search" name="search" type="text" title="검색" placeholder="자주가는 영화관 지점을 입력해주세요. ex) CGV 강남">
 					</span>
-					<button id="search-btn" type="submit" title="검색버튼" tabindex="3" class="sch-btn">
+					<button id="search-btn" type="button" title="검색버튼" tabindex="3" class="sch-btn">
 						<i class="fas fa-search "></i>
 					</button>
-				</form>
 			</div>
 
 			<div class="total-wrap" id="total-wrap">
@@ -82,87 +80,120 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	<script type="text/javascript">
-	naver_map();
-	
-	function naver_map(){
-		var theateraddress = new Array();
-		var markers = [], infowindows = [];
+	reserve_map();
+	function reserve_map(){
+		var bounds, $xgps, $ygps, $markers=[], $infoWindow=[];
 		
-		var naver_map = new naver.maps.Map('naver_map',{
-			center: new naver.maps.LatLng(37.56647, 126.977963),
-			zoom: 8
+		if(typeof $userX == "undefined" && typeof $userY == "undefined"){
+			$userX = 37.56647;
+			$userY = 126.977963;
+		} 
+		var naver_map = new naver.maps.Map('naver_map', {
+			center : new naver.maps.LatLng($userX, $userY),
+			zoom : 8
 		});
-		
-		<c:forEach items="${requestScope.theater_list}" var="list">
-			var marker_x = "${list.theaterygps}";
-			var marker_y = "${list.theaterxgps}";
-			var marker = new naver.maps.Marker({
-				position : new naver.maps.LatLng(marker_x , marker_y),
+		$('.sch-btn').on('click', function(){
+			var search = $('[name=search]').val();
+			console.log(search);
+			
+			var my_marker = new naver.maps.Marker({
+				position : new naver.maps.LatLng($userX, $userY),
 				map : naver_map
 			});
-			
 			var contentString = [
 				'<div class="iw_inner">',
-				' <h3>${list.theatername}</h3>',
-				'<p>${list.theateraddress}</p>',
+				' <h3>현재 위치</h3>',
 				'</div>'
 			].join('');
-			var infowindow = new naver.maps.InfoWindow({
-				content : contentString
+			
+			var infoWindow = new naver.maps.InfoWindow({
+		        content: contentString
 			});
 			
-			markers.push(marker);
-			infowindows.push(infowindow);
-		</c:forEach>
-		
-		for (var i=0, ii=markers.length; i<ii; i++) {
-		    naver.maps.Event.addListener(markers[i], 'click', getClickHandler(i));
-		}
-		
-		naver.maps.Event.addListener(naver_map, 'idle', function() {
-		    updateMarkers(naver_map, markers);
-		});
+			$.ajax({
+				url : "${pageContext.request.contextPath}/movie/search",
+				data : {search : search},
+				success : function(list){
+					if(list.length == 0){
+						alert("해당 지역에 영화관이 없습니다. 다시 검색해 주시기 바랍니다.");
+					}else{
+						 for(var i=0;i<list.length;i++){
+							 $xgps = Number(list[i].theaterygps),
+							 $ygps = Number(list[i].theaterxgps);
+							 
+							 if(i == 0){
+								var bounds = new naver.maps.LatLng($xgps, $ygps);
+								naver_map.panTo(bounds);
+							 }
+							 
+							 var marker = new naver.maps.Marker({
+								position : new naver.maps.LatLng($xgps , $ygps),
+								map : naver_map
+							});
+							 
+							var contentString = [
+								'<div class="iw_inner">',
+								' <h3>'+list[i].theatername+'</h3>',
+								'<p>'+list[i].theateraddress+'</p>',
+								'</div>'
+							].join('');
+							
+							var infoWindow = new naver.maps.InfoWindow({
+						        content: contentString
+							});
+							
+							$markers.push(marker);
+							$infoWindow.push(infoWindow);
+						 }
+						 for (var i=0, ii=$markers.length; i<ii; i++) {
+						    naver.maps.Event.addListener($markers[i], 'click', getClickHandler(i));
+						} 
+					}
+				}
+			});
+			function getClickHandler(seq) {
+			    return function(e) {
+			        var marker = $markers[seq],
+			            infoWindow = $infoWindow[seq];
 
-		function updateMarkers(map, markers) {
-		    var mapBounds = map.getBounds();
-		    var marker, position;
+			        if (infoWindow.getMap()) {
+			            infoWindow.close();
+			        } else {
+			            infoWindow.open(naver_map, marker);
+			        }
+			    }
+			} 
+			naver.maps.Event.addListener(naver_map, 'idle', function(){
+			    updateMarkers(naver_map, $markers);
+			});
+	    });
+	} 
+	
+	function updateMarkers(map, markers) {
+	    var mapBounds = map.getBounds();
+	    var marker, position;
 
-		    for (var i = 0; i < markers.length; i++) {
-		        marker = markers[i]
-		        position = marker.getPosition();
+	    for (var i = 0; i < markers.length; i++) {
+	        marker = markers[i]
+	        position = marker.getPosition();
 
-		        if (mapBounds.hasLatLng(position)) {
-		            showMarker(map, marker);
-		        } else {
-		            hideMarker(map, marker);
-		        }
-		    }
-		}
-		
-		function showMarker(map, marker) {
-		    if (marker.setMap()) return;
-		    marker.setMap(map);
-		}
-
-		function hideMarker(map, marker) {
-		    if (!marker.setMap()) return;
-		    marker.setMap(null);
-		}
-		
-		function getClickHandler(seq) {
-		    return function(e) {
-		        var marker = markers[seq],
-		            infoWindow = infowindow[seq];
-
-		        if (infoWindow.getMap()) {
-		            infoWindow.close();
-		        } else {
-		            infoWindow.open(naver_map, marker);
-		        }
-		    }
-		} 
+	        if (mapBounds.hasLatLng(position)) {
+	            showMarker(map, marker);
+	        } else {
+	            hideMarker(map, marker);
+	        }
+	    }
 	}
-		
+
+	function showMarker(map, marker) {
+	    if (marker.setMap()) return;
+	    marker.setMap(map);
+	}
+	function hideMarker(map, marker) {
+	    if (!marker.setMap()) return;
+	    marker.setMap(null);
+	}
+	
 	function address_arr(f){
 		var address_gu = new Array();
 		address_gu[1] = new Array('선택','종로구', '중구', '용산구', '성동구','광진구', '동대문구', '중랑구', '성북구', '중랑구', '성북구', '강북구', 
@@ -197,7 +228,11 @@
 			var value = $(this).val();
 			cur_si = $('[name=si] option:selected').text();
 			si = cur_si;
-			console.log(cur_si);
+			if(cur_si == "선택"){
+				$('.input-text').val("");
+			}else{
+				$('.input-text').val(cur_si);
+			}
 			$('select[name=gu]').empty();
 			for(var i=0;i<address_gu[value].length;i++){
 				var option = $('<option value="'+address_gu[value][i]+'">'+address_gu[value][i]+'</option>');
@@ -205,7 +240,11 @@
 			}
 			$('[name=gu]').on('change',function(){
 				cur_gu = $(this).val();
-				console.log(cur_gu);
+				if(cur_gu == "선택"){
+					$('.input-text').val(cur_si);
+				} else{
+					$('.input-text').val(cur_si+" "+cur_gu);
+				}
 			});
 		});
 	}

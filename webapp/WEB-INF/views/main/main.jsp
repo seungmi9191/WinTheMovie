@@ -356,8 +356,6 @@
 		
 		$('#success').on('click', function(){
 			bounds = new naver.maps.LatLng($userX, $userY);
-			console.log($userX);
-			console.log($userY);
 			naver_map.panTo(bounds);
 			
 			var my_marker = new naver.maps.Marker({
