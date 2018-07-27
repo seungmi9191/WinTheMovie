@@ -11,11 +11,9 @@
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
-<%-- <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/jquery.bpopup.js"></script>  --%>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css"> 
-<%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/bPopup.css">  --%>
 <title>Main Page</title>
 </head>
 
@@ -26,9 +24,9 @@
   <div class="g-contents">
     <div class="multi-banner">
       <div class="swiper-slide">
-       <c:forEach items="${theaterList}" var="theaterList" >
-        <div>
-          <div class="poster-box">
+       <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
+        <div id="m_list{status.index}">
+          <div class="poster-box" id="test${status.index}">
             <img src="${pageContext.request.contextPath}/upload/poster/${theaterList.poster}" class="poster">
             <div class="location-info">
               <div class="location-logo"><div class="logo-wrap"><img src="${pageContext.request.contextPath}/upload/${theaterList.brandlogo}"></div></div>
@@ -53,7 +51,7 @@
 
             <div class="limit-time">
               <div class="detail-time">
-              <p class="con2" name="time">[남은시간]&nbsp;&nbsp;</p></div>
+              <p class="con2">[남은시간]&nbsp;&nbsp;&nbsp<span class="time" id="nowplayinglist${status.index}"></span></p></div>
             </div>
             <div class="front">
               <div class="front-btn-wrap">
@@ -71,7 +69,7 @@
        </div>
      </div>
    </div>
-   <p class="con2" id="time2">[남은시간]&nbsp;&nbsp;</p></div>
+ 
 	<!-- middle banner -->
 	<div class="middle-banner">
 		<div class="middle-banner-title">
@@ -139,21 +137,10 @@
 
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 	
-<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
-<!-- madal function -->
+	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
 
- <%-- <div id="bpopup" class="bpopup">
-     <button type="button" class="b-close" id="b-close"> 
-          <img src="${pageContext.request.contextPath}/assets/img/icon/close.png"> <!--버튼 이미지-->
-          <span class="blind">닫기</span>
-     </button> 
-        <div class="b-content"></div> 
-  </div>  --%>
-  	<%-- <c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import> --%>
-
-<!-- modal function end -->
-	
 </body>
+
 <script type="text/javascript">
 	// Box Office
 	$(document).ready(function(){
@@ -175,11 +162,11 @@
     // slick library
     $('.swiper-slide').slick({
         dots: false,
-        infinite: true,
+        infinite: false,
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         arrows: true,
         dots: true,
@@ -209,62 +196,20 @@
         $(this).children('.front').removeClass('hover');
       });
 
-    //layer popup
-	  /*  $(document).ready(function() {
-		$('.btn-view').on("click", function() {
-			
-			$('#bpopup').bPopup({
-				modalClose : false,
-				content : 'iframe',
-				contentContainer : '.b-content',
-			   // iframeAttr:('scrolling="yes"'), 
-				 //follow: [false, true], 
-				loadUrl : '${pageContext.request.contextPath}/detail'
-			});  */
-			
-			/*$('body').css('overflow','hidden');
-			$('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px');  */
-/* 			
-	});
-		$('#b-close').on("click",function(){
-			  location.reload(); //ajax여서 새로고침 필수!
-			  $('#bpopup').bPopup().close({
-			  });
-			  $('body').css('overflow','auto');
-		});
-	  });   */
-    
-/*   $('.btn-view').on("click",function(){
-		   alert("하");
-			$("#bpopup").toggle();
-			$(".b-content").load("${pageContext.request.contextPath}/detail");
-			$('body').css('overflow','hidden');
-			
-		}); 
+		 
+	  // modal function
+	  $('.btn-view').on("click",function(){
+	      $('.modal_body').toggle(400);
+	      $('body').css('overflow','hidden');
+		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px');
+	  });	 
+		 
+		 
+	  $('.popup-close').on("click",function(){
+		  $('.modal_body').toggle(400);
+		  $('body').css('overflow','auto');
+	  });	 
 		
-		 */
-		 
-		  // modal function
-	      
-	/* 	 $('.popup-close').on("click"function(){
-		        $('.modal_body').toggle();
-		 }); */
-		 
-		// modal function
-	    $('.btn-view').on("click",function(){
-	    	 /* var d = new Date();
-	 	    var today = d.getFullYear() + '년 ' + (d.getMonth() + 1) + '월 ' + d.getDate() + '일';
-	 	    alert(today); // '2016년 1월 1일'이 출력됨 */
-	       $('.modal_body').toggle(400);
-	       $('body').css('overflow','hidden');
-		   $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px');
-	    });	 
-		 
-		 
-		$('.popup-close').on("click",function(){
-		   $('.modal_body').toggle(400);
-		   $('body').css('overflow','auto');
-		});	 
       // naver_map
       var naver_map = new naver.maps.Map('naver_map', {
     	  center: new naver.maps.LatLng(37.3595704, 127.105399),
@@ -297,19 +242,23 @@
 	          infowindow.open(naver_map, marker);
 	      }
 	  });
+	  
+	  //nowplaying timer
 	  function reverse_counter(){
 		var list = new Array();
 		  
-		  <c:forEach items="${theaterList}" var="theaterList">
+		  <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
 		  		list.push("${theaterList.playingtime}");
+		  		console.log("${status.index}" + "-"+ "${theaterList.playingtime}"); 
 		  </c:forEach>
 
 		  for (var i = 0; i < list.length; i++) {
-			    /* console.log(list[i]); */
+			    console.log("js_push:" + list[i]); 
 			    /*   var today = new Date();*/
 			    var today = new Date();
 				var d_day = new Date(list[i]);
-				/* console.log(d_day); */
+				console.log("jstl_list:" + d_day); 
+				console.log("sysdate:" + today); 
 				  
 				  days = (d_day - today) / 1000 / 60 / 60 / 24;
 				  daysRound = Math.floor(days);
@@ -323,16 +272,27 @@
 				  min = " : "
 				  hr = " : "
 				  dy = " "
-				  console.log(hoursRound + hr + minutesRound + min + secondsRound);
-				  document.getElementsByName('time').innerHTML= hoursRound + hr + minutesRound + min + secondsRound;	
-			}
-			
-		
-		  /* console.log(d_day); */
-		  /* newtime = window.setTimeout("reverse_counter();", 1000);  */
-		  
+				  console.log("남은시간:" + hoursRound + hr + minutesRound + min + secondsRound);
+				  
+				  /*hh:mm:ss 형태를 유지하기위해 한자리 수 일때는 0 추가*/
+				  if(hoursRound < 10) hoursRound = "0" + hoursRound;
+				  if(minutesRound < 10) minutesRound = "0" + minutesRound;
+				  if(secondsRound < 10) secondsRound = "0" + secondsRound;
+				  
+				 
+				  /*분,초가 60일 때 59로 초기화*/
+				  if(minutesRound == 60) minutesRound = 59;
+				  if(secondsRound == 60) secondsRound = 59;
+				  /*리스트 출력*/
+				
+		 
+				 $('#nowplayinglist'+i).text(hoursRound + hr + minutesRound + min + secondsRound);
+				  
+				  
+				  }
+		  			newtime = window.setTimeout("reverse_counter();", 1000); 
+		  			/* clearTimeout(newtime); */
 		  }
-
-	
+	  
 </script>
 </html>
