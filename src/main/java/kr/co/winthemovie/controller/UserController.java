@@ -56,16 +56,20 @@ public class UserController {
 		return "user/login";
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@ModelAttribute UserVo userVo, HttpSession session) {
-
+	public boolean login(@ModelAttribute UserVo userVo, HttpSession session) {
+		boolean result = false;
 		UserVo authUser = userService.login(userVo);
-
+		System.out.println("usercontroller service 거쳐나옴"+authUser.toString());
 		if (authUser != null) {
+			System.out.println("들어옴");
 			session.setAttribute("authUser", authUser);
-			return "redirect:/main";
+			result = true;
+			return result;
 		} else {
-			return "user/login";
+			System.out.println("비밀번호 틀림");
+			return result;
 		}
 	}
 
@@ -74,7 +78,7 @@ public class UserController {
 	public boolean loginbykakao(@ModelAttribute UserVo userVo, HttpSession session) {
 
 		boolean result = false;
-		UserVo authUser = userService.login(userVo);
+		UserVo authUser = userService.loginbysns(userVo);
 		if (authUser != null) {
 			result = true;
 			session.setAttribute("authUser", authUser);
@@ -86,8 +90,17 @@ public class UserController {
 
 	@ResponseBody
 	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
-	public boolean emailcheck(@RequestParam("email") String email) {
+	public boolean emailcheck(String email) {
+		System.out.println("YEAH"+email);
+
 		boolean result = userService.emailcheck(email);
+		return result;
+	}
+
+	public boolean emailcheckNaver(String email) {
+		System.out.println("check "+email);
+		boolean result = userService.emailcheck(email);
+		System.out.println("YEAH"+email);
 		return result;
 	}
 

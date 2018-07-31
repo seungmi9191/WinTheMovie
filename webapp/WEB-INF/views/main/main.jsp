@@ -4,6 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -16,7 +17,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css"> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
 
 <title>Main Page</title>
@@ -24,7 +25,7 @@
 
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-	
+
 	<!-- main banner -->
   <div class="g-contents">
     <div class="multi-banner">
@@ -36,7 +37,7 @@
             <div class="location-info">
               <div class="location-logo"><div class="logo-wrap"><img src="${pageContext.request.contextPath}/upload/${theaterList.brandlogo}"></div></div>
               <c:choose>
-              	<c:when test="${fn:length(theaterList.theateraddress) > 1}"> 
+              	<c:when test="${fn:length(theaterList.theateraddress) > 1}">
 	              <div class="location-name">
 	              	<p class="con">
 		              	<c:set var="splitloc" value="${fn:split(theaterList.theateraddress,' ')[1]}"></c:set> <!--locate에서 공백기준으로 배열 index[1] 받아옴 -->
@@ -83,6 +84,10 @@
 			</h2>
 		</div>
 		<div class="middle-banner-logo">
+			<form action="/movie/reserve_quick" method="get">
+				<input type="hidden" name="nowplayingno" value="1"/>
+				<input type="submit">123</input>
+			</form>
 			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
 		</div>
 
@@ -151,7 +156,7 @@
 					</div>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</div>
 
 	<!--footer-notice -->
@@ -165,7 +170,7 @@
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 	<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>
-	
+
 	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
 	<!-- madal function -->
 
@@ -186,10 +191,10 @@
 			$('.sale').removeClass("on");
 			$('.salecontent').hide();
 		});
-		
+
 		naver_func();
 	});
-	
+
 	// slick library
 	$('.swiper-slide').slick({
 		dots : false,
@@ -222,7 +227,7 @@
 	$('.btn-reserve, .popup-close').click(function() {
 		$('.body').toggle();
 	});
-	
+
 	$('.btn-address').on("click", function(){
 		$('.body-loc').toggle();
 	})
@@ -230,21 +235,21 @@
 	function naver_func(){
 		var $xgps, $ygps, $myxgps, $myygps,
 			$markers=[], $infoWindow=[];
-		
+
 		$myxgps = $('.setx').val();
 		$myygps = $('.sety').val();
-		
+
 		console.log($myxgps);
 		console.log($myygps);
 		/* if( $myxgps && $myygps == null){
-			$myxgps = 
+			$myxgps =
 			$myygps
 		} */
 		var naver_map = new naver.maps.Map('naver_map', {
 			center : new naver.maps.LatLng(37.3595704, 127.105399),
 			zoom : 10
 		});
-		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/selectTheater",
 			success : function(list){
@@ -255,7 +260,7 @@
 						position : new naver.maps.LatLng($xgps , $ygps),
 						map : naver_map
 					});
-					
+
 					var contentString = [
 						'<div class="iw_inner">',
 						' <h3>'+list[i].theatername+'</h3>',
@@ -265,14 +270,14 @@
 					var infoWindow = new naver.maps.InfoWindow({
 				        content: contentString
 					});
-					
+
 					$markers.push(marker);
 					$infoWindow.push(infoWindow);
 				 }
-				
+
 				for (var i=0, ii=$markers.length; i<ii; i++) {
 				    naver.maps.Event.addListener($markers[i], 'click', getClickHandler(i));
-				} 
+				}
 				naver.maps.Event.addListener(naver_map, 'idle', function() {
 				    updateMarkers(naver_map, $markers);
 				});
@@ -314,12 +319,12 @@
 				            infoWindow.open(naver_map, marker);
 				        }
 				    }
-				} 
+				}
 			}
 		});
-	} 
-	
-	
+	}
+
+
 
 </script>
 </html>
