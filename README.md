@@ -32,6 +32,7 @@
 ## 업그레이드
 ### 낙원
 - MyBatis 다중 Insert 사용 (foreach문)
-- DB theater 테이블 theaterlocate -> theateraddress로 
+- DB theater 테이블 theaterlocate -> theateraddress로 (완료)
+- Main 자바스크립트 정리 필요 
 ### 승미
 ### 재선

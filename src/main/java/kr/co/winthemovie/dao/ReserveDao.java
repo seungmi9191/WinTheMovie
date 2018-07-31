@@ -2,6 +2,7 @@ package kr.co.winthemovie.dao;
 
 import java.util.List;
 
+import kr.co.winthemovie.vo.QuickReserveVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,5 +22,8 @@ public class ReserveDao {
 	public List<TheaterVo> selectByOneTheater(int theaterno) {
 		return sqlsession.selectList("theater.SelectByOneTheater", theaterno);
 	}
-	
+
+	public QuickReserveVo getQuickReserve(int nowplayingno){
+		return sqlsession.selectOne("movie.getQuickReserve",nowplayingno);
+	}
 }

@@ -28,9 +28,9 @@
 	<!-- main banner -->
   <div class="g-contents">
     <div class="multi-banner">
-     <div class="swiper-slide">
-       <c:forEach items="${theaterList}" var="theaterList" >
-        <div>
+      <div class="swiper-slide">
+       <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
+        <div id="m_list{status.index}">
           <div class="poster-box">
             <img src="${pageContext.request.contextPath}/upload/poster/${theaterList.poster}" class="poster">
             <div class="location-info">
@@ -64,7 +64,7 @@
                   <a href="" class="btn-reserve" onclick="return false;">예매하기</a>
                 </div>
                 <div>
-                  <a href="" class="btn-view" id="close" onclick="return false;" >상세보기</a>
+                  <a href="" class="btn-view" onclick="return false;">상세보기</a>
                 </div>
               </div>
             </div>
@@ -74,8 +74,8 @@
        </div>
      </div>
    </div>
-   
-	<!-- middle banner -->
+
+<!-- middle banner -->
 	<div class="middle-banner">
 		<div class="middle-banner-title">
 			<h2>
@@ -161,11 +161,11 @@
 		</ul>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-	<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>
-	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
-	<!-- madal function -->
+	<div class="detail"></div>
+	<%-- <c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import> --%>
 
 </body>
+
 <script type="text/javascript">
 	// Box Office
 	$(document).ready(function() {
@@ -211,17 +211,21 @@
 				slidesToScroll : 1
 			}
 		}]
-	});
 
-	// modal function
-	$('.btn-reserve, .popup-close').click(function() {
-		$('.body').toggle();
-	});
-	
-	$('.btn-address').on("click", function(){
-		$('.body-loc').toggle();
-	})
-	
+	  // modal function
+	  $('.btn-view').on("click",function(){
+	      /* $('.modal_body').toggle(400);
+	      $('body').css('overflow','hidden');
+		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); */
+		  console.log("확인");
+		  detailrender();
+	  });	 
+		 
+	  $('.popup-close').on("click",function(){
+		  $('.modal_body').toggle(400);
+		  $('body').css('overflow','auto');
+	  });	 
+		
 	// geolocation 사용 여부
 	function check_geolocation(){
 		if(window.navigator.geolocation){
@@ -405,7 +409,7 @@
 				        $('.close_btn').on('click', function(){
 							infoWindow.close();
 						});
-				    }
+				   }
 				} 
 			}
 		});
@@ -568,7 +572,7 @@
 		});
 	} 
 	
-	 //nowplaying timer
+	  //nowplaying timer
 	  function reverse_counter(){
 		var list = [];
 		  
@@ -646,6 +650,65 @@
 		  $('body').css('overflow','auto');
 	  });	
 
-	
+	 /*상세페이지 그리기*/
+	 function detailrender() {
+		 var str = "";
+		 str += "<div class='modal_body'>";
+		 str += "   <div class='modal-mask' id='movie-detail'>";
+		 str += "      <div class='modal-wrapper'>";
+		 str += "         <div class='modal-time clearfix'>";
+		 str += "			<div id='movieDetailTime'>";
+		 str += "				<div class='popup-box-top row1 clearfix'>";
+		 str += "				   <div class='center-wrap'>";
+		 /* str += "					 <img src='"+${pageContext.request.contextPath}/assets/img/logo/cgv.png+"' class='t-logo'>"; */
+		 str += "					 <span class='time-name'>";
+		 str += "		           </div>";
+		 str += "		             <span class='time-title'>";
+		 str += "		             <div class='time-wrap'></div>";
+		 str += "	            </div>";
+		 str += "            </div>";
+		 str += "          </div>";
+		 str += "     <div class='modal-container clearfix'>";
+		 str += "        <div id='movieDetail'>";
+		 str += "          <div class='popup-box row1 clearfix'>";
+		 str += "          <div class='left-wrap'>";
+		 /* str += "             <img src='"+${pageContext.request.contextPath}/assets/img/movie_poster/ocean.jpg+"' alt=''>"; */
+		 str += "          </div>";
+		 str += "  <div class='right-wrap'>";
+		 str += "	  <div class='text'>";
+		 str += "		 <div class='title clearfix'>";
+		 str += "		   <h2>";
+		 str += "			  <i class='age_l age_12'></i>";
+		 str += "		      <span></span>";
+		 str += "          </h2>";
+		 str += "          <p></p>";	
+		 str += "        </div>";
+		 str += "     <div class='reservation-wrap'>";
+		 str += "        <p class='left-p'>";
+		 str += "            <span></span>";
+		 str += "            <strong class='strong-big'></strong>";
+		 str += "            <span class='span-basic'></span>";
+		 str += "            <span class='span-basic'></span>";
+		 str += "            <span class='span-sl'> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; </span>";
+		 str += "        </p>";
+		 str += "        <p class='right-p'>";
+		 str += "            <span></span>";
+		 str += "            <span class='small_star'></i>";
+		 str += "              <i class='fas fa-star'></i>";
+		 str += "              <i class='fas fa-star'></i>";
+		 str += "              <i class='fas fa-star'></i>";
+		 str += "              <i class='fas fa-star'></i>";
+		 str += "              <i class='far fa-star'></i>";
+		 str += "            </span>";
+		 str += "            <strong class='strong-big'></strong>";
+		 str += "        </p>";
+		 str += "     </div>";
+		 str += "     </div>";
+		 str += "  </div>";
+		 
+		/*  $(".detail").html(str); */
+	    document.getElementBy
+		 console.log("html 그림");
+	 }
 </script>
 </html>

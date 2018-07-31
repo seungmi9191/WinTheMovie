@@ -91,12 +91,6 @@ public class UserController {
 		return result;
 	}
 
-	@RequestMapping(value = "/joinbynaver", method = RequestMethod.POST)
-	public void joinbynaver(@ModelAttribute UserVo userVo) {
-		userService.userJoin(userVo);
-		// return "user/login";
-	}
-
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
 		session.invalidate();
