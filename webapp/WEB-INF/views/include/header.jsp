@@ -18,26 +18,26 @@
 
 		<ul class="header_login">
 			<li><a><i class="fa fa-map-marker-alt"></i> 
-				<span> 위치검색</span> </a>
+				<span class="btn-address"> 위치검색</span> </a>
 			</li>
-			<c:if test="${sessionScope.authUser != null}">
+			<c:if test="${sessionScope.authUser == null}">
 				<li class="myinfo">
 					<div class="before_login">
-						<a href="${pageContext.request.contextPath}/user/login">로그인</a>
+						<a href="${pageContext.request.contextPath}/user/loginform">로그인</a>
 						<a href="${pageContext.request.contextPath}/user/register">회원가입</a>
 					</div>
 				</li>						
 			</c:if>
-			<c:if test="${sessionScope.authUser == null}">
+			<c:if test="${sessionScope.authUser != null}">
 				<li class="myinfo2">
 					<a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user"></i>
-						&nbsp;&nbsp;윈더무비님&nbsp;&nbsp;<i class="fas fa-angle-down"></i>
+						&nbsp;&nbsp;${authUser.username}님&nbsp;&nbsp;<i class="fas fa-angle-down"></i>
 					</a>
 					<ul class="hide dropdown-content">
 						<li><a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보</a></li>
 						<li><a href="${pageContext.request.contextPath}/mypage/myticket">예매내역</a></li>
 						<li><a href="${pageContext.request.contextPath}/mypage/contact">1:1 문의</a></li>
-						<li><a href="${pageContext.request.contextPath}/logout">로그아웃</a></li>
+						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 					</ul>
 				</li>	
 			</c:if>
