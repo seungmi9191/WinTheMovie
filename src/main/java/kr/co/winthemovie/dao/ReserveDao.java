@@ -1,5 +1,7 @@
 package kr.co.winthemovie.dao;
 
+import java.util.List;
+
 import kr.co.winthemovie.vo.QuickReserveVo;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +15,12 @@ public class ReserveDao {
 	@Autowired
 	private SqlSession sqlsession;
 	
-	public TheaterVo selectByOneTheater(String theatername) {
-		return sqlsession.selectOne("theater.SelectByOneTheater", theatername);
+	public List<TheaterVo> selectByTheater(String address) {
+		return sqlsession.selectList("theater.SelectByReserveTheater", address);
+	}
+	
+	public List<TheaterVo> selectByOneTheater(int theaterno) {
+		return sqlsession.selectList("theater.SelectByOneTheater", theaterno);
 	}
 
 	public QuickReserveVo getQuickReserve(int nowplayingno){

@@ -169,7 +169,7 @@
 						if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['movieCd'] == movieno) {
 							$('.person').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiCnt']));
 							$('.sale').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesAmt']));
-							$('.audiInten').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiInten']));
+							$('.audiInten').text(addComma(Number(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiCnt']) + Number(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiInten'])));
 							$('.audiAcc').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiAcc']));
 							
 							if(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'].match('-')){

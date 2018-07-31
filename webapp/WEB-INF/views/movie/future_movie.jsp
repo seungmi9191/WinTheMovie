@@ -10,8 +10,8 @@
 <title>future_movie</title>
 </head>
 <body>
-
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
+	
 	<div class="future_movie_container" class="">
       <div class="future_movie_contents" class="">
           <div class="wrap-movie-chart">
@@ -20,13 +20,13 @@
                   <div class="future_submenu">
                       <ul>
                           <li>
-                              <a href="#">현재 상영작</a>
+                              <a href="${pageContext.request.contextPath}/movie/currentmovie">현재 상영작</a>
                           </li>
                           <li>
                               |
                           </li>
                           <li class="on">
-                              <a href="#" title="선택">상영 예정작</a>
+                              <a href="${pageContext.request.contextPath}/movie/futuremovie" title="선택">상영 예정작</a>
                           </li>
 
                       </ul>
@@ -244,8 +244,6 @@
           </div>
       </div>
   </div>
-	
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
-
 </body>
 </html>
