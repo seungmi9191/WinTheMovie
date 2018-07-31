@@ -13,4 +13,11 @@
 	    ]]>
 	</select>
 
+	<select id = "getQuickReserve" resultType="quickReserveVo">
+		<![CDATA[
+			select n.MOVIENO, n.ROOMNO, to_char(n.PLAYINGTIME,'HH24:MI') as playingtime, TO_CHAR(n.PLAYINGDATE, 'yyyy-mm-dd') as playingdate, m.KONAME, m.POSTER, m.grade, t.theatername, tr.SEATCOUNT, t.brandno, t.theatername
+			from NOWPLAYING n, MOVIE m, THEATERROOM tr, THEATER t
+			where n.movieno = m.movieno and n.ROOMNO = tr.ROOMNO and tr.theaterno = t.THEATERNO
+		]]>
+	</select>
 </mapper>

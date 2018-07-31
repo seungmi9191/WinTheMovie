@@ -2,6 +2,8 @@ package kr.co.winthemovie.controller;
 
 import java.util.ArrayList;
 
+import com.sun.xml.internal.bind.v2.model.annotation.Quick;
+import kr.co.winthemovie.vo.QuickReserveVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,4 +47,23 @@ public class ReserveController {
 		}
 		return "movie/reservepage";
 	}
+
+
+	@RequestMapping(value = "/reserve_quick",method = {RequestMethod.GET,RequestMethod.POST})
+	public String reserve_final(/*영화 포스터 선택시 */Model model,int nowplayingno){
+
+		System.out.println("reserveContorller *playingno="+nowplayingno);
+		QuickReserveVo quickreservevo=reserve_service.getQuickReserve(nowplayingno);
+
+		model.addAttribute("quickreservevo",quickreservevo);
+		System.out.println(quickreservevo.toString());
+		return "movie/reserve_final";
+	}
+
+//	@ResponseBody
+//	@RequestMapping(value="/nowplaying",method = RequestMethod.POST)
+//	public String getNowPlaying(Model model,@RequestParam("nowplaying") int nowplayingno){
+//
+//
+//	}
 }

@@ -18,4 +18,6 @@ public class MovieDao {
 	public List<NowpVo> getTheaterList() {
 		return sqlSession.selectList("movie.getTheaterList");
 	}
+
+
 }
