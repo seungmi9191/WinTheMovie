@@ -43,12 +43,10 @@ public class Trans {
 				response.append(inputLine);
 			}
 			br.close();
-			
-			br.close();
+			System.out.println(response.toString());
 			JSONParser jsonParser = new JSONParser();
 			JSONObject jsonObject = (JSONObject) jsonParser.parse(String.valueOf(response));
 			JSONArray jsonArray = (JSONArray) jsonObject.get("items");
-			System.out.println(jsonArray.get(0).toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,7 @@
 package kr.co.winthemovie.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +34,13 @@ public class ReserveController {
 		for(TheaterVo vo : list) {
 			System.out.println(vo.getTheateraddress());
 		}
+		return list;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/selectOneTheater", method=RequestMethod.GET)
+	public List<TheaterVo> selectByOneTheater(@RequestParam("theaterno") String theaterno) {
+		List<TheaterVo> list = reserve_service.selectByOneTheater(theaterno);
 		return list;
 	}
 }

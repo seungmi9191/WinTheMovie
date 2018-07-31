@@ -247,7 +247,7 @@ CREATE TABLE movie (
 );
 
 --movie 제약조건 추가
-ALTER TABLE movie ADD CONSTRAINT wm_derectorno_fk FOREIGN KEY(derectorno) 
+ALTER TABLE movie ADD CONSTRAINT wm_derectorno_fk FOREIGN KEY(directorno) 
 REFERENCES derector(directorno);
 ALTER TABLE movie ADD CONSTRAINT wm_actorno_fk FOREIGN KEY(actorno) 
 REFERENCES actor(actorno);
@@ -312,10 +312,10 @@ CREATE TABLE dailystar (
     
     PRIMARY KEY(dailypoint)
 );
+
 --dailystar 제약조건 추가
 ALTER TABLE dailystar ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
-
 
 CREATE TABLE wordcloud (
     col           NUMBER              ,
@@ -432,3 +432,37 @@ commit
 		where n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno;
 SELECT *
 FROM NOWPLAYING
+commit
+
+SELECT c.theaterno, c.brandname, c.brandlogo, c.theatername, c.theateraddress, c.playingtime, c.playingdate, m.koname
+FROM(SELECT b.theaterno, b.brandname, b.brandlogo, b.theatername, b.theateraddress, n.playingtime, n.playingdate, n.movieno
+	FROM(SELECT a.theaterno, a.brandname, a.brandlogo, a.theatername, a.theateraddress, r.roomno
+		FROM (SELECT b.brandname, b.brandlogo, t.theatername, t.theaterno, t.theateraddress
+				FROM brand b, theater t
+				WHERE b.brandno = t.brandno) a, theaterroom r
+		WHERE r.theaterno = a.theaterno) b, nowplaying n
+	WHERE b.roomno = n.roomno) c, movie m
+WHERE c.movieno = m.movieno
+AND c.theaterno = 1127
+
+select  n.nowplayingno, 
+    				n.roomno, 
+    				n.movieno, 
+    				to_char(n.playingtime,'YYYY-MM-DD HH24:MI:SS') as playingtime, 
+    				to_char(n.playingdate,'YYYY-MM-DD') as playingdate, 
+    				m.poster, 
+    				tr.theaterno, 
+    				t.brandno, 
+    				t.theatername,
+					t.theateraddress, 
+					t.theaterxgps, 
+					t.theaterygps, 
+					b.brandlogo, 
+					b.brandname
+			from nowplaying n, movie m, THEATERROOM tr, theater t, brand b
+			where  n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno
+			and (n.playingtime - sysdate) *24*60*60 > 0 
+			and n.playingtime between to_date(concat(to_char(sysdate, 'yyyy-mm-dd'), '04:00:01'), 'yyyy-mm-dd hh24:mi:ss')
+			and to_date(concat(to_char(sysdate+1, 'yyyy-mm-dd'), '04:00:00'), 'yyyy-mm-dd hh24:mi:ss')
+			and to_char(n.playingtime,'YYYY-MM-DD') = to_char(n.playingdate,'YYYY-MM-DD')
+			order by n.playingtime asc

@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <title>location</title>
 </head>
-<body>
+<body class="location_body">
 <div class="body-loc">
     <div class="modal-location-mask" id="location">
         <div class="modal-location-wrapper">
@@ -33,8 +33,7 @@
                         <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
                         <input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE4MDcxNjIwMjkwNzEwODAxMzk="/>
                         <!-- 요청 변수 설정 (승인키) -->
-                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword"
-                               class="sh-location-input" style="background: white">
+                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword" class="sh-location-input" style="background: white">
                         <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search "></i></button>
                     </form>
                 </div>
@@ -62,7 +61,6 @@
 </div>
 </body>
 <script language="javascript">
-	
     function getAddr() {
         // AJAX 주소 검색 요청
         $.ajax({

@@ -17,4 +17,9 @@ public class ReserveService {
 	public List<TheaterVo> selectByTheater(String address){
 		return dao.selectByTheater(address);
 	}
+	
+	public List<TheaterVo> selectByOneTheater(String theaterno) {
+		int result = Integer.parseInt(theaterno);
+		return dao.selectByOneTheater(result);
+	}
 }

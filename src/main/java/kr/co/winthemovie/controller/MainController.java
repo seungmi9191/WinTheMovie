@@ -39,7 +39,7 @@ public class MainController {
 		// ArrayList<TheaterVo> list = InsertTheater.TheaterFileIO(path);
 		// service.insertTheater(list);
 		try {
-			model.addAttribute("dailyResult", KobisAPI.kobis()); // Kobis API 불러오는 코드
+			model.addAttribute("dailyResult", KobisAPI.kobis(1)); // Kobis API 불러오는 코드
 			List<NowpVo> theaterList = movieService.getTheaterList();
 			model.addAttribute("theaterList", theaterList);
 

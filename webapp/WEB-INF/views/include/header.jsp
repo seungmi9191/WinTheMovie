@@ -12,8 +12,8 @@
 		<ul class="header_left">
 			<li><a href="${pageContext.request.contextPath}/movie/reserve">예매</a></li>
 			<li><a href="${pageContext.request.contextPath}/movie/analysis">평점분석</a></li>
-			<li><a href="${pageContext.request.contextPath}/movie/">상영작/예정작</a></li>
-			<li><a href="${pageContext.request.contextPath}/movie/">추천영화</a></li>
+			<li><a href="${pageContext.request.contextPath}/movie/currentmovie">상영작/예정작</a></li>
+			<li><a href="${pageContext.request.contextPath}/movie/recommand">추천영화</a></li>
 		</ul>
 
 		<ul class="header_login">

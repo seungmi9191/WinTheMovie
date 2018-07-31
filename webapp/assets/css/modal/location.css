@@ -7,14 +7,14 @@ Version : 1.0.0
 /* 1.0 Normalize */
 @import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
 
-html, body {
+.body-loc{
     font-family : 'NanumSquare', sans-serif;
     height : 100%;
     box-sizing : border-box;
     -webkit-overflow-scrolling : touch;
 }
 
-body {
+.location_body {
     width : 100%;
     display : block;
     font-size: 14px;
@@ -22,15 +22,14 @@ body {
     color: #282828;
 }
 
-* {
+.body-loc * {
     margin:0;
-    padding:0;
     word-break: break-all;
     word-wrap: break-word;
     box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.body-loc h1, .body-loc h2, .body-loc h3, .body-loc h4, .body-loc h5, .body-loc h6 {
     font-family: 'NanumSquare', sans-serif;
     font-weight: 700;
     line-height: 1.1;
@@ -46,17 +45,17 @@ h1, h2, h3, h4, h5, h6 {
     background: transparent;
 }
 
-input [type="text"] {
+.body-loc input [type="text"] {
     -webkit-appearance : none;
     padding : 0 0px;
     margin : 0;
 }
 
-input:focus {
+.body-loc input:focus {
     outline: none;
 }
 
-div {
+.body-loc div {
     display : block;
 }
 
@@ -185,13 +184,7 @@ div {
 .sh-location-body .search-scroll .location-wrap {
     width : 600px;
     margin : 0 auto;
-    /* border-bottom: 1px solid #e5e5e5; */
 }
-
-/* .sh-location-body .search-scroll .location-wrap:first-child {
-  padding-bottom: 32px;
-  margin-bottom: 32px;
-} */
 
 .location-wrap .sh-component01 {
     float: inherit;

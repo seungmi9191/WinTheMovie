@@ -18,4 +18,8 @@ public class ReserveDao {
 		return sqlsession.selectList("theater.SelectByReserveTheater", address);
 	}
 	
+	public List<TheaterVo> selectByOneTheater(int theaterno) {
+		return sqlsession.selectList("theater.SelectByOneTheater", theaterno);
+	}
+	
 }

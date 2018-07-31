@@ -42,15 +42,15 @@
 						<option value="16">경상남도</option>
 						<option value="17">제주도</option>	
 					</select>
-					<select id='gu' name="gu">
-						<option value="0">선택</option>
-					</select>
-					<span class="search-window">
-						<input class="input-text" id="search" name="search" type="text" title="검색" placeholder="자주가는 영화관 지점을 입력해주세요. ex) CGV 강남">
-					</span>
-					<button id="search-btn" type="button" title="검색버튼" tabindex="3" class="sch-btn">
-						<i class="fas fa-search "></i>
-					</button>
+				<select id='gu' name="gu">
+					<option value="0">선택</option>
+				</select>
+				<span class="search-window">
+					<input class="input-text" id="search" name="search" type="text" title="검색" placeholder="주소를 입력하세요 ex)서울시 강남구">
+				</span>
+				<button id="search-btn" type="button" title="검색버튼" tabindex="3" class="sch-btn">
+					<i class="fas fa-search "></i>
+				</button>
 			</div>
 
 			<div class="total-wrap" id="total-wrap">
@@ -60,19 +60,8 @@
 					</div>
 				</div>
 				<div class="movie-info-wrap" id="movie-info-wrap">
-					<a href="">
-						<div class="movie-info" id="movie-info">
-						</div>
-					</a> <a href="">
-						<div class="movie-info" id="movie-info">
-						</div>
-					</a> <a href="">
-						<div class="movie-info" id="movie-info">
-						</div>
-					</a> <a href="">
-						<div class="movie-info" id="movie-info">
-						</div>
-					</a>
+					<div class="movie-info" id="movie-info">
+					</div>
 				</div>
 			</div>
 		</div>
@@ -132,9 +121,10 @@
 							});
 							 
 							var contentString = [
-								'<div class="iw_inner">',
-								' <h3>'+list[i].theatername+'</h3>',
+								'<div class="iw_inner" data-theaterno='+list[i].theaterno+'>',
+								'<h3 >'+list[i].theatername+'</h3>',
 								'<p>'+list[i].theateraddress+'</p>',
+								//'<button class="sale_info" data-theaterno='+list[i].theaterno+'>할인 정보 보기</button>',
 								'</div>'
 							].join('');
 							
@@ -145,21 +135,24 @@
 							$markers.push(marker);
 							$infoWindow.push(infoWindow);
 						 }
+						 
 						 for (var i=0, ii=$markers.length; i<ii; i++) {
 						    naver.maps.Event.addListener($markers[i], 'click', getClickHandler(i));
 						} 
 					}
 				}
 			});
+			
 			function getClickHandler(seq) {
 			    return function(e) {
 			        var marker = $markers[seq],
 			            infoWindow = $infoWindow[seq];
-
 			        if (infoWindow.getMap()) {
-			            infoWindow.close();
+			        	infoWindow.close();
 			        } else {
 			            infoWindow.open(naver_map, marker);
+			            var $theaterno = $('.iw_inner').data('theaterno');
+			            console.log($theaterno);
 			        }
 			    }
 			} 
@@ -168,7 +161,16 @@
 			});
 	    });
 	} 
-	
+	function moviedata(theaterno){
+		
+		$.ajax({
+			url : "${pageContext.request.contextPath}/movie/selectOneTheater",
+			data : {theaterno: theaterno},
+			success : function(result){
+				
+			}
+		});
+	}
 	function updateMarkers(map, markers) {
 	    var mapBounds = map.getBounds();
 	    var marker, position;
@@ -184,7 +186,6 @@
 	        }
 	    }
 	}
-
 	function showMarker(map, marker) {
 	    if (marker.setMap()) return;
 	    marker.setMap(map);
@@ -248,6 +249,8 @@
 			});
 		});
 	}
+	
+	
 	</script>
 </body>
 </html>
