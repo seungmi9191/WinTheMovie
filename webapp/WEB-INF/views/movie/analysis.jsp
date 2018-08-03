@@ -170,21 +170,48 @@
         }
     }
 
-    // 자바스크립트로 데이터 받아오기
-    function movieinfo(movieno) {
-        var key = "f8c8304f59b2c2708e80a56028caf37f", // 영화진흥위원회 API KEY 값
-            today = get_today(2),
-            $url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key="
-                + key + "&targetDt=" + today;
-        $.ajax({
-            url: $url,
-            success: function (result) {
-                for (var i = 0; i < result['boxOfficeResult']['dailyBoxOfficeList'].length; i++) {
-                    if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['movieCd'] == movieno) {
-                        $('.person').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiCnt']));
-                        $('.sale').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesAmt']));
-                        $('.audiInten').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiInten']));
-                        $('.audiAcc').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiAcc']));
+
+		// 자바스크립트로 데이터 받아오기
+		function movieinfo(movieno) {
+			var key = "f8c8304f59b2c2708e80a56028caf37f", // 영화진흥위원회 API KEY 값
+			today = get_today(2), $url = "http://www.kobis.or.kr/kobisopenapi/webservice/rest/boxoffice/searchDailyBoxOfficeList.json?key="
+					+ key + "&targetDt=" + today;
+			$.ajax({
+				url : $url,
+				success : function(result) {
+					for (var i = 0; i < result['boxOfficeResult']['dailyBoxOfficeList'].length; i++) {
+						if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['movieCd'] == movieno) {
+							$('.person').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiCnt']));
+							$('.sale').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesAmt']));
+							$('.audiInten').text(addComma(Number(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiCnt']) + Number(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiInten'])));
+							$('.audiAcc').text(addComma(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiAcc']));
+							
+							if(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'].match('-')){
+								$('.person-rating').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange']+"%").css("color","red");
+							}else{
+								$('.person-rating').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange']+"%").css("color","green");
+							}
+							if(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange'].match('-')){
+								$('.salesChange').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange']+"%").css("color","red");
+							}else{
+								$('.salesChange').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange']+"%").css("color","green");
+							}
+						}
+					}
+				}
+			});
+		};
+		
+		function analysisOnClickEnvent(movieno){
+			$('#person').text('관객수');
+			$('#money').text('매출액');
+			$('#yesterday').text('전일관객');
+			$('#total').text('누적관객');
+			$('.icon-person').html('<img src="${pageContext.request.contextPath}/assets/img/icon/money.png">');
+			$('.icon-money').html('<img src="${pageContext.request.contextPath}/assets/img/icon/money.png">');
+			$('.icon-yesterday').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
+			$('.icon-total').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
+		}
 
                         if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'].match('-')) {
                             $('.person-rating').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'] + "%").css("color", "red");
