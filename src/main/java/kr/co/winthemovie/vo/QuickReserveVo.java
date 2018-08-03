@@ -1,3 +1,4 @@
+
 package kr.co.winthemovie.vo;
 
 public class QuickReserveVo {

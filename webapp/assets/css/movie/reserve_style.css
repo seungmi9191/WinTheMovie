@@ -59,6 +59,7 @@ body {
     padding: 0;
     margin: auto;
     text-align: center;
+    display: inline-block;
 }
 
 .isview {
@@ -83,10 +84,8 @@ body {
 }
 
 .isviewUnder{
-    text-align: center;
-    width: 100%;
-    margin: 0 100px;
-    position: relative;
+    text-align: center !important;
+    display: inline-block;
 }
 
 .seat-box {
@@ -99,8 +98,9 @@ body {
 }
 
 .seat {
-    text-align: center;
-    margin: 1px 1px 1px 1px;
+    text-align: center !important;
+    margin: auto;
+    display: inline-block !important;
 }
 
 .chairs {
@@ -112,6 +112,12 @@ body {
     text-align: center;
     line-height: 30px;
     cursor: default;
+    float: left;
+}
+
+.booked{
+    background-color: #ccc !important;
+    color: #282828 !important;
 }
 
 .chairs {
@@ -120,6 +126,7 @@ body {
     background-color: #666666;
     color: #d9d9d9;
     opacity: 0.8;
+    display: inline-block;
 }
 
 .rowshead {
@@ -138,7 +145,7 @@ body {
 }
 
 .reserve {
-    background-color: #244CBA;
+    background-color: #503396;
     color: #d9d9d9;
 }
 

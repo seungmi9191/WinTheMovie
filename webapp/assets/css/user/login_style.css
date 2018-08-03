@@ -14,7 +14,7 @@
     z-index: 20;
     padding: 28px 0 10px 0;
     width: 450px;
-    height: 590px;
+    height: 550px;
     border: 1px solid #e5e5e5;
     margin : 150px auto;
     margin-bottom: 90px;
@@ -46,7 +46,7 @@
 .login_container {
   width: 380px;
   /* color: #244CBA; */
-  height: 360px;
+  height: 320px;
   border-bottom: solid 1px #888888;
 }
 

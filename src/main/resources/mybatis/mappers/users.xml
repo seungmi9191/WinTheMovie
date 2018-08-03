@@ -42,7 +42,7 @@
 
     <select id="login" parameterType="kr.co.winthemovie.vo.UserVo" resultType="kr.co.winthemovie.vo.UserVo">
         <![CDATA[
-          SELECT * from users WHERE EMAIL=#{email}
+          SELECT * from users WHERE EMAIL=#{email} and USERPW=#{userpw}
         ]]>
     </select>
 

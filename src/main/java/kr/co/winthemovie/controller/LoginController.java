@@ -4,6 +4,9 @@ import java.io.IOException;
 
 import javax.servlet.http.HttpSession;
 
+import kr.co.winthemovie.service.UserService;
+import kr.co.winthemovie.vo.UserVo;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -23,69 +26,76 @@ import kr.co.winthemovie.vo.UserVo;
 @Controller
 public class LoginController {
 
-	/* NaverLoginBO */
+    /* NaverLoginBO */
+    private NaverLoginBO naverLoginBO;
+    private String apiResult = null;
 
-	private NaverLoginBO naverLoginBO;
-	private String apiResult = null;
+    @Autowired
+    private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
+        this.naverLoginBO = naverLoginBO;
+    }
 
-	@Autowired
-	private void setNaverLoginBO(NaverLoginBO naverLoginBO) {
-		this.naverLoginBO = naverLoginBO;
-	}
+    @Autowired
+    private UserService userService;
 
-	@Autowired
-	private UserService userService;
+    //로그인 첫 화면 요청 메소드
+    @RequestMapping(value = "/users/naverlogin", method = {RequestMethod.GET, RequestMethod.POST})
+    public String login(Model model, HttpSession session) {
 
-	// 로그인 첫 화면 요청 메소드
+        /* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
+        String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
 
-	@RequestMapping(value = "/users/naverlogin", method = { RequestMethod.GET, RequestMethod.POST })
-	public String login(Model model, HttpSession session) {
+        System.out.println("네이버:" + naverAuthUrl);
 
-		/* 네이버아이디로 인증 URL을 생성하기 위하여 naverLoginBO클래스의 getAuthorizationUrl메소드 호출 */
-		String naverAuthUrl = naverLoginBO.getAuthorizationUrl(session);
-		System.out.println("네이버:" + naverAuthUrl);
-		// 네이버
-		model.addAttribute("url", naverAuthUrl);
+        //네이버
+        model.addAttribute("url", naverAuthUrl);
 
-		/* 생성한 인증 URL을 View로 전달 */
-		return "users/naverLogin";
+        /* 생성한 인증 URL을 View로 전달 */
+        return "users/naverLogin";
+    }
 
-	}
+    //네이버 로그인 성공시 callback호출 메소드
+    @RequestMapping(value = "/users/callback.do", method = {RequestMethod.GET, RequestMethod.POST})
+    public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
+            throws IOException, ParseException {
+        System.out.println("여기는 callback");
+        OAuth2AccessToken oauthToken;
+        oauthToken = naverLoginBO.getAccessToken(session, code, state);
 
-	// 네이버 로그인 성공시 callback호출 메소드
+        //로그인 사용자 정보를 읽어온다.
+        apiResult = naverLoginBO.getUserProfile(oauthToken);
+        System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
+        model.addAttribute("result", apiResult);
+        /* 네이버 로그인 성공 페이지 View 호출 */
 
-	@RequestMapping(value = "/users/callback.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String callback(Model model, @RequestParam String code, @RequestParam String state, HttpSession session)
-			throws IOException, ParseException {
+        JSONParser jsonparser = new JSONParser();
+        JSONObject jsonobject = (JSONObject)jsonparser.parse(apiResult);
 
-		OAuth2AccessToken oauthToken;
-		oauthToken = naverLoginBO.getAccessToken(session, code, state);
-		// 로그인 사용자 정보를 읽어온다.
-		apiResult = naverLoginBO.getUserProfile(oauthToken);
-		model.addAttribute("result", apiResult);
-		/* 네이버 로그인 성공 페이지 View 호출 */
-		JSONParser jsonparser = new JSONParser();
-		JSONObject jsonobject = (JSONObject) jsonparser.parse(apiResult);
-		JSONObject json = (JSONObject) jsonobject.get("response");
-		String email = (String) json.get("email");
+        JSONObject json =  (JSONObject) jsonobject.get("response");
 
-		String username = (String) json.get("name");
-		UserVo userVo = new UserVo(email, username);
-		UserController userController = new UserController();
-		boolean result = userService.emailcheck(email);
+        String email = (String) json.get("email");
+//        String age = (String) json.get("age");
+        String username = (String)json.get("name");
 
-		if (result == false) {
-			UserVo authUser = userService.loginbysns(userVo);
-			session.setAttribute("authUser", authUser);
-			return "users/naverSuccess";
-		} else if (result == true) {
-			userService.userJoin(userVo);
-			System.out.println("회원가입하고 그다음 로그인할거임");
-			UserVo authUser = userService.loginbysns(userVo);
-			session.setAttribute("authUser", authUser);
-		}
+        UserVo userVo = new UserVo(email,username);
 
-		return "users/naverSuccess";
-	}
+        UserController userController = new UserController();
+
+        boolean result = userService.emailcheck(email);
+        System.out.println(result);
+        if (result == false) {
+            System.out.println("회원가입하고 그다음 로그인할거임222");
+
+            UserVo authUser =  userService.loginbysns(userVo);
+            session.setAttribute("authUser",authUser);
+            return "users/naverSuccess";
+        }else if(result == true){
+            userService.userJoin(userVo);
+            System.out.println("회원가입하고 그다음 로그인할거임");
+            UserVo authUser =  userService.loginbysns(userVo);
+            session.setAttribute("authUser",authUser);
+        }
+        return "users/naverSuccess";
+    }
 
 }

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
+
 <mapper namespace="movie"> <!--클래스명은 xml명과 똑같을 필요 없음-->
     
      <!-- 쿼리문 작성 -->
@@ -30,11 +31,20 @@
 	 ]]>	
     </select> 
 
-	<select id = "getQuickReserve" resultType="quickReserveVo">
-		<![CDATA[
+
+    <select id="getQuickReserve" resultType="quickReserveVo">
+	<![CDATA[
 			select n.MOVIENO, n.ROOMNO, to_char(n.PLAYINGTIME,'HH24:MI') as playingtime, TO_CHAR(n.PLAYINGDATE, 'yyyy-mm-dd') as playingdate, m.KONAME, m.POSTER, m.grade, t.theatername, tr.SEATCOUNT, t.brandno, t.theatername
 			from NOWPLAYING n, MOVIE m, THEATERROOM tr, THEATER t
-			where n.movieno = m.movieno and n.ROOMNO = tr.ROOMNO and tr.theaterno = t.THEATERNO
-		]]>
-	</select>
+			where #{nowplayingno}=n.movieno and n.movieno = m.movieno and n.ROOMNO = tr.ROOMNO and tr.theaterno = t.THEATERNO
+        ]]>
+    </select>
+
+    <select id="getIsSeat" resultType="seatVo">
+		<![CDATA[
+			select s.SEATNAME , s.ISSEAT
+			from seat s
+			where #{nowplayingno}=s.NOWPALYINGNO
+        ]]>
+    </select>
 </mapper>

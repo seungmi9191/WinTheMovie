@@ -67,6 +67,10 @@
                                     <ul class="colshead"></ul>
                                     <ul class="rowshead"></ul>
                                     <ol class="seat"></ol>
+                                <div class="isviewUnder">
+                                    <ul class="colshead"></ul>
+                                    <ul class="rowshead"></ul>
+                                    <ol class="seat" style="text-align: center"></ol>
                                 </div>
                             </div>
 
@@ -143,6 +147,10 @@
 
                     </div>
                 </div>
+                <!--  <button type="button" class="popup-close">
+                   <img src="../assets/img/icon/modal-x-mark.png"> 버튼 이미지
+                   <span class="blind">닫기</span>
+                 </button> -->
             </div>
         </div>
     </div>
@@ -157,18 +165,28 @@
     colsNum = parseInt(Math.sqrt(seatcount));
     rowsNum = seatcount / colsNum;
 
-    // 요일 구하기
+    // Ticket에 표시되는 요일 구하기
     var week = ['일', '월', '화', '수', '목', '금', '토'];
     var dayOfWeek = week[new Date(${quickreservevo.playingdate}).getDay()];
     var playingdate = '${quickreservevo.playingdate}' + "(" + dayOfWeek + ")" + ' &nbsp; &nbsp;${quickreservevo.playingtime}';
+
+
+    <%--for(var i =0; i<${seatVo.};i++){--%>
+    <%--var isSeat= ${seatVo[i].isSeat};--%>
+    <%--}--%>
+
     $(".playingdate").html(playingdate);
 
-
     var updateView = function () {
+
         var makeTag = '';
         console.log(colsNum, rowsNum);
 
-        for (var i = 1, leng = colsNum * rowsNum; i <= leng; i++) {
+        <%--for(var i=0,isSeat=[]; i<seatVoSize;i++){--%>
+        <%--var isSeat[i] = ${seatVo[i].isSeat};--%>
+        <%--}--%>
+
+        for (var i = 1, leng = colsNum * rowsNum; i <= leng; i++) {     // 좌석 li 태그로 그리기
             var viewCols = i % colsNum != 0 ? i % colsNum : colsNum;
             if (i % colsNum == 1) {
                 makeTag += "<li class = 'chairs' style=' clear: both;'>" + viewCols + "</li>";
@@ -176,15 +194,40 @@
                 makeTag += "<li class = 'chairs'>" + viewCols + "</li>";
             }
         }
+
+        $(function () {
+            var isSeat = new Array();
+            <c:forEach items="${seatVoArrayList}" var="seatInfo">
+            var json = new Object();
+            json.isSeat = "${seatInfo.isSeat}";
+            json.seatName = "${seatInfo.seatname}";
+            isSeat.push(json);
+            </c:forEach>
+
+            console.log(isSeat);
+
+            for (var i = 0; i < isSeat.length; i++) {       // 예매된 좌석을 '예매됨'으로 바꾸기
+                var isSeatList = isSeat[i].isSeat;
+
+                if (isSeatList != 1) {
+                    $('.chairs').eq(i).toggleClass('booked');
+                } else {
+                    console.log("its booked!");
+                }
+            }
+        })
+
         $seat.html(makeTag);
 
-        for (makeTag = '', i = 1, leng = colsNum; i <= leng; i++) {
-            makeTag += '<li>' + i + '</li>';
-        }
-        $colsHead.html(makeTag);
+        // $('.chairs').toggleClass('booked')
+
+        // for (makeTag = '', i = 1, leng = colsNum; i <= leng; i++) {  //좌석 col name header(ex 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+        //     makeTag += '<li>' + i + '</li>';
+        // }
+        // $colsHead.html(makeTag);
 
 
-        for (rowlist = '', i = 65, leng = 65 + rowsNum; i <= leng; i++) {
+        for (rowlist = '', i = 65, leng = 65 + rowsNum; i <= leng; i++) {   //좌석 row name header(ex A, B, C, D, E, F, G, ..)
             rowlist += "<li class='rowList'>" + String.fromCharCode(i) + "</li>";
         }
         $rowshead.html(rowlist);
@@ -198,6 +241,12 @@
         var $this = $(this),
             index = $this.index(),
             count = $('.selectedM').data('count');
+
+       console.log($this.attr('class'))
+
+        if($this.hasClass('booked')){
+           return false;
+        }
 
         if (!choose.includes(index)) {
             if (clicks < count) {
