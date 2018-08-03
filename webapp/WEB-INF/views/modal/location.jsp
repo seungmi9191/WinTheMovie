@@ -6,20 +6,16 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/location.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
-          integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <title>location</title>
 </head>
-<body>
+<body class="location_body">
 <div class="body-loc">
-
     <div class="modal-location-mask" id="location">
         <div class="modal-location-wrapper">
             <div class="modal-location-container">
                 <h2>나의 위치 등록하기</h2>
                 <div class="select-location">
-                    <input type="hidden" class="setx">
-                    <input type="hidden" class="sety">
                     <i class="fas fa-map-marker-alt"></i><span id="setAddr"></span>
                 </div>
                 <div class="p-des">
@@ -37,11 +33,8 @@
                         <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
                         <input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE4MDcxNjIwMjkwNzEwODAxMzk="/>
                         <!-- 요청 변수 설정 (승인키) -->
-                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword"
-                               class="sh-location-input" style="background: white">
-                        <%--<button class="btn-search" onclick="getAddr();"><i class="fas fa-search "></i></button>--%>
-                        <button class="btn-search" type="button" onclick="getAddr()" value="123"><i
-                                class="fas fa-search "></i></button>
+                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword" class="sh-location-input" style="background: white">
+                        <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search "></i></button>
                     </form>
                 </div>
 
@@ -50,25 +43,24 @@
                         <div class="search-scroll">
                             <div class="location-wrap">
                                 <div class="sh-component01" id="list">
-
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
-                <button type="button" class="popup-close-loc"
+ 				<button id="success">적용하기</button>
+ 				
+               <%--  <button type="button" class="popup-close-loc"
                         onclick="document.getElementById('location').style.display='none'">
                     <img src="${pageContext.request.contextPath}/assets/img/icon/x-mark.png"> <!--버튼 이미지-->
                     <span class="blind">닫기</span>
-                </button>
+                </button> --%>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script language="javascript">
-	$('.body-loc').hide();
     function getAddr() {
         // AJAX 주소 검색 요청
         $.ajax({
@@ -77,7 +69,7 @@
             , data: $("#form").serialize() 								// 요청 변수 설정
             , dataType: "jsonp"											// 크로스도메인으로 인한 jsonp 이용, 검색결과형식 JSON
             , crossDomain: true
-            , success: function (jsonStr) {									// jsonStr : 주소 검색 결과 JSON 데이터
+            , success: function (jsonStr) {								// jsonStr : 주소 검색 결과 JSON 데이터
                 $("#list").html("");									// 결과 출력 영역 초기화
                 var errCode = jsonStr.results.common.errorCode;
                 var errDesc = jsonStr.results.common.errorMessage;
@@ -93,82 +85,53 @@
                 alert("에러발생");										// AJAX 호출 에러
             }
         });
-
-
-        function makeListJson(jsonStr) {
-            var htmlStr = "";
-            htmlStr += "<table>";
-            // jquery를 이용한 JSON 결과 데이터 파싱
-            $(jsonStr.results.juso).each(function () {
-                var setAddress = this.roadAddrPart1;
-                var address_xy = this.buldMnnm;
-                var admCd = this.admCd;
-                var rnMgtSn = this.rnMgtSn;
-                var udrtYn = this.udrtYn;
-                var buldSlno = this.buldSlno;
-                htmlStr += "<tr>";
-                htmlStr += "<td>" + setAddress + "</td>";
-                htmlStr += "<form name=\"form_xy\" id=\"form_xy\" method=\"post\">";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"resultType\" value=\"json\"/>"
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"confmKey\" value=\"U01TX0FVVEgyMDE4MDcxODEwMDczMjEwODAxNzM=\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"admCd\" value=\"" + admCd + "\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"rnMgtSn\" value=\"" + rnMgtSn + "\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"udrtYn\" value=\"" + udrtYn + "\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"buldMnnm\" value=\"" + address_xy + "\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<input type=\"hidden\" name=\"buldSlno\" value=\"" + buldSlno + "\"/>";
-                htmlStr += "</td>";
-                htmlStr += "<td>";
-                htmlStr += "<button type ='button' class='btn-select' data-addressxy ='" + address_xy + "' data-address='" + setAddress + "'>적용하기</button>";
-                htmlStr += "</td>";
-                htmlStr += "</form>";
-            });
-            htmlStr += "</table>";
-            // 결과 HTML을 FORM의 결과 출력 DIV에 삽입
-            $("#list").html(htmlStr);
-			
-            $(".btn-select").on("click", function () {
-                var $address = $(this).data('address').split(" ")[1];
-                var $address_xy = $(this).data('addressxy');
-                if ($(this).data('address').split(" ")[0].length == 4) {
-                    var $front = $(this).data('address').split(" ")[0].substring(0, 1) + $(this).data('address').split(" ")[0].substring(2, 3);
-                } else {
-                    var $front = $(this).data('address').split(" ")[0].substring(0, 2);
-                }
-                $('#setAddr').text($front + "_" + $address);
-
-                $.ajax({
-                    url: "${pageContext.request.contextPath}/juso"
-                    , type: "post"
-                    , data: {getAddr: $(this).data('address')}					// 요청 변수 설정
-                    , dataType: "json"
-                    , async: false
-                    , success: function (map) {
-                        var userX = map.userX;
-                        var userY = map.userY;
-
-                        $('.setx').val(userX);
-                        $('.sety').val(userY);
-                    }
-                    , error: function (XHR, status, error) {
-                        console.error(status + " : " + error)									// AJAX 호출 에러
-                    }
-                });
-            })
-        }
     }
+    
+    function makeListJson(jsonStr) {
+         var htmlStr = "";
+         htmlStr += "<table>";
+         $(jsonStr.results.juso).each(function () {
+             var setAddress = this.roadAddrPart1;
+             var address_xy = this.buldMnnm;
+             htmlStr += "<tr>";
+             htmlStr += "<td>" + setAddress + "</td>";
+             htmlStr += "<td>";
+             htmlStr += "<button type ='button' class='btn-select' data-addressxy ='" + address_xy + "' data-address='" + setAddress + "'>선택하기</button>";
+             htmlStr += "</td>";
+             htmlStr += "</tr>";
+         });
+         htmlStr += "</table>";
+         $("#list").html(htmlStr);
+    	
+         $(".btn-select").on("click", function () {
+             var $address = $(this).data('address').split(" ")[1];
+             var $address_xy = $(this).data('addressxy');
+             if ($(this).data('address').split(" ")[0].length == 4) {
+                 var $front = $(this).data('address').split(" ")[0].substring(0, 1) + $(this).data('address').split(" ")[0].substring(2, 3);
+             } else {
+                 var $front = $(this).data('address').split(" ")[0].substring(0, 2);
+             }
+             $('.btn-address').html($front + "_" + $address);
+             $('#setAddr').html($front + "_" + $address);
+             transAddress($address);
+         });
+    }
+    
+   	function transAddress(address){
+   	 $.ajax({
+         url: "${pageContext.request.contextPath}/transfer"
+         , type: "POST"
+         , data: {getAddr : address}
+         , success: function (map) {
+             $userX = map.userY;
+             $userY = map.userX;
+             console.log($userX);
+             console.log($userY);
+         }, error: function (xhr, status, error) {
+             alert("에러발생");										// AJAX 호출 에러
+         }
+     });
+   	}
 
 </script>
 </html>

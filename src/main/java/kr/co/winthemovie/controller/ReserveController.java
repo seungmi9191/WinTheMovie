@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.winthemovie.service.ReserveService;
-import kr.co.winthemovie.service.TheaterService;
 import kr.co.winthemovie.vo.TheaterVo;
 
 @Controller

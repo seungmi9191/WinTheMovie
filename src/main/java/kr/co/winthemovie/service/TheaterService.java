@@ -19,7 +19,6 @@ public class TheaterService {
 	//  극장 위치 DB에 저장하는 구문
 	public void insertTheater(ArrayList<TheaterVo> list) {
 		HashMap<String, Object> map = new HashMap<String, Object>();
-		
 		map.put("theaterlist", list);
 		dao.insertTheater(map);
 	}
