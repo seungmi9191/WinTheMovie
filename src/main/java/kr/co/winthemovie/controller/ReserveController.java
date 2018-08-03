@@ -59,32 +59,20 @@ public class ReserveController {
 		}
 		return list;
 	}
+	
+	    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
+	    public String reserve_final(Model model, int nowplayingno) {
 
-	@RequestMapping(value = "/reserve_quick",method = {RequestMethod.GET,RequestMethod.POST})
-	public String reserve_final(Model model, int nowplayingno){
+		System.out.println("reserveContorller *playingno=" + nowplayingno);
+		QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
+		List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
+		model.addAttribute("quickreservevo", quickreservevo);
+		model.addAttribute("seatVo", seatVoList);
 
-    @Autowired
-    private ReserveService reserve_service;
-    private TheaterService theater_service;
+		ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
+		model.addAttribute("seatVoArrayList",seatVoArrayList);
 
-    @RequestMapping(value = "/reserve", method = RequestMethod.GET)
-    public String reserveform() {
-        return "movie/reservepage";
-    }
-
-    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
-    public String reserve_final(Model model, int nowplayingno) {
-
-        System.out.println("reserveContorller *playingno=" + nowplayingno);
-        QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
-        List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
-        model.addAttribute("quickreservevo", quickreservevo);
-        model.addAttribute("seatVo", seatVoList);
-
-        ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
-        model.addAttribute("seatVoArrayList",seatVoArrayList);
-
-        return "movie/reserve_final";
-    }
+		return "movie/reserve_final";
+	    }
 
 }
