@@ -9,7 +9,7 @@ public class TheaterVo {
 	private String theateraddress;
 	private String theaterxgps;
 	private String theaterygps;
-	
+
 	private String brandname;
 	private String brandlogo;
 	private String playingtitme;
@@ -120,6 +120,5 @@ public class TheaterVo {
 	public void setEnname(String enname) {
 		this.enname = enname;
 	}
-	
-}
 
+}

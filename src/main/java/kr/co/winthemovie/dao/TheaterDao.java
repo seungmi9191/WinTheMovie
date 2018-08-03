@@ -18,12 +18,14 @@ public class TheaterDao {
 
 	// 극장 위치 DB에 저장하는 구문
 	public void insertTheater(HashMap<String, Object> map) {
-		ArrayList<TheaterVo> list = (ArrayList<TheaterVo>)map.get("theaterlist");
-		for(TheaterVo vo : list)
+		ArrayList<TheaterVo> list = (ArrayList<TheaterVo>) map.get("theaterlist");
+		for (TheaterVo vo : list) {
+			System.out.println(vo.toString());
 			sqlsession.insert("theater.InsertByTheater", vo);
+		}
 	}
-	
-	public List<TheaterVo> selectTheater(){
+
+	public List<TheaterVo> selectTheater() {
 		return sqlsession.selectList("theater.SelectByTheater");
 	}
 }

@@ -53,5 +53,5 @@ public class AnalysisVo {
 		return "AnalysisVo [analysisno=" + analysisno + ", movieno=" + movieno + ", colldate=" + colldate
 				+ ", bookingrate=" + bookingrate + ", totalpeople=" + totalpeople + "]";
 	}
-	
+
 }

@@ -104,7 +104,7 @@
               일일평점
             </div>
           <div class="panel-body">
-            <img src="${pageContext.request.contextPath}/assets/img/logo/cgv.png" width="100%">
+            <img src="${pageContext.request.contextPath}/assets/img/bigData/b.png" width="100%">
           </div>
           </div>
         </div>
@@ -115,7 +115,7 @@
               이미 이 영화를 본 사람들의 비율은?
             </div>
           <div class="panel-body_s">
-            <img src="${pageContext.request.contextPath}/assets/img/word/a.png" width="100%">
+            <img src="${pageContext.request.contextPath}/assets/img/bigData/c.png" width="100%">
           </div>
           </div>
       </div>
@@ -359,8 +359,8 @@
 </div>
   </div> <!--movieDetail 끝-->
 
-          <button type="button" class="popup-close">
-        <img src="${pageContext.request.contextPath}/assets/img/icon/close.png"> <!--버튼 이미지-->
+        <button type="button" class="popup-close">
+        	<img src="${pageContext.request.contextPath}/assets/img/icon/close.png"> <!--버튼 이미지-->
         <span class="blind">닫기</span>
        </button>
      </div><!--modal-container 끝-->

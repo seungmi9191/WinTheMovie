@@ -3,8 +3,6 @@ package kr.co.winthemovie.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.sun.xml.internal.bind.v2.model.annotation.Quick;
-import kr.co.winthemovie.vo.QuickReserveVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kr.co.winthemovie.service.ReserveService;
+import kr.co.winthemovie.service.TheaterService;
+import kr.co.winthemovie.vo.QuickReserveVo;
 import kr.co.winthemovie.vo.TheaterVo;
 
 @Controller
@@ -22,10 +22,26 @@ public class ReserveController {
 	
 	@Autowired
 	private ReserveService reserve_service;
+	private TheaterService theater_service;
 	
 	@RequestMapping(value="/reserve", method=RequestMethod.GET)
-	public String reserveform(Model model) {
+	public String reserveform() {
 		return "movie/reservepage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value="/selectOneTheater", method=RequestMethod.GET)
+	public ArrayList<TheaterVo> selectByOneTheater(@RequestParam("theaterno") int theaterno) {
+		ArrayList<TheaterVo> list = (ArrayList<TheaterVo>)reserve_service.selectByOneTheater(theaterno);
+		return list;
+	}
+	
+	// 모든 위치 받아오는 코드
+	@ResponseBody
+	@RequestMapping(value="/selectheater", method=RequestMethod.POST)
+	public ArrayList<TheaterVo> selectByTheater(){
+		ArrayList<TheaterVo> list = (ArrayList<TheaterVo>) theater_service.selectTheater();
+		return list;
 	}
 	
 	@ResponseBody
@@ -38,17 +54,9 @@ public class ReserveController {
 		}
 		return list;
 	}
-	
-	@ResponseBody
-	@RequestMapping(value="/selectOneTheater", method=RequestMethod.GET)
-	public List<TheaterVo> selectByOneTheater(@RequestParam("theaterno") String theaterno) {
-		List<TheaterVo> list = reserve_service.selectByOneTheater(theaterno);
-		return list;
-	}
-
 
 	@RequestMapping(value = "/reserve_quick",method = {RequestMethod.GET,RequestMethod.POST})
-	public String reserve_final(/*영화 포스터 선택시 */Model model,int nowplayingno){
+	public String reserve_final(Model model, int nowplayingno){
 
 		System.out.println("reserveContorller *playingno="+nowplayingno);
 		QuickReserveVo quickreservevo=reserve_service.getQuickReserve(nowplayingno);
@@ -58,10 +66,4 @@ public class ReserveController {
 		return "movie/reserve_final";
 	}
 
-//	@ResponseBody
-//	@RequestMapping(value="/nowplaying",method = RequestMethod.POST)
-//	public String getNowPlaying(Model model,@RequestParam("nowplaying") int nowplayingno){
-//
-//
-//	}
 }

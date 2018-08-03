@@ -7,30 +7,33 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
- 
-    @Autowired
-    private UserDao userDao;
- 
-    public int userJoin(UserVo userVo){
-        int userJoin = userDao.join(userVo);
-        return userJoin;
-    }
- 
-    public boolean emailcheck(String id){
-        boolean flag = false;
- 
-        String str = userDao.emailcheck(id);
-        if(str == null){
-            flag = true;
-        }else{
-            flag = false;
-        }
-        return flag;
-    }
- 
-    public UserVo login(UserVo userVo){
-        return userDao.login(userVo);
-    }
- 
- 
+
+	@Autowired
+	private UserDao userDao;
+
+	public int userJoin(UserVo userVo) {
+		int userJoin = userDao.join(userVo);
+		return userJoin;
+	}
+
+	public boolean emailcheck(String email) {
+		boolean flag = false;
+		String str = userDao.emailcheck(email);
+		if (str == null) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		System.out.println(flag);
+		return flag;
+	}
+
+	public UserVo login(UserVo userVo) {
+		return userDao.login(userVo);
+	}
+
+	public UserVo loginbysns(UserVo userVo) {
+		return userDao.loginbysns(userVo);
+	}
+
 }

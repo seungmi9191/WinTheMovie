@@ -142,6 +142,7 @@
             data: {email: email},
             dataType: "json",
             success: function (result) {
+                alert("환영합니다.")
                 location.href = "${pageContext.request.contextPath}/main";
 
             }, error: function (XHR, status, error) {

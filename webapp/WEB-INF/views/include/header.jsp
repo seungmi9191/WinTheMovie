@@ -46,8 +46,10 @@
 		</ul>
 	</div>
 </div>
+
 <script>
 	$(document).ready(function(){
+		$('.body-loc').hide();
 		$(".dropbtn").on("click", function(){
 			var submenu = $(this).next('ul');
 			
@@ -58,5 +60,4 @@
 			}
 		});
 	});
-	
 </script>

@@ -60,8 +60,6 @@
 					</div>
 				</div>
 				<div class="movie-info-wrap" id="movie-info-wrap">
-					<div class="movie-info" id="movie-info">
-					</div>
 				</div>
 			</div>
 		</div>
@@ -152,7 +150,7 @@
 			        } else {
 			            infoWindow.open(naver_map, marker);
 			            var $theaterno = $('.iw_inner').data('theaterno');
-			            console.log($theaterno);
+			            moviedata($theaterno);
 			        }
 			    }
 			} 
@@ -161,16 +159,37 @@
 			});
 	    });
 	} 
+	
 	function moviedata(theaterno){
-		
+		console.log(theaterno);
 		$.ajax({
 			url : "${pageContext.request.contextPath}/movie/selectOneTheater",
 			data : {theaterno: theaterno},
 			success : function(result){
-				
+					var str = "";
+				for(var i=0;i<result.length;i++){
+					str += "<div style='width:100%;height:220px;padding:10px; border-bottom:1px solid;'>";
+					str += 	"<div style='height:180px;'>";
+					str += 		"<div style='width:120px; float:left;'><img style='width:120px;' src='${pageContext.request.contextPath}/assets/img/movie_poster/antman_poster.jpg'></div>";
+					str += 		"<div style='float:left; margin-left:10px;'>";
+					str += 			"<div style='font-size:20px; font-weight:600; margin-bottom:20px;'>"+result[i].koname+"</div>";
+					str += 			"<div style='margin-bottom:10px;'><b>위 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;치 |&nbsp;</b> "+result[i].theateraddress+"</div>";
+					str += 			"<div style='margin-bottom:10px;'><b>영&nbsp;&nbsp;화&nbsp;&nbsp;관   |</b> "+result[i].brandname+"</div>";
+					str += 			"<div><b>남은시간   | </b></div>";
+					str += 		"</div>";
+					str += 	"</div>";
+					str += 	"<div style='clear:both; width:100%; height:40px;'>";
+					str += 		"<button style='width:48%; height:100%; margin-right:5px;'>상세보기</button>";
+					str += 		"<button style='width:48%; height:100%;'>빠른예매</button>";
+					str += 	"</div>";
+					str += "</div>";
+					
+					$('.movie-info-wrap').html(str);
+				}
 			}
 		});
 	}
+	
 	function updateMarkers(map, markers) {
 	    var mapBounds = map.getBounds();
 	    var marker, position;

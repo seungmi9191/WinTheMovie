@@ -16,11 +16,11 @@ public class NowpVo {
 	private String theaterygps;
 	private String brandlogo;
 	private String brandname;
-	
+
 	public NowpVo() {
-		
+
 	}
-	
+
 	public NowpVo(int nowplayingno, int roomno, int movieno, String playingtime, String playingdate, String poster,
 			int theaterno, int brandno, String theatername, String theateraddress, String theaterxgps,
 			String theaterygps, String brandlogo, String brandname) {
