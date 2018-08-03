@@ -7,11 +7,13 @@
         <typeAlias alias="theaterVo" type="kr.co.winthemovie.vo.TheaterVo"/>
         <typeAlias alias="nowpVo" type="kr.co.winthemovie.vo.NowpVo"/>
         <typeAlias alias="quickreserveVo" type="kr.co.winthemovie.vo.QuickReserveVo"/>
+        <typeAlias alias="seatVo" type="kr.co.winthemovie.vo.SeatVo"/>
     </typeAliases>
     <mappers>
         <!--xml 파일이 추가될 경우 아래에 계속 mapper 시켜줘야한다.-->
         <mapper resource="mybatis/mappers/users.xml"/>
         <mapper resource="mybatis/mappers/movie.xml"/>
         <mapper resource="mybatis/mappers/Theater.xml"/>
+
     </mappers>
 </configuration>

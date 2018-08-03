@@ -43,7 +43,7 @@
 <script>
     $(function () {
         $("body").hide();
-        $("body").fadeIn(1000);  // 1초 뒤에 사라 지자
+        $("body").fadeIn(1);  // 1초 뒤에 사라 지자
 
         setTimeout(function(){$("body").fadeOut(1000);},1000);
         <%--setTimeout(function(){location.href= "${pageContext.request.contextPath}/main"},2000);--%>

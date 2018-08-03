@@ -32,7 +32,6 @@ public class UserDao {
     public UserVo login(UserVo userVo) {
         System.out.println("userdao 입장");
         UserVo vo = sqlsession.selectOne("users.login", userVo);
-        System.out.println("userdao 퇴장"+vo.toString());
 
         return vo;
     }

@@ -61,7 +61,6 @@ public class UserController {
 	public boolean login(@ModelAttribute UserVo userVo, HttpSession session) {
 		boolean result = false;
 		UserVo authUser = userService.login(userVo);
-		System.out.println("usercontroller service 거쳐나옴"+authUser.toString());
 		if (authUser != null) {
 			System.out.println("들어옴");
 			session.setAttribute("authUser", authUser);
