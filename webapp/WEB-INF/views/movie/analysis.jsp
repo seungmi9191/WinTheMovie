@@ -52,94 +52,89 @@
     <hr width="42%" align="left">
 </div>
 
-<div class="analysis-list">
-    <div class="analysis-list-top">
-        <div class="analysis-list-box panel-default">
-            <div class="panel-heading">오늘 이 영화에 대한 관객수와 매출액은?
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="body-left">
-                    <ul>
-                        <li class="mini-title" id="person"></li>
-                        <li class="icon-person"></li>
-                        <li class="person"></li>
-                        <li class="person-rating"></li>
-                    </ul>
-                </div>
-                <div class="body-right">
-                    <ul>
-                        <li class="mini-title" id="money"></li>
-                        <li class="icon-money"></li>
-                        <li class="sale"></li>
-                        <li class="salesChange"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="analysis-list-box panel-default">
-            <div class="panel-heading">오늘 이 영화를 본 사람들의 비율은?
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body" id="middle-rating-movie"></div>
-        </div>
-        <div class="analysis-list-box panel-default">
-            <div class="panel-heading">이 영화의 관객 수는?
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body">
-                <div class="body-left">
-                    <ul>
-                        <li class="mini-title" id="yesterday"></li>
-                        <li class="icon-yesterday"></li>
-                        <li class="audiInten"></li>
-                    </ul>
-                </div>
-                <div class="body-right">
-                    <ul>
-                        <li class="mini-title" id="total"></li>
-                        <li class="icon-total"></li>
-                        <li class="audiAcc"></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="analysis-list-middle">
-        <div class="analysis-list-middle-box panel-default">
-            <div class="panel-heading">다른 사람들이 생각하는 이 영화는?
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body"></div>
-        </div>
-    </div>
-    <div class="analysis-list-bottom">
-        <div class="analysis-list-bottom-box panel-default">
-            <div class="panel-heading">현재 평점
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body"></div>
-        </div>
-        <div class="analysis-list-bottom-box panel-default">
-            <div class="panel-heading">일일 평점
-                <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png">
-                </div>
-            </div>
-            <div class="panel-body"></div>
-        </div>
-    </div>
-    <div class="analysis-list-bottom-last panel-default">
-        <div class="panel-heading ">영화 흥행 예측
-            <div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
-        </div>
-        <div class="panel-body"></div>
-    </div>
-</div>
+	<div class="analysis-list">
+		<div class="analysis-list-top">
+			<div class="analysis-list-box panel-default">
+				<div class="panel-heading">오늘 이 영화에 대한 관객수와 매출액은?
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body">
+					<div class="body-left">
+						<ul>
+							<li class="mini-title" id="person"></li>
+							<li class="icon-person"></li>
+							<li class="person"></li>
+							<li class="person-rating"></li>
+						</ul>
+					</div>
+					<div class="body-right">
+						<ul>
+							<li class="mini-title" id="money"></li>
+							<li class="icon-money"></li>
+							<li class="sale"></li>
+							<li class="salesChange"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div class="analysis-list-box panel-default">
+				<div class="panel-heading">오늘 이 영화를 본 사람들의 비율은?
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body" id="middle-rating-movie"></div>
+			</div>
+			<div class="analysis-list-box panel-default">
+				<div class="panel-heading">이 영화의 관객 수는?
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body">
+					<div class="body-left">
+						<ul>
+							<li class="mini-title" id="yesterday"></li>
+							<li class="icon-yesterday"></li>
+							<li class="audiInten"></li>
+						</ul>
+					</div>
+					<div class="body-right">
+						<ul>
+							<li class="mini-title" id="total"></li>
+							<li class="icon-total"></li>
+							<li class="audiAcc"></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="analysis-list-middle">
+			<div class="analysis-list-middle-box panel-default">
+				<div class="panel-heading">다른 사람들이 생각하는 이 영화는?
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body" id="wordcloud" ></div>
+			</div>
+		</div>
+		<div class="analysis-list-bottom">
+			<div class="analysis-list-bottom-box panel-default">
+				<div class="panel-heading">현재 평점
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body"></div>
+			</div>
+			<div class="analysis-list-bottom-box panel-default">
+				<div class="panel-heading">일일 평점
+					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+				</div>
+				<div class="panel-body" id="daily-star"></div>
+			</div>
+		</div>
+		<div class="analysis-list-bottom-last panel-default">
+			<div class="panel-heading ">영화 흥행 예측
+				<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+			</div>
+			<div class="panel-body"></div>
+		</div>
+	</div>
+
 
 <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
@@ -211,6 +206,8 @@
 			$('.icon-money').html('<img src="${pageContext.request.contextPath}/assets/img/icon/money.png">');
 			$('.icon-yesterday').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
 			$('.icon-total').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
+			$('#wordcloud').html('<img src="${pageContext.request.contextPath}/assets/img/word/a.png" style="width:60%; margin-left:150px; margin-top:70px;">');
+			$('#daily-star').html('<img src="${pageContext.request.contextPath}/assets/img/bigData/b.png" style="width:100%; height:210px;">');
 		}
 
                         if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'].match('-')) {

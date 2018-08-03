@@ -12,14 +12,8 @@ Version : 1.0.0
     height : 100%;
     box-sizing : border-box;
     -webkit-overflow-scrolling : touch;
-}
-
-.location_body {
-    width : 100%;
-    display : block;
     font-size: 14px;
     line-height: 1.4;
-    color: #282828;
 }
 
 .body-loc * {
@@ -73,10 +67,19 @@ Version : 1.0.0
     background-color: rgba(0,0,0,.5);
 }
 
-.popup-close {
-    position : absolute;
-    top: 0px;
-    right: -50px;
+.popup-close-loc {
+     width : 50px;
+	 height : 30px;
+	 position : absolute;
+	 top: 1px;
+	 right: -50px;
+	 margin : 0;
+  	 border: 0 none;
+	 cursor: pointer;
+	 background: transparent;
+}
+.popup-close-loc img{
+
 }
 
 .blind {

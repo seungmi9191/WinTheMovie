@@ -63,6 +63,10 @@
                                 <div class="isview">
                                     <h3>관람 인원을 먼저 선택해주세요.</h3>
                                 </div>
+                                <div class="isviewUnder" style="text-align: center">
+                                    <ul class="colshead"></ul>
+                                    <ul class="rowshead"></ul>
+                                    <ol class="seat"></ol>
                                 <div class="isviewUnder">
                                     <ul class="colshead"></ul>
                                     <ul class="rowshead"></ul>
@@ -101,28 +105,16 @@
                         <div class="booking-movie-title" style="z-index: 1123123;">
                             <c:choose>
                                 <c:when test="${quickreservevo.grade==1}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-4.png">
-                                        15세관람가
-                                    </div>
+                                    <div class="age"><img src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-4.png"> 15세관람가</div>
                                 </c:when>
                                 <c:when test="${quickreservevo.grade==12}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-1.png">
-                                        15세관람가
-                                    </div>
+                                    <div class="age"><img src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-1.png"> 15세관람가</div>
                                 </c:when>
                                 <c:when test="${quickreservevo.grade==15}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-2.png">
-                                        15세관람가
-                                    </div>
+                                    <div class="age"><img src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-2.png"> 15세관람가</div>
                                 </c:when>
                                 <c:when test="${quickreservevo.grade==19}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-3.png">
-                                        15세관람가
-                                    </div>
+                                    <div class="age"><img src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-3.png"> 15세관람가</div>
                                 </c:when>
                             </c:choose>
                             <h4 class="movieTitle">${quickreservevo.koname}</h4>
@@ -164,8 +156,6 @@
     </div>
 </div>
 <script type="text/javascript">
-    // var $cols = $('input[name=cols]'),
-    //     $rows = $('input[name=rows]'),
     var $result = $('.result'),
         $seat = $('.seat-box .seat'),
         $colsHead = $('.seat-box .colsHead'),
@@ -197,7 +187,6 @@
         <%--}--%>
 
         for (var i = 1, leng = colsNum * rowsNum; i <= leng; i++) {     // 좌석 li 태그로 그리기
-
             var viewCols = i % colsNum != 0 ? i % colsNum : colsNum;
             if (i % colsNum == 1) {
                 makeTag += "<li class = 'chairs' style=' clear: both;'>" + viewCols + "</li>";
@@ -248,8 +237,6 @@
     var clicks = 0;
     var choose = new Array();
     $seat.on('click', 'li', function () {
-
-
 
         var $this = $(this),
             index = $this.index(),
@@ -392,6 +379,8 @@
                 seatList = new Array();
                 clicks = 0;
 
+                console.log("Type of = " + typeof seatList + "// " + typeof choose)
+                console.log("취소된 seatlist가 나와야합니다!!!! " + choose.length + "// " + seatList.length);
                 $(".reserve").toggleClass("reserve");
                 $result.html('')
                 $("#0").toggleClass("selectMember");
@@ -429,6 +418,7 @@
         updateView();
         var tmp = selectMember();
         if (tmp.count == null || tmp.count == '0') {
+            console.log("바보" + tmp.count)
 
         } else {
 

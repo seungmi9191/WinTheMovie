@@ -19,11 +19,18 @@ WHERE   object_type = 'TABLE';
 
 
 --위의 명령어로 출력된 테이블 명령어를 통해 제약조건 상관없이 모두 삭제
+DROP TABLE USERS CASCADE CONSTRAINTS;
+DROP TABLE TICKET CASCADE CONSTRAINTS;
+DROP TABLE SEAT CASCADE CONSTRAINTS;
 DROP TABLE MOVIE CASCADE CONSTRAINTS;
 DROP TABLE NOWPLAYING CASCADE CONSTRAINTS;
 DROP TABLE BRAND CASCADE CONSTRAINTS;
 DROP TABLE THEATERROOM CASCADE CONSTRAINTS;
 DROP TABLE THEATER CASCADE CONSTRAINTS;
+DROP TABLE ACTOR CASCADE CONSTRAINTS;
+DROP TABLE DIRECTOR CASCADE CONSTRAINTS;
+DROP TABLE STILLCUT CASCADE CONSTRAINTS;
+DROP TABLE REVIEW CASCADE CONSTRAINTS;
 
 --시퀀스 삭제
 drop sequence seq_users_no;
@@ -336,6 +343,9 @@ REFERENCES movie(movieno);
 --임시 데이터 테스트
 
 --테이블 조회
+select * from USERS;
+select * from TICKET;
+select * from SEAT;
 select * from brand;
 select * from theater;
 select * from theaterroom;
@@ -349,14 +359,14 @@ SELECT nowplayingno, movieno, roomno, TO_CHAR(playingtime,'HH24:MI:SS'), playing
 
 
 --브랜드 데이터
-insert into brand values (0, 'Car', 'car.png');
-insert into brand values (1, 'CGV', 'cgv.png');
-insert into brand values (2, 'LOTTECINEMA', 'lotte.png');
-insert into brand values (3, 'MEGABOX', 'megabox.png');
-insert into brand values (4, 'Others', 'others.png');
+-- 입력 완료
+insert into brand values (2, 'CGV', 'cgv.png');
+insert into brand values (3, 'LOTTECINEMA', 'lotte.png');
+insert into brand values (1, 'MEGABOX', 'megabox.png');
 
 
 --영화관 데이터
+-- 입력 완료
 insert into theater values (1, 1, '청담씨네시티', '서울특별시 강남구 도산대로 323 (신사동)', 32, 22); 
 insert into theater values (2, 1, '신촌아트레온', '서울특별시 서대문구 신촌로 129 (창천동, 아트레온 2층)', 12, 14); 
 insert into theater values (3, 2, '김포공항', '서울특별시 강서구 하늘길 77 (방화동, 롯데몰)', 14, 12); 
@@ -365,19 +375,20 @@ insert into theater values (5, 3, '강남대로씨티', '서울특별시 강남�
 insert into theater values (6, 3, '상암월드컵경기장', '서울특별시 마포구 월드컵로 240 월드컵몰 1층', 11, 112); 
 
 --상영관 데이터
-insert into theaterroom values (1, 3, 333);
-insert into theaterroom values (2, 2, 333);
-insert into theaterroom values (3, 5, 333);
-insert into theaterroom values (4, 6, 333);
-insert into theaterroom values (5, 1, 333);
-insert into theaterroom values (6, 4, 333);
+-- 입력 완료
+insert into theaterroom values (1, 8, 333);
+insert into theaterroom values (2, 4, 333);
+insert into theaterroom values (3, 31, 333);
+insert into theaterroom values (4, 34, 333);
+insert into theaterroom values (5, 23, 333);
 
 
 --영화 데이터
-insert into movie values (1, 1, 1, '인크레더블', 'incredibles2', 0, 'action,comedy', '엄마 ‘헬렌’이 국민 히어로 ‘일라스티걸’로 활약하고 아빠 ‘밥’은 삼남매와 고군분투하며 육아 히어로로 거듭난 가운데,
+-- 입력 완료
+insert into movie values (20183361, 1, 1, '인크레더블', 'incredibles2', 0, 'action,comedy', '엄마 ‘헬렌’이 국민 히어로 ‘일라스티걸’로 활약하고 아빠 ‘밥’은 삼남매와 고군분투하며 육아 히어로로 거듭난 가운데,
 정체불명의 악당이 등장해 위기 상황이 발생하면서 슈퍼파워 가족이 다시 한번 ‘인크레더블’한 능력을 발휘하는 이야기.', '2018-07-18', 'incredibles2.jpg');
 
-insert into movie values (2, 2, 2, '앤트맨과 와스프', 'Ant-Man and the Wasp', 12, 'action', '“이제 믿을 건 자네 둘 뿐이야”,
+insert into movie values (20180522, 2, 2, '앤트맨과 와스프', 'Ant-Man and the Wasp', 12, 'action', '“이제 믿을 건 자네 둘 뿐이야”,
 사이즈부터 다른 마블의 히든카드가 온다.
 
 ‘시빌 워’ 사건 이후 은둔하며 히어로와 가장의 역할 사이에서 고민 중이던 
@@ -385,7 +396,7 @@ insert into movie values (2, 2, 2, '앤트맨과 와스프', 'Ant-Man and the Wa
 시공간의 개념이 사라진 양자 영역으로 들어갈 수 있는 기술을 훔쳐 달아난 
 고스트를 쫓던 앤트맨과 와스프는 상상도 못했던 상황에 직면하는데…', '2018-07-04', 'antman.jpg');
 
-insert into movie values (3, 3, 3, '미션 임파서블: 폴아웃', 'Mission:Impossible- Fallout', 15, 'action', '예측 할 수 없는 미션. 피할 수 없는 선택
+insert into movie values (20181181, 3, 3, '미션 임파서블: 폴아웃', 'Mission:Impossible- Fallout', 15, 'action', '예측 할 수 없는 미션. 피할 수 없는 선택
 전 세계 최강의 스파이 기관 IMF의 최고 요원 에단 헌트(톰 크루즈)와 그의 팀은 테러조직의 핵무기 소지를 막기 위해 미션에 착수한다.
 에단 헌트는 작전 수행 중 예상치 못한 결단을 내리게 되고, 중앙정보국 CIA는 그를 견제하기 위해 상급 요원 어거스트 워커(헨리 카빌)를 파견한다.
 최악의 테러 위기와 라이벌의 출현 속, 팀이 행한 모든 선의의 선택들이 최악의 결과로 돌아오면서 미션은 점점 더 예측할 수 없는 상황으로 치닫게 되는데…
@@ -393,13 +404,13 @@ insert into movie values (3, 3, 3, '미션 임파서블: 폴아웃', 'Mission:Im
 
 
 --상영영화 데이터
-insert into nowplaying values (1, 1, 1, to_date('2018-07-18 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (2, 1, 1, to_date('2018-07-18 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (3, 2, 5, to_date('2018-07-18 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (4, 3, 3, to_date('2018-07-18 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (5, 3, 4, to_date('2018-07-18 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (6, 2, 6, to_date('2018-07-18 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
-insert into nowplaying values (7, 3, 2, to_date('2018-07-18 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-07-18','yyyy-mm-dd'));
+insert into nowplaying values (1, 20183361, 1, to_date('2018-08-01 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (2, 20183361, 1, to_date('2018-08-01 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (3, 20180522, 5, to_date('2018-08-01 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (4, 20181181, 3, to_date('2018-08-01 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (5, 20180522, 4, to_date('2018-08-01 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (6, 20181181, 5, to_date('2018-08-01 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (7, 20183361, 2, to_date('2018-08-01 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
 
 --수정
 UPDATE movie
@@ -420,6 +431,8 @@ from nowplaying n, movie m, THEATERROOM tr, theater t, brand b
 where n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno;
 
 select sysdate from dual;
+
+select * from theater
 
 SELECT TO_DATE('20180722') - TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD')) FROM DUAL; 
 
@@ -443,7 +456,7 @@ FROM(SELECT b.theaterno, b.brandname, b.brandlogo, b.theatername, b.theateraddre
 		WHERE r.theaterno = a.theaterno) b, nowplaying n
 	WHERE b.roomno = n.roomno) c, movie m
 WHERE c.movieno = m.movieno
-AND c.theaterno = 1127
+AND c.theaterno = 8
 
 select  n.nowplayingno, 
     				n.roomno, 

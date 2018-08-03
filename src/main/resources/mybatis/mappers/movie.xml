@@ -16,7 +16,7 @@
     				tr.theaterno, 
     				t.brandno, 
     				t.theatername,
-					t.theaterlocate, 
+					t.theateraddress, 
 					t.theaterxgps, 
 					t.theaterygps, 
 					b.brandlogo, 

@@ -11,12 +11,12 @@
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/main/main_style.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
 	var $userX, $userY;
 </script>
@@ -62,7 +62,7 @@
             <div class="front">
               <div class="front-btn-wrap">
                 <div style="padding-top:130px;">
-                  <a href="" class="btn-reserve" onclick="return false;">예매하기</a>
+                  <a href="${pageContext.request.contextPath}/moive/reserve_quick" class="btn-reserve">예매하기</a>
                 </div>
                 <div>
                   <a href="" class="btn-view" onclick="return false;">상세보기</a>
@@ -166,17 +166,19 @@
 		</ul>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+  
+	<!-- <div class="detail"></div> -->
+	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
+	<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>
 
 
 	<div class="detail"></div>
 	<%-- <c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import> --%>
-
 </body>
 
 <script type="text/javascript">
 	// Box Office
 	$(document).ready(function() {
-		$('.body-loc').hide();
 		$('.sale').on("click", function() {
 			$('.sale').addClass("on");
 			$('.salecontent').show();
@@ -191,40 +193,50 @@
 		});
 
 		
+		reverse_counter();
 		check_geolocation();
+		
+		$(".btn-address").on("click", function(){
+			$('.body-loc').toggle();
+		});
+		$('.popup-close-loc').on('click', function(){
+			$('.body-loc').toggle();	   		
+	   	});
 	});
-
-	// slick library
-	$('.swiper-slide').slick({
-		dots : false,
-		infinite : true,
-		speed : 500,
-		slidesToShow : 5,
-		slidesToScroll : 1,
-		autoplay : true,
-		autoplaySpeed : 2000,
-		arrows : true,
-		dots : true,
-		responsive : [{
-			breakpoint : 600,
-			settings : {
-				slidesToShow : 2,
-				slidesToScroll : 1
-			}
-		}, {
-			breakpoint : 400,
-			settings : {
-				arrows : false,
-				slidesToShow : 1,
-				slidesToScroll : 1
-			}
-		}]
+	
+	 // slick library
+    $('.swiper-slide').slick({
+        dots: false,
+        infinite: false,
+        speed: 500,
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 2000,
+        arrows: true,
+        dots: true,
+        responsive: [{
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1
+          }
+        },
+        {
+           breakpoint: 400,
+           settings: {
+              arrows: false,
+              slidesToShow: 1,
+              slidesToScroll: 1
+           }
+        }]
+    });
 
 	  // modal function
 	  $('.btn-view').on("click",function(){
-	      /* $('.modal_body').toggle(400);
+	      $('.modal_body').toggle(400);
 	      $('body').css('overflow','hidden');
-		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); */
+		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px');
 		  console.log("확인");
 		  detailrender();
 	  });	 
@@ -300,7 +312,6 @@
 			var infoWindow = new naver.maps.InfoWindow({
 		        content: contentString
 			});
-			
 			$('.body-loc').hide();
 	    });
 		$.ajax({
@@ -312,22 +323,18 @@
 					 var $brandno = Number(list[i].brandno),
 					 	 logoname, website, logo;
 					 
-					 if($brandno == 1){
+					 if($brandno == 2){
 						 logoname = "loc_cgv_m.png";
 						 website = "http://www.cgv.co.kr/";
 						 logo = "cgv.png";
-					 }else if($brandno == 2){
+					 }else if($brandno == 3){
 						 logoname = "loc_lotte_m.png";
 						 website = "http://www.lottecinema.co.kr";
 						 logo = "lotte.png";
-					 }else if($brandno == 3){
+					 }else if($brandno == 1){
 						 logoname = "loc_mega_m.png";
 						 website = "http://www.megabox.co.kr/";
 						 logo = "mega.png";
-					 }else{
-						 logoname = "loc_etc_m.png";
-						 website = "해당하는 사이트가 없습니다.";
-						 logo = "";
 					 }
 					 
 					 var marker = new naver.maps.Marker({
@@ -350,9 +357,9 @@
 						    '<div style="margin:0">',
 						      '<a href="'+website+'" style="text-decoration:none; color:black;">홈페이지 : '+website+'</a>',
 						    '</div>',
-						    '<div style="text-align:right; ">',
+						     '<div style="text-align:right; ">',
 						    	'<a href="${pageContext.request.contextPath}/movie/reserve?theaterno='+list[i].theaterno+'" style="width:70px;display:inline-block; text-align:center; vertical-align:middle; height:25px; line-height:25px; border:1px solid #000; text-decoration:none; color:black;">예매하기</a>',
-						    '</div>',
+						    '</div>', 
 						  '</div>',
 						  '<div style="text-decoration: none; position: absolute; top: 15px; right: 17px; ">',
 						    '<button class="close_btn" style="border: none; backgoround: white; cursor:pointer;"><img style="background-color:white;" src="${pageContext.request.contextPath}/assets/img/icon/x-mark-black.png"/></a>',
@@ -474,22 +481,18 @@
 					 var $brandno = Number(list[i].brandno),
 					 	 logoname, website, logo;
 					 
-					 if($brandno == 1){
+					 if($brandno == 2){
 						 logoname = "loc_cgv_m.png";
 						 website = "http://www.cgv.co.kr/";
 						 logo = "cgv.png";
-					 }else if($brandno == 2){
+					 }else if($brandno == 3){
 						 logoname = "loc_lotte_m.png";
 						 website = "http://www.lottecinema.co.kr";
 						 logo = "lotte.png";
-					 }else if($brandno == 3){
+					 }else if($brandno == 1){
 						 logoname = "loc_mega_m.png";
 						 website = "http://www.megabox.co.kr/";
 						 logo = "mega.png";
-					 }else{
-						 logoname = "loc_etc_m.png";
-						 website = "해당하는 사이트가 없습니다.";
-						 logo = "";
 					 }
 					 
 					 var marker = new naver.maps.Marker({
@@ -514,7 +517,7 @@
 							    '</div>',
 							    '<div style="text-align:right; ">',
 							    	'<a href="${pageContext.request.contextPath}/movie/reserve?theaterno='+list[i].theaterno+'" style="width:70px;display:inline-block; text-align:center; vertical-align:middle; height:25px; line-height:25px; border:1px solid #000; text-decoration:none; color:black;">예매하기</a>',
-							    '</div>',
+							    '</div>', 
 							  '</div>',
 							  '<div style="text-decoration: none; position: absolute; top: 15px; right: 17px; ">',
 							    '<button class="close_btn" style="border: none; backgoround: white; cursor:pointer;"><img style="background-color:white;" src="${pageContext.request.contextPath}/assets/img/icon/x-mark-black.png"/></a>',
@@ -577,6 +580,9 @@
 				        } else {
 				            infoWindow.open(naver_map, marker);
 				        }
+				        $('.close_btn').on('click', function(){
+							infoWindow.close();
+						});
 				    }
 				}
 			}
@@ -601,13 +607,13 @@
 				console.log("jstl_list:" + d_day); 
 				console.log("sysdate:" + today); 
 				  
-				  days = (d_day - today) / 1000 / 60 / 60 / 24;
+				  var days = (d_day - today) / 1000 / 60 / 60 / 24;
 				  daysRound = Math.floor(days);
-				  hours = (d_day - today) / 1000 / 60 / 60 - (24 * daysRound);
+				  var hours = (d_day - today) / 1000 / 60 / 60 - (24 * daysRound);
 				  hoursRound = Math.floor(hours);
-				  minutes = (d_day - today) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+				  var minutes = (d_day - today) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
 				  minutesRound = Math.floor(minutes);
-				  seconds = (d_day - today) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+				  var seconds = (d_day - today) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
 				  secondsRound = Math.round(seconds);
 				  sec = " "
 				  min = " : "
@@ -647,7 +653,6 @@
         $(this).children('.front').removeClass('hover');
       });
 
-		 
 	  // modal function
 	  $('.btn-view').on("click",function(){
 	      /* $('.modal_body').toggle(400);
@@ -661,7 +666,6 @@
 		  $('.modal_body').toggle(400);
 		  $('body').css('overflow','auto');
 	  });	
-
 
 	 /*상세페이지 그리기*/
 	 function detailrender() {

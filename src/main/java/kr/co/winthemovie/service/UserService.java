@@ -8,37 +8,32 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserService {
 
-    @Autowired
-    private UserDao userDao;
+	@Autowired
+	private UserDao userDao;
 
-    public int userJoin(UserVo userVo) {
-        int userJoin = userDao.join(userVo);
-        System.out.println("-----service----");
-        return userJoin;
-    }
+	public int userJoin(UserVo userVo) {
+		int userJoin = userDao.join(userVo);
+		return userJoin;
+	}
 
-    public boolean emailcheck(String email) {
-        System.out.println("am i here");
-        boolean flag = false;
-        String str = userDao.emailcheck(email);
-        if (str == null) {
-            flag = true;
-        } else {
-            flag = false;
-        }
-        System.out.println(flag);
-        return flag;
-    }
+	public boolean emailcheck(String email) {
+		boolean flag = false;
+		String str = userDao.emailcheck(email);
+		if (str == null) {
+			flag = true;
+		} else {
+			flag = false;
+		}
+		System.out.println(flag);
+		return flag;
+	}
 
-    public UserVo login(UserVo userVo) {
+	public UserVo login(UserVo userVo) {
+		return userDao.login(userVo);
+	}
 
-
-        return userDao.login(userVo);
-    }
-
-    public UserVo loginbysns(UserVo userVo) {
-        return userDao.loginbysns(userVo);
-    }
-
+	public UserVo loginbysns(UserVo userVo) {
+		return userDao.loginbysns(userVo);
+	}
 
 }

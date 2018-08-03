@@ -1,20 +1,8 @@
 package kr.co.winthemovie.controller;
 
 import java.io.IOException;
-import java.math.BigDecimal;
-import java.math.BigInteger;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpSession;
 
-//import com.fasterxml.jackson.core.*;
-//import com.fasterxml.jackson.core.type.TypeReference;
-//import com.fasterxml.jackson.databind.JsonMappingException;
-//import com.fasterxml.jackson.databind.ObjectMapper;
-import kr.co.winthemovie.BO.NaverLoginBO;
+import javax.servlet.http.HttpSession;
 
 import kr.co.winthemovie.service.UserService;
 import kr.co.winthemovie.vo.UserVo;
@@ -31,12 +19,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.github.scribejava.core.model.OAuth2AccessToken;
 
-import static com.sun.javafx.fxml.expression.KeyPath.parse;
+import kr.co.winthemovie.BO.NaverLoginBO;
+import kr.co.winthemovie.service.UserService;
+import kr.co.winthemovie.vo.UserVo;
 
-
-/**
- * Handles requests for the application home page.
- */
 @Controller
 public class LoginController {
 

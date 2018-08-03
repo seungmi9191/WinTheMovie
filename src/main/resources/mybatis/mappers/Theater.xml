@@ -70,7 +70,7 @@
 					WHERE r.theaterno = a.theaterno) b, nowplaying n
 				WHERE b.roomno = n.roomno) c, movie m
 			WHERE c.movieno = m.movieno
-			AND c.theaterno = 3
+			AND c.theaterno = #{theaterno}
 		]]>
 	</select>
 </mapper>

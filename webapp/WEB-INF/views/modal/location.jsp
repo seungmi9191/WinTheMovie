@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/location.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-    <title>location</title>
-</head>
-<body class="location_body">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/location.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+
 <div class="body-loc">
     <div class="modal-location-mask" id="location">
         <div class="modal-location-wrapper">
@@ -34,7 +29,7 @@
                         <input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE4MDcxNjIwMjkwNzEwODAxMzk="/>
                         <!-- 요청 변수 설정 (승인키) -->
                         <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword" class="sh-location-input" style="background: white">
-                        <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search "></i></button>
+                        <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search"></i></button>
                     </form>
                 </div>
 
@@ -50,16 +45,15 @@
                 </div>
  				<button id="success">적용하기</button>
  				
-               <%--  <button type="button" class="popup-close-loc"
-                        onclick="document.getElementById('location').style.display='none'">
-                    <img src="${pageContext.request.contextPath}/assets/img/icon/x-mark.png"> <!--버튼 이미지-->
+               <button type="button" class="popup-close-loc">
+                    <img src="${pageContext.request.contextPath}/assets/img/icon/close.png"> <!--버튼 이미지-->
                     <span class="blind">닫기</span>
-                </button> --%>
+                </button> 
             </div>
         </div>
     </div>
 </div>
-</body>
+
 <script language="javascript">
     function getAddr() {
         // AJAX 주소 검색 요청
@@ -80,8 +74,7 @@
                         makeListJson(jsonStr);							// 결과 JSON 데이터 파싱 및 출력
                     }
                 }
-            }
-            , error: function (xhr, status, error) {
+            } , error: function (xhr, status, error) {
                 alert("에러발생");										// AJAX 호출 에러
             }
         });
@@ -102,7 +95,7 @@
          });
          htmlStr += "</table>";
          $("#list").html(htmlStr);
-    	
+        
          $(".btn-select").on("click", function () {
              var $address = $(this).data('address').split(" ")[1];
              var $address_xy = $(this).data('addressxy');
@@ -125,8 +118,6 @@
          , success: function (map) {
              $userX = map.userY;
              $userY = map.userX;
-             console.log($userX);
-             console.log($userY);
          }, error: function (xhr, status, error) {
              alert("에러발생");										// AJAX 호출 에러
          }
@@ -134,4 +125,3 @@
    	}
 
 </script>
-</html>

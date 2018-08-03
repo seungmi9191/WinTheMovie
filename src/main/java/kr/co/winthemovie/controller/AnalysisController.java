@@ -14,17 +14,17 @@ import kr.co.winthemovie.util.InsertRating;
 import kr.co.winthemovie.vo.AnalysisVo;
 
 @Controller
-@RequestMapping(value="/movie")
+@RequestMapping(value = "/movie")
 public class AnalysisController {
-	
-	@RequestMapping(value="/analysis", method=RequestMethod.GET)
+
+	@RequestMapping(value = "/analysis", method = RequestMethod.GET)
 	public String analysisform() {
-		
+
 		return "movie/analysis";
 	}
-	
+
 	@ResponseBody
-	@RequestMapping(value="/bookingrate", method=RequestMethod.GET)
+	@RequestMapping(value = "/bookingrate", method = RequestMethod.GET)
 	public ArrayList<AnalysisVo> bookingrate(HttpServletRequest request) {
 		ServletContext context = request.getServletContext();
 		String path = context.getRealPath("WEB-INF/file/movie_ticket.txt");
