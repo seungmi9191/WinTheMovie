@@ -84,10 +84,10 @@
 			</h2>
 		</div>
 		<div class="middle-banner-logo">
-			<form action="/movie/reserve_quick" method="get">
+			<%--<form action="/movie/reserve_quick" method="get">
 				<input type="hidden" name="nowplayingno" value="1"/>
 				<input type="submit">123</input>
-			</form>
+			</form>--%>
 			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
 		</div>
 
