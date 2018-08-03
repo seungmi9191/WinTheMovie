@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -13,7 +14,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/assets/js/slick.min.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css"> 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript">
@@ -24,7 +25,7 @@
 
 <body>
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
-	
+
 	<!-- main banner -->
   <div class="g-contents">
     <div class="multi-banner">
@@ -36,7 +37,7 @@
             <div class="location-info">
               <div class="location-logo"><div class="logo-wrap"><img src="${pageContext.request.contextPath}/upload/${theaterList.brandlogo}"></div></div>
               <c:choose>
-              	<c:when test="${fn:length(theaterList.theateraddress) > 1}"> 
+              	<c:when test="${fn:length(theaterList.theateraddress) > 1}">
 	              <div class="location-name">
 	              	<p class="con">
 		              	<c:set var="splitloc" value="${fn:split(theaterList.theateraddress,' ')[1]}"></c:set> <!--locate에서 공백기준으로 배열 index[1] 받아옴 -->
@@ -83,6 +84,10 @@
 			</h2>
 		</div>
 		<div class="middle-banner-logo">
+			<form action="/movie/reserve_quick" method="get">
+				<input type="hidden" name="nowplayingno" value="1"/>
+				<input type="submit">123</input>
+			</form>
 			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
 		</div>
 
@@ -150,7 +155,7 @@
 					</div>
 				</div>
 			</div>
-		</div> 
+		</div>
 	</div>
 
 	<!--footer-notice -->
@@ -161,6 +166,8 @@
 		</ul>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
+
+
 	<div class="detail"></div>
 	<%-- <c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import> --%>
 
@@ -182,10 +189,11 @@
 			$('.sale').removeClass("on");
 			$('.salecontent').hide();
 		});
+
 		
 		check_geolocation();
 	});
-	
+
 	// slick library
 	$('.swiper-slide').slick({
 		dots : false,
@@ -369,6 +377,7 @@
 				    updateMarkers(naver_map, $markers);
 				});
 
+
 				function updateMarkers(map, markers) {
 				    var mapBounds = map.getBounds();
 				    var marker, position;
@@ -423,7 +432,7 @@
 			$userX = 37.56647;
 			$userY = 126.977963;
 		} 
-		
+
 		var naver_map = new naver.maps.Map('naver_map', {
 			center : new naver.maps.LatLng($userX, $userY),
 			zoom : 8
@@ -433,7 +442,7 @@
 			position : new naver.maps.LatLng($userX, $userY),
 			map : naver_map
 		});
-		
+
 		$('#success').on('click', function(){
 			bounds = new naver.maps.LatLng($userX, $userY);
 			naver_map.panTo(bounds);
@@ -455,6 +464,7 @@
 			$('.body-loc').hide();
 	    });
 		
+
 		$.ajax({
 			url : "${pageContext.request.contextPath}/selectTheater",
 			success : function(list){
@@ -490,7 +500,7 @@
 							anchor : new naver.maps.Point(25,0)
 						}
 					});
-					 
+
 					var contentString = [
 							'<div style="width:334px; position: absolute; background-color: #fff; padding: 15px 16px 0;" >',
 							  '<div style="border-bottom: 2px solid #000000; margin-bottom: 10px;">',
@@ -519,13 +529,14 @@
 						});
 						
 					
+
 					$markers.push(marker);
 					$infoWindow.push(infoWindow);
 				 }
-				
+
 				for (var i=0, ii=$markers.length; i<ii; i++) {
 				    naver.maps.Event.addListener($markers[i], 'click', getClickHandler(i));
-				} 
+				}
 				naver.maps.Event.addListener(naver_map, 'idle', function() {
 				    updateMarkers(naver_map, $markers);
 				});
@@ -567,9 +578,10 @@
 				            infoWindow.open(naver_map, marker);
 				        }
 				    }
-				} 
+				}
 			}
 		});
+
 	} 
 	
 	  //nowplaying timer
@@ -649,6 +661,7 @@
 		  $('.modal_body').toggle(400);
 		  $('body').css('overflow','auto');
 	  });	
+
 
 	 /*상세페이지 그리기*/
 	 function detailrender() {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 //import com.fasterxml.jackson.databind.ObjectMapper;
 import kr.co.winthemovie.BO.NaverLoginBO;
 
+import kr.co.winthemovie.service.UserService;
 import kr.co.winthemovie.vo.UserVo;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -48,6 +49,9 @@ public class LoginController {
         this.naverLoginBO = naverLoginBO;
     }
 
+    @Autowired
+    private UserService userService;
+
     //로그인 첫 화면 요청 메소드
     @RequestMapping(value = "/users/naverlogin", method = {RequestMethod.GET, RequestMethod.POST})
     public String login(Model model, HttpSession session) {
@@ -76,7 +80,6 @@ public class LoginController {
         apiResult = naverLoginBO.getUserProfile(oauthToken);
         System.out.println(naverLoginBO.getUserProfile(oauthToken).toString());
         model.addAttribute("result", apiResult);
-
         /* 네이버 로그인 성공 페이지 View 호출 */
 
         JSONParser jsonparser = new JSONParser();
@@ -85,23 +88,28 @@ public class LoginController {
         JSONObject json =  (JSONObject) jsonobject.get("response");
 
         String email = (String) json.get("email");
-        String age = (String) json.get("age");
+//        String age = (String) json.get("age");
         String username = (String)json.get("name");
 
         UserVo userVo = new UserVo(email,username);
 
-        boolean email_check = false;
         UserController userController = new UserController();
-        email_check = userController.emailcheck(email);
-        if (email_check == false) {
-            userController.login(userVo, session);
+
+        boolean result = userService.emailcheck(email);
+        System.out.println(result);
+        if (result == false) {
+            System.out.println("회원가입하고 그다음 로그인할거임222");
+
+            UserVo authUser =  userService.loginbysns(userVo);
+            session.setAttribute("authUser",authUser);
             return "users/naverSuccess";
-        }else if(email_check == true){
-            userController.joinbyemail(userVo);
-            userController.login(userVo, session);
+        }else if(result == true){
+            userService.userJoin(userVo);
+            System.out.println("회원가입하고 그다음 로그인할거임");
+            UserVo authUser =  userService.loginbysns(userVo);
+            session.setAttribute("authUser",authUser);
         }
         return "users/naverSuccess";
     }
-
 
 }
