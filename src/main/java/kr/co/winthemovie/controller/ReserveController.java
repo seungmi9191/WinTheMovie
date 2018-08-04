@@ -60,22 +60,9 @@ public class ReserveController {
 		return list;
 	}
 
-	@RequestMapping(value = "/reserve_quick",method = {RequestMethod.GET,RequestMethod.POST})
-	public String reserve_final(Model model, int nowplayingno){
-
-    @Autowired
-    private ReserveService reserve_service;
-    private TheaterService theater_service;
-
-    @RequestMapping(value = "/reserve", method = RequestMethod.GET)
-    public String reserveform() {
-        return "movie/reservepage";
-    }
-
     @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
     public String reserve_final(Model model, int nowplayingno) {
 
-        System.out.println("reserveContorller *playingno=" + nowplayingno);
         QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
         List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
         model.addAttribute("quickreservevo", quickreservevo);
