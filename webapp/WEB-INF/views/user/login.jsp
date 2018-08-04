@@ -106,7 +106,6 @@
 
         var email = $("[name=email]").val();
         if (email.length < 1) {
-            console.log("whats up yo");
             $(".email-text").text("이메일을 입력해주세요.");
             return false;
         } else {
@@ -119,7 +118,6 @@
 
         var userpw = $("[name=userpw]").val();
         if (userpw.length < 1) {
-            console.log("oops");
             $(".pw-text").text("비밀번호를 입력해주세요.");
             return false;
         } else {
@@ -218,7 +216,6 @@
             dataType: "json",
             success: function () {
 
-                console.log(email, name + "regist");
             }, error: function (XHR, status, error) {
                 // console.error(status+" 123: "+ error)
             }

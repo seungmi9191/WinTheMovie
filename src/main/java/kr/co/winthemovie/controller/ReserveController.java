@@ -63,11 +63,14 @@ public class ReserveController {
 	    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
 	    public String reserve_final(Model model, int nowplayingno) {
 
-		System.out.println("reserveContorller *playingno=" + nowplayingno);
-		QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
-		List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
-		model.addAttribute("quickreservevo", quickreservevo);
-		model.addAttribute("seatVo", seatVoList);
+
+    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
+    public String reserve_final(Model model, int nowplayingno) {
+
+        QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
+        List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
+        model.addAttribute("quickreservevo", quickreservevo);
+        model.addAttribute("seatVo", seatVoList);
 
 		ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
 		model.addAttribute("seatVoArrayList",seatVoArrayList);
