@@ -15,12 +15,14 @@
 - JavaScript
 - Java / JSP 
 - Spring Framework
-- Pythone
+- Python
 - Oracle
 
 ## 사용된 API
 - [네이버 지도 / 네이버 로그인(네아로)](https://developers.naver.com/main/)
 - [영화진흥위원회 API](http://www.kobis.or.kr/kobisopenapi/)
+- [카카오 로그인](https://developers.kakao.com/)
+- [도로명 주소 API](http://www.juso.go.kr/addrlink/devAddrLinkRequestUse.do?menu=main)
 
 ## 프로젝트 업데이트
 - 기획 (2018/06/01~2018/06/15)
@@ -37,3 +39,4 @@
 ### 승미
 - main 상영리스트 예매종료 시 버튼 비활성화처리 필요
 ### 재선
+- 위치검색결과 페이징 처리 필요
