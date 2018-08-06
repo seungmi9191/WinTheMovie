@@ -59,6 +59,10 @@ public class ReserveController {
 		}
 		return list;
 	}
+	
+	    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
+	    public String reserve_final(Model model, int nowplayingno) {
+
 
     @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
     public String reserve_final(Model model, int nowplayingno) {
@@ -68,10 +72,10 @@ public class ReserveController {
         model.addAttribute("quickreservevo", quickreservevo);
         model.addAttribute("seatVo", seatVoList);
 
-        ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
-        model.addAttribute("seatVoArrayList",seatVoArrayList);
+		ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
+		model.addAttribute("seatVoArrayList",seatVoArrayList);
 
-        return "movie/reserve_final";
-    }
+		return "movie/reserve_final";
+	    }
 
 }
