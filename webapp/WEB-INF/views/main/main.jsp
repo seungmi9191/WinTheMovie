@@ -653,7 +653,7 @@
 				   hr = " : "
 				   dy = "   "
 				   console.log("남은시간:" + hoursRound + hr + minutesRound + min + secondsRound);
-						  
+
 				   /*한자리 수 : +0*/
 				   if(hoursRound < 10) hoursRound = "0" + hoursRound;
 				   if(minutesRound < 10) minutesRound = "0" + minutesRound;
