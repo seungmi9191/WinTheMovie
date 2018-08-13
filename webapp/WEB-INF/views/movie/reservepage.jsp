@@ -107,7 +107,22 @@
 						 for(var i=0;i<list.length;i++){
 							 $xgps = Number(list[i].theaterygps),
 							 $ygps = Number(list[i].theaterxgps);
-							 
+							 var $brandno = Number(list[i].brandno),
+						 	 logoname, website, logo;
+						 
+							 if($brandno == 2){
+								 logoname = "loc_cgv_m.png";
+								 website = "http://www.cgv.co.kr/";
+								 logo = "cgv.png";
+							 }else if($brandno == 3){
+								 logoname = "loc_lotte_m.png";
+								 website = "http://www.lottecinema.co.kr";
+								 logo = "lotte.png";
+							 }else if($brandno == 1){
+								 logoname = "loc_mega_m.png";
+								 website = "http://www.megabox.co.kr/";
+								 logo = "mega.png";
+							 }
 							 if(i == 0){
 								var bounds = new naver.maps.LatLng($xgps, $ygps);
 								naver_map.panTo(bounds);
@@ -119,10 +134,20 @@
 							});
 							 
 							var contentString = [
-								'<div class="iw_inner" data-theaterno='+list[i].theaterno+'>',
-								'<h3 >'+list[i].theatername+'</h3>',
-								'<p>'+list[i].theateraddress+'</p>',
-								//'<button class="sale_info" data-theaterno='+list[i].theaterno+'>할인 정보 보기</button>',
+								'<div style="width:334px; position: absolute; background-color: #fff; padding: 15px 16px 0;" >',
+								  '<div style="border-bottom: 2px solid #000000; margin-bottom: 10px;">',
+								    '<img src="${pageContext.request.contextPath}/assets/img/logo/'+logo+'" style="top:25px; right:150px; position:absolute;width:60px;height:30px;"/>',
+								    '<h3 style="padding-left:10px; font-size: 19px; letter-spacing: -1px;margin-bottom:10px; text-align:left;">'+list[i].theatername+'</h3>',
+								   '</div>',
+								  '<div style="font-size: 12px; text-align:left; height:80px;">',
+								    '<div>'+list[i].theateraddress+'</div>',
+								    '<div style="margin:0">',
+								      '<a href="'+website+'" style="text-decoration:none; color:black;">홈페이지 : '+website+'</a>',
+								    '</div>',
+								  '</div>',
+								  '<div style="text-decoration: none; position: absolute; top: 15px; right: 17px; ">',
+								    '<button class="close_btn" style="border: none; background-color: white; cursor:pointer;"><img style="background-color:white;" src="${pageContext.request.contextPath}/assets/img/icon/x-mark-black.png"/></a>',
+								  '</div>',
 								'</div>'
 							].join('');
 							
@@ -152,6 +177,10 @@
 			            var $theaterno = $('.iw_inner').data('theaterno');
 			            moviedata($theaterno);
 			        }
+			        
+			        $('.close_btn').on('click', function(){
+						infoWindow.close();
+					});
 			    }
 			} 
 			naver.maps.Event.addListener(naver_map, 'idle', function(){

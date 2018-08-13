@@ -18,7 +18,6 @@
                     <p class="description-loc">내가 자주있는 위치를 등록해보세요.<br/>
                         더욱 편하게 영화표 정보를 안내받을 수 있어요.</p>
                 </div>
-
                 <div class="search">
                     <form name="form" id="form" action="javascript:void(0)">
                         <input type="hidden" id="currentPage" name="currentPage" value="1"/>

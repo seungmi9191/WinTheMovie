@@ -22,14 +22,19 @@
 </script>
 <title>Main Page</title>
 </head>
-
 <body>
+<div class="banner">
+	<img src="${pageContext.request.contextPath}/assets/img/event/banner.jpg">
+	<div class="banner_close">
+		<img src="${pageContext.request.contextPath}/assets/img/icon/modal-x-mark.png">
+	</div>
+</div>
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
 
 	<!-- main banner -->
   <div class="g-contents">
     <div class="multi-banner">
-      <div class="swiper-slide">
+      <div class="swiper-slide">	
        <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
         <div id="m_list{status.index}">
           <div class="poster-box">
@@ -57,7 +62,7 @@
 
             <div class="limit-time">
               <div class="detail-time">
-              <p class="con2">[남은시간]&nbsp;&nbsp;&nbsp;<span class="time" id="nowplayinglist${status.index}"></span></p></div>
+              <p class="con2">&nbsp;&nbsp;&nbsp;<span class="time" id="nowplayinglist${status.index}"></span></p></div>
             </div>
             <div class="front">
               <div class="front-btn-wrap">
@@ -84,10 +89,6 @@
 			</h2>
 		</div>
 		<div class="middle-banner-logo">
-			<form action="/movie/reserve_quick" method="get">
-				<input type="hidden" name="nowplayingno" value="1"/>
-				<input type="submit">123</input>
-			</form>
 			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
 		</div>
 
@@ -104,8 +105,9 @@
 					<c:forEach
 						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}"
 						var="boxoffice">
-						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> <span
-								class="grade_15">15</span> <span class="myTit">${boxoffice.movieNm}</span>
+						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> 
+						<span class="grade" data-movieCd='${boxoffice.movieCd}'><img src="${pageContext.request.contextPath}/assets/img/grade/bg_grade_12.png"></span>
+						 <span class="myTit">${boxoffice.movieNm}</span>
 						</a> <span class="memRk">예매율<em>${boxoffice.salesShare} %</em></span>
 						</li>
 					</c:forEach>
@@ -115,9 +117,9 @@
 					<c:forEach
 						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}"
 						var="boxoffice">
-						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> <span
-								class="grade_15">15</span> <span class="myTit">${boxoffice.movieNm}</span>
-						</a> <span class="memRk">예매율<em>${boxoffice.salesShare} </em></span></li>
+						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> 
+						<span class="grade_15">15</span> <span class="myTit">${boxoffice.movieNm}</span>
+						</a> <span class="memRk">평점 <em>${boxoffice.salesShare} </em></span></li>
 					</c:forEach>
 				</ol>
 			</div>
@@ -127,6 +129,7 @@
 
 		 <div class="recommand-box">
 			<div class="plus">
+				<span>오늘의 추천 영화</span>
 				<a href="${pageContext.request.contextPath}/">+ 더보기</a>
 			</div>
 			<div class="inner-box">
@@ -145,8 +148,7 @@
 				<div class="second-movie">
 					<div class="inner-poster">
 						<img
-							src="${pageContext.request.contextPath}/assets/img/movie_poster/poster_2.jpg"
-							alt="">
+							src="${pageContext.request.contextPath}/assets/img/movie_poster/poster_2.jpg">
 					</div>
 					<div class="inner-content">
 						<div>제목 : 헤어화</div>
@@ -160,10 +162,16 @@
 
 	<!--footer-notice -->
 	<div class="footer-notice">
-		<ul>
-			<li><a href="#" class="text01">공지사항</a></li>
-			<li><a href="#" class="text02">안드로이드 태블릿 가로보드 지원 안내</a></li>
-		</ul>
+		<div class="footer-div">
+			<div class="footer-notice-title"><a href="#" class="text01">공지사항</a></div>
+			<ul class="rolling">
+				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내1</a></li>
+				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내2</a></li>
+				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내3</a></li>
+				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내4</a></li>
+				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내5</a></li>
+			</ul>
+		</div>
 	</div>
 	<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
   
@@ -177,8 +185,29 @@
 </body>
 
 <script type="text/javascript">
+	function rolling(){
+		var height = 50, // div 태그 높이를 가져 오면 되는데 약간 높이가 다르게 나와서 이렇게 함 $('footer-notice').height(); << 높이 구하기
+			num = $('.rolling li').length,
+			max = height * num,
+			move = 0;
+			
+		function noticerolling(){
+			move += height;
+			$('.rolling').animate({'top':-move}, 600, function(){
+				if(move >= max){
+					
+					$(this).css('top', 0);
+					move = 0;
+				}
+			});
+		}
+		
+		$(".rolling").append($(".rolling li").first().clone());
+		setInterval(noticerolling, 4000);
+	}
 	// Box Office
 	$(document).ready(function() {
+		$('#header_wrap').css('top', '70px');
 		$('.sale').on("click", function() {
 			$('.sale').addClass("on");
 			$('.salecontent').show();
@@ -192,7 +221,7 @@
 			$('.salecontent').hide();
 		});
 
-		
+		rolling();
 		reverse_counter();
 		check_geolocation();
 		
@@ -202,6 +231,11 @@
 		$('.popup-close-loc').on('click', function(){
 			$('.body-loc').toggle();	   		
 	   	});
+		
+		$('.banner_close').on('click',function(){
+			$(".banner").hide();
+			$('#header_wrap').css('top', '0');
+		});
 	});
 	
 	 // slick library
@@ -285,7 +319,7 @@
 			position : new naver.maps.LatLng(lat, longi),
 			map : naver_map,
 			icon :{
-				content : '<img src="${pageContext.request.contextPath}/assets/img/logo/loc_me_m.png" >',
+				content : '<img src="${pageContext.request.contextPath}/assets/img/logo/loc_etc.png" >',
 				anchor : new naver.maps.Point(25,0)
 			}
 		});
@@ -298,7 +332,7 @@
 				position : new naver.maps.LatLng($userX, $userY),
 				map : naver_map,
 				icon :{
-					content : '<img src="${pageContext.request.contextPath}/assets/img/logo/loc_me_m.png" >',
+					content : '<img src="${pageContext.request.contextPath}/assets/img/logo/loc_etc.png" >',
 					anchor : new naver.maps.Point(25,0)
 				}
 			});
@@ -324,15 +358,15 @@
 					 	 logoname, website, logo;
 					 
 					 if($brandno == 2){
-						 logoname = "loc_cgv_m.png";
+						 logoname = "loc_cgv.png";
 						 website = "http://www.cgv.co.kr/";
 						 logo = "cgv.png";
 					 }else if($brandno == 3){
-						 logoname = "loc_lotte_m.png";
+						 logoname = "loc_lotte.png";
 						 website = "http://www.lottecinema.co.kr";
 						 logo = "lotte.png";
 					 }else if($brandno == 1){
-						 logoname = "loc_mega_m.png";
+						 logoname = "loc_mega.png";
 						 website = "http://www.megabox.co.kr/";
 						 logo = "mega.png";
 					 }
@@ -482,15 +516,15 @@
 					 	 logoname, website, logo;
 					 
 					 if($brandno == 2){
-						 logoname = "loc_cgv_m.png";
+						 logoname = "loc_cgv.png";
 						 website = "http://www.cgv.co.kr/";
 						 logo = "cgv.png";
 					 }else if($brandno == 3){
-						 logoname = "loc_lotte_m.png";
+						 logoname = "loc_lotte.png";
 						 website = "http://www.lottecinema.co.kr";
 						 logo = "lotte.png";
 					 }else if($brandno == 1){
-						 logoname = "loc_mega_m.png";
+						 logoname = "loc_mega.png";
 						 website = "http://www.megabox.co.kr/";
 						 logo = "mega.png";
 					 }
@@ -587,65 +621,66 @@
 				}
 			}
 		});
-
 	} 
 	
 	  //nowplaying timer
 	  function reverse_counter(){
-		var list = [];
-		  
-		  <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
-		  		list.push("${theaterList.playingtime}");
-		  		console.log("${status.index}" + "-"+ "${theaterList.playingtime}"); 
-		  </c:forEach>
+		    var list = [];
+			
+		    <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
+			 list.push("${theaterList.playingtime}");
+			 console.log("${status.index}" + "-"+ "${theaterList.playingtime}"); 
+			</c:forEach>
+	
+			for (var i = 0; i < list.length; i++) {
+				   console.log("js_push:" + list[i]); 
+					   
+			       var today = new Date();
+				   var d_day = new Date(list[i]);
+				   console.log("jstl_list:" + d_day); 
+				   console.log("sysdate:" + today); 
+						  
+				   days = (d_day - today) / 1000 / 60 / 60 / 24;
+				   daysRound = Math.floor(days);
+				   hours = (d_day - today) / 1000 / 60 / 60 - (24 * daysRound);
+				   hoursRound = Math.floor(hours);
+				   minutes = (d_day - today) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+				   minutesRound = Math.floor(minutes);
+				   seconds = (d_day - today) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+				   secondsRound = Math.round(seconds);
+				   sec = " "
+				   min = " : "
+				   hr = " : "
+				   dy = "   "
+				   console.log("남은시간:" + hoursRound + hr + minutesRound + min + secondsRound);
 
-		  for (var i = 0; i < list.length; i++) {
-			    console.log("js_push:" + list[i]); 
-			    /*   var today = new Date();*/
-			    var today = new Date();
-				var d_day = new Date(list[i]);
-				console.log("jstl_list:" + d_day); 
-				console.log("sysdate:" + today); 
-				  
-				  var days = (d_day - today) / 1000 / 60 / 60 / 24;
-				  daysRound = Math.floor(days);
-				  var hours = (d_day - today) / 1000 / 60 / 60 - (24 * daysRound);
-				  hoursRound = Math.floor(hours);
-				  var minutes = (d_day - today) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
-				  minutesRound = Math.floor(minutes);
-				  var seconds = (d_day - today) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
-				  secondsRound = Math.round(seconds);
-				  sec = " "
-				  min = " : "
-				  hr = " : "
-				  dy = " "
-				  console.log("남은시간:" + hoursRound + hr + minutesRound + min + secondsRound);
-				  
-				  /*hh:mm:ss 형태를 유지하기위해 한자리 수 일때는 0 추가*/
-				  if(hoursRound < 10) hoursRound = "0" + hoursRound;
-				  if(minutesRound < 10) minutesRound = "0" + minutesRound;
-				  if(secondsRound < 10) secondsRound = "0" + secondsRound;
-				  
-				 
-				  /*분,초가 60일 때 59로 초기화*/
-				  if(minutesRound == 60) minutesRound = 59;
-				  if(secondsRound == 60) secondsRound = 59;
-				  /*리스트 출력*/
+				   /*한자리 수 : +0*/
+				   if(hoursRound < 10) hoursRound = "0" + hoursRound;
+				   if(minutesRound < 10) minutesRound = "0" + minutesRound;
+				   if(secondsRound < 10) secondsRound = "0" + secondsRound;
+						  
+						 
+				   /*분,초가 60 : 59로 초기화*/
+				   if(minutesRound == 60) minutesRound = 59;
+				   if(secondsRound == 60) secondsRound = 59;
+						
 				
-		 		
-				 $('#nowplayinglist'+i).text(hoursRound + hr + minutesRound + min + secondsRound);
-				 
-				  /*후에 처리하기*/
-				 if(hoursRound==0 && minutesRound==0 && secondsRound==0) {
-					alert("??");
-					$('#nowplayinglist'+i).html("오잉");
-				 }  
-				
-				 }
-		  			newtime = window.setTimeout("reverse_counter();", 1000); 
-		  }
+				   /*남은시간 0:0:0*/
+				 		
+				  if(daysRound < 0) { 
+					$('#nowplayinglist'+i).html("예매종료"); 
+					$("#btn-reserve"+i).remove("a");
+					$("#btn-view"+i).remove("a");
+				  } else {
+					 $('#nowplayinglist'+i).text("[남은시간]" + dy + hoursRound + hr + minutesRound + min + secondsRound);
+				  }
+		   }
+		newtime = window.setTimeout("reverse_counter();", 1000); 
+    }
+	  
+	  
 	 
-	// mouseover function
+	  // mouseover function
       $(".poster-box").mouseover(function(){
         $(this).children('.front').addClass('hover');
       });
@@ -653,79 +688,20 @@
         $(this).children('.front').removeClass('hover');
       });
 
-	  // modal function
+      // modal function
 	  $('.btn-view').on("click",function(){
-	      /* $('.modal_body').toggle(400);
+		  //ajax로 데이터 값 매칭
+		  $('#age').removeClass();
+		  $('#age').addClass("age_l age_15"); //if문 활용해서 age 클래스명에 매칭
+		  
+	      $('.modal_body').toggle(400);
 	      $('body').css('overflow','hidden');
-		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); */
-		  console.log("확인");
-		  detailrender();
+		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); 
 	  });	 
-	  
+
 	  $('.popup-close').on("click",function(){
-		  $('.modal_body').toggle(400);
 		  $('body').css('overflow','auto');
 	  });	
 
-	 /*상세페이지 그리기*/
-	 function detailrender() {
-		 var str = "";
-		 str += "<div class='modal_body'>";
-		 str += "   <div class='modal-mask' id='movie-detail'>";
-		 str += "      <div class='modal-wrapper'>";
-		 str += "         <div class='modal-time clearfix'>";
-		 str += "			<div id='movieDetailTime'>";
-		 str += "				<div class='popup-box-top row1 clearfix'>";
-		 str += "				   <div class='center-wrap'>";
-		 /* str += "					 <img src='"+${pageContext.request.contextPath}/assets/img/logo/cgv.png+"' class='t-logo'>"; */
-		 str += "					 <span class='time-name'>";
-		 str += "		           </div>";
-		 str += "		             <span class='time-title'>";
-		 str += "		             <div class='time-wrap'></div>";
-		 str += "	            </div>";
-		 str += "            </div>";
-		 str += "          </div>";
-		 str += "     <div class='modal-container clearfix'>";
-		 str += "        <div id='movieDetail'>";
-		 str += "          <div class='popup-box row1 clearfix'>";
-		 str += "          <div class='left-wrap'>";
-		 /* str += "             <img src='"+${pageContext.request.contextPath}/assets/img/movie_poster/ocean.jpg+"' alt=''>"; */
-		 str += "          </div>";
-		 str += "  <div class='right-wrap'>";
-		 str += "	  <div class='text'>";
-		 str += "		 <div class='title clearfix'>";
-		 str += "		   <h2>";
-		 str += "			  <i class='age_l age_12'></i>";
-		 str += "		      <span></span>";
-		 str += "          </h2>";
-		 str += "          <p></p>";	
-		 str += "        </div>";
-		 str += "     <div class='reservation-wrap'>";
-		 str += "        <p class='left-p'>";
-		 str += "            <span></span>";
-		 str += "            <strong class='strong-big'></strong>";
-		 str += "            <span class='span-basic'></span>";
-		 str += "            <span class='span-basic'></span>";
-		 str += "            <span class='span-sl'> &nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp; </span>";
-		 str += "        </p>";
-		 str += "        <p class='right-p'>";
-		 str += "            <span></span>";
-		 str += "            <span class='small_star'></i>";
-		 str += "              <i class='fas fa-star'></i>";
-		 str += "              <i class='fas fa-star'></i>";
-		 str += "              <i class='fas fa-star'></i>";
-		 str += "              <i class='fas fa-star'></i>";
-		 str += "              <i class='far fa-star'></i>";
-		 str += "            </span>";
-		 str += "            <strong class='strong-big'></strong>";
-		 str += "        </p>";
-		 str += "     </div>";
-		 str += "     </div>";
-		 str += "  </div>";
-		 
-		/*  $(".detail").html(str); */
-	    document.getElementBy
-		 console.log("html 그림");
-	 }
 </script>
 </html>

@@ -3,11 +3,6 @@ package kr.co.winthemovie.controller;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.sun.xml.internal.bind.v2.model.annotation.Quick;
-import kr.co.winthemovie.vo.QuickReserveVo;
-import kr.co.winthemovie.vo.SeatVo;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.winthemovie.service.ReserveService;
 import kr.co.winthemovie.service.TheaterService;
 import kr.co.winthemovie.vo.QuickReserveVo;
+import kr.co.winthemovie.vo.SeatVo;
 import kr.co.winthemovie.vo.TheaterVo;
 
 @Controller
@@ -27,6 +23,7 @@ public class ReserveController {
 	
 	@Autowired
 	private ReserveService reserve_service;
+	@Autowired
 	private TheaterService theater_service;
 	
 	@RequestMapping(value="/reserve", method=RequestMethod.GET)
@@ -60,10 +57,6 @@ public class ReserveController {
 		return list;
 	}
 	
-	    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
-	    public String reserve_final(Model model, int nowplayingno) {
-
-
     @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
     public String reserve_final(Model model, int nowplayingno) {
 

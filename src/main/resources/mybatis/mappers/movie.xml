@@ -25,7 +25,7 @@
 			where  n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno
 			and (n.playingtime - sysdate) *24*60*60 > 0 
 			and n.playingtime between to_date(concat(to_char(sysdate, 'yyyy-mm-dd'), '04:00:01'), 'yyyy-mm-dd hh24:mi:ss')
-			and to_date(concat(to_char(sysdate+1, 'yyyy-mm-dd'), '04:00:00'), 'yyyy-mm-dd hh24:mi:ss')
+			and to_date(concat(to_char(sysdate+7, 'yyyy-mm-dd'), '04:00:00'), 'yyyy-mm-dd hh24:mi:ss')
 			and to_char(n.playingtime,'YYYY-MM-DD') = to_char(n.playingdate,'YYYY-MM-DD')
 			order by n.playingtime asc			
 	 ]]>	
