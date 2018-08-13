@@ -93,7 +93,7 @@ Version : 1.0.0
 .modal-location-mask .modal-location-wrapper {
     width : 820px;
     margin : auto;
-    padding : 110px 40px 0;
+    padding : 220px 40px 0;
 }
 
 .modal-location-mask .modal-location-wrapper .modal-location-container {
@@ -219,7 +219,8 @@ Version : 1.0.0
     height : 50px;
     margin : 0;
     text-align: center;
-    border: none;
+    border: 1px solid;
     cursor: pointer;
     background: transparent;
+    margin-left: 550px;
 }

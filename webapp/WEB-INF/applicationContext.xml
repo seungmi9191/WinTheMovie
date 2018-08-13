@@ -30,22 +30,22 @@
 	</context:component-scan>
   
 	<!-- oracle datasource -->
-	<!-- <bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="URL" value="jdbc:oracle:thin:@localhost:1521:xe" />
 		<property name="user" value="winthemovie" /> 
 		<property name="password" value="winthemovie1" />
 		<property name="connectionCachingEnabled" value="true" />
 		<qualifier value="main-db" />
-	</bean> -->
+	</bean> 
 	
-	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
+<!-- 	<bean id="oracleDatasource" class="oracle.jdbc.pool.OracleDataSource" destroy-method="close">
 		<property name="URL"
 				  value="jdbc:oracle:thin:@chonnomvv.cq5vm8kpdkgi.ap-northeast-2.rds.amazonaws.com:1521:orcl"/>
 		<property name="user" value="chonnomvv"/>
 		<property name="password" value="12345678"/>
 		<property name="connectionCachingEnabled" value="true"/>
 		<qualifier value="main-db"/>
-	</bean>
+	</bean> -->
 
 	<!-- MyBatis SqlSessionFactoryBean 설정 -->
 	<bean id="sqlSessionFactory"

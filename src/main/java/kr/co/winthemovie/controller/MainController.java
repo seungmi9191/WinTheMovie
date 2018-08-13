@@ -40,7 +40,8 @@ public class MainController {
 		 //service.insertTheater(list);
 		try {
 			model.addAttribute("dailyResult", KobisAPI.kobis(1)); // Kobis API 불러오는 코드
-			List<NowpVo> theaterList = movieService.getTheaterList();
+			List<NowpVo> theaterList = movieService.getTheaterList(); 
+			//KobisAPI.movieInfo("신과함께");
 			model.addAttribute("theaterList", theaterList);
 
 		} catch (Exception e) {

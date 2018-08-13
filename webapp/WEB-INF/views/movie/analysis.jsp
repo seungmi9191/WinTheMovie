@@ -51,82 +51,94 @@
     <div>영화 분석</div>
     <hr width="42%" align="left">
 </div>
-
 	<div class="analysis-list">
-		<div class="analysis-list-top">
-			<div class="analysis-list-box panel-default">
+		<div class="analysis-list-first">
+			<div class="analysis-list-middle">
+				<div class="analysis-list-middle-box panel-default analysis-left">
+					<div class="panel-heading">다른 사람들이 생각하는 이 영화는?
+						<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+					</div>
+					<div class="panel-body" id="wordcloud" ></div>
+				</div>
+			</div>
+			<div class="analysis-list-bottom">
+				<div class="analysis-list-bottom-box panel-default analysis-right">
+					<div class="panel-heading">현재 평점
+						<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+					</div>
+					<div class="panel-body star">
+						<div>
+							<img class="star_before" src="${pageContext.request.contextPath}/assets/img/icon/star_before.png">
+						</div>
+						<div style="width: 100px;">
+							<img class="star_after" style="" src="${pageContext.request.contextPath}/assets/img/icon/star_after.png">
+						</div>
+					</div>
+				</div>	
+				<div class="analysis-list-bottom-box panel-default analysis-right">
+					<div class="panel-heading"> 오늘 이 영화를 본 사람들의 비율은?
+						<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+					</div>
+					<div class="panel-body" id="middle-rating-movie"></div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="analysis-list-second">
+			<div class="analysis-list-middle">
+				<div class="analysis-list-middle-box panel-default analysis-right">
+					<div class="panel-heading">일일 평점
+						<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
+					</div>
+					<div class="panel-body graph-style" id="daily-star"></div>
+				</div>
+			</div>
+			<div class="analysis-list-bottom-box panel-default analysis-left">
 				<div class="panel-heading">오늘 이 영화에 대한 관객수와 매출액은?
 					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
 				</div>
-				<div class="panel-body">
-					<div class="body-left">
-						<ul>
-							<li class="mini-title" id="person"></li>
-							<li class="icon-person"></li>
-							<li class="person"></li>
-							<li class="person-rating"></li>
-						</ul>
-					</div>
-					<div class="body-right">
-						<ul>
-							<li class="mini-title" id="money"></li>
-							<li class="icon-money"></li>
-							<li class="sale"></li>
-							<li class="salesChange"></li>
-						</ul>
-					</div>
-				</div>
+				 <div class="panel-body">
+	                 <div class="body-left">
+	                      <ul>
+	                           <li class="mini-title" id="person"></li>
+	                           <li class="icon-person"></li>
+	                           <li class="person"></li>
+	                           <li class="person-rating"></li>
+	                      </ul>
+	                 </div>
+	                 <div class="body-right">
+	                      <ul>
+	                           <li class="mini-title" id="money"></li>
+	                           <li class="icon-money"></li>
+	                           <li class="sale"></li>
+	                           <li class="salesChange"></li>
+	                      </ul>
+	                 </div>
+                 </div>
 			</div>
-			<div class="analysis-list-box panel-default">
-				<div class="panel-heading">오늘 이 영화를 본 사람들의 비율은?
-					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
-				</div>
-				<div class="panel-body" id="middle-rating-movie"></div>
-			</div>
-			<div class="analysis-list-box panel-default">
+			<div class="analysis-list-bottom-box panel-default analysis-left">
 				<div class="panel-heading">이 영화의 관객 수는?
 					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
 				</div>
-				<div class="panel-body">
-					<div class="body-left">
-						<ul>
-							<li class="mini-title" id="yesterday"></li>
-							<li class="icon-yesterday"></li>
-							<li class="audiInten"></li>
-						</ul>
-					</div>
-					<div class="body-right">
-						<ul>
-							<li class="mini-title" id="total"></li>
-							<li class="icon-total"></li>
-							<li class="audiAcc"></li>
-						</ul>
-					</div>
-				</div>
+				 <div class="panel-body">
+                       <div class="body-left">
+                            <ul>
+                                 <li class="mini-title" id="yesterday"></li>
+                                 <li class="icon-yesterday"></li>
+                                 <li class="audiInten"></li>
+                            </ul>
+                       </div>
+                       <div class="body-right">
+                            <ul>
+                                 <li class="mini-title" id="total"></li>
+                                 <li class="icon-total"></li>
+                                 <li class="audiAcc"></li>
+                            </ul>
+                       </div>
+                 </div>
 			</div>
 		</div>
-		<div class="analysis-list-middle">
-			<div class="analysis-list-middle-box panel-default">
-				<div class="panel-heading">다른 사람들이 생각하는 이 영화는?
-					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
-				</div>
-				<div class="panel-body" id="wordcloud" ></div>
-			</div>
-		</div>
-		<div class="analysis-list-bottom">
-			<div class="analysis-list-bottom-box panel-default">
-				<div class="panel-heading">현재 평점
-					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
-				</div>
-				<div class="panel-body"></div>
-			</div>
-			<div class="analysis-list-bottom-box panel-default">
-				<div class="panel-heading">일일 평점
-					<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
-				</div>
-				<div class="panel-body" id="daily-star"></div>
-			</div>
-		</div>
+		
 		<div class="analysis-list-bottom-last panel-default">
 			<div class="panel-heading ">영화 흥행 예측
 				<div style="float:right;"><img src="${pageContext.request.contextPath}/assets/img/icon/questions.png"></div>
@@ -134,8 +146,7 @@
 			<div class="panel-body"></div>
 		</div>
 	</div>
-
-
+	
 <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 
 <!-- 자바스크립트 -->
@@ -207,35 +218,7 @@
 			$('.icon-yesterday').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
 			$('.icon-total').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
 			$('#wordcloud').html('<img src="${pageContext.request.contextPath}/assets/img/word/a.png" style="width:60%; margin-left:150px; margin-top:70px;">');
-			$('#daily-star').html('<img src="${pageContext.request.contextPath}/assets/img/bigData/b.png" style="width:100%; height:210px;">');
 		}
-
-                        if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'].match('-')) {
-                            $('.person-rating').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'] + "%").css("color", "red");
-                        } else {
-                            $('.person-rating').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['audiChange'] + "%").css("color", "green");
-                        }
-                        if (result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange'].match('-')) {
-                            $('.salesChange').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange'] + "%").css("color", "red");
-                        } else {
-                            $('.salesChange').text(result['boxOfficeResult']['dailyBoxOfficeList'][i]['salesChange'] + "%").css("color", "green");
-                        }
-                    }
-                }
-            }
-        });
-    };
-
-    function analysisOnClickEnvent(movieno) {
-        $('#person').text('관객수');
-        $('#money').text('매출액');
-        $('#yesterday').text('전일관객');
-        $('#total').text('누적관객');
-        $('.icon-person').html('<img src="${pageContext.request.contextPath}/assets/img/icon/money.png">');
-        $('.icon-money').html('<img src="${pageContext.request.contextPath}/assets/img/icon/money.png">');
-        $('.icon-yesterday').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
-        $('.icon-total').html('<img src="${pageContext.request.contextPath}/assets/img/icon/group.png">');
-    }
 
     // 포스터 클릭 이벤트
     $('.poster').on("click", function () {
@@ -245,6 +228,7 @@
         movieinfo($movieno);
         analysisOnClickEnvent($movieno);
         chart($movieno);
+        dailystar();
     });
 
     // 콤마 찍는 func
@@ -403,6 +387,44 @@
                 }]
             }]
         });
+    }
+    
+    function dailystar(){
+    	Highcharts.chart('daily-star',{
+    		chart:{
+    			type: 'spline',
+    			height: 430
+    		},
+    		navigation: {
+		        buttonOptions: {
+		            enabled: false
+		        }
+    		},
+    		title : {
+    			text: null
+    		},
+    		xAxis:{
+    			title:{
+    				text:'날짜'
+    			}
+    		},
+    		yAxis:{
+    			title:{
+    				text: '평점'
+    			},
+    			min: 0,
+    			max: 5
+    		},
+    		tooltip:{
+    		},
+    		series:[{
+    			name: 'Naver',
+    			data: [2.4, 2.3, 3.2, 4.1, 5.0]
+    		},{
+    			name: 'Daum',
+    			data: [4,3,2,5,2]
+    		}]
+    	});
     }
 </script>
 </body>

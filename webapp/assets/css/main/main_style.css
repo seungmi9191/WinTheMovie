@@ -125,22 +125,22 @@ button.slick-prev:hover {
 	margin-top: 2px;
 	margin-right: 20px;
 	width: 25%;
-	height: 500px;
+	height: 520px;
 	overflow: hidden;
 	background: #fff;
 	float: left;
 }
 
 .officeTop {
-	height: 153px;
+	height: 140px;
 	text-align: center;
 	background: #23212a;
 }
 
 .boxoffice-box .officeTop h2 {
 	color: #fff;
-	padding: 50px 0 0;
-	height: 80px;
+	padding: 30px 0 0;
+	height: 55px;
 }
 
 .boxoffice-box .officeTop .officeTab {
@@ -179,7 +179,9 @@ button.slick-prev:hover {
 }
 
 .officeCont {
-	padding-top: 20px;
+	padding-top:10px;
+	height: 360px;
+	border: 1px solid #7f8285;
 }
 
 .map-box {
@@ -237,18 +239,17 @@ button.slick-prev:hover {
 	font-size: 18px;
 }
 
-.tit .grade_15 {
+.tit .grade {
 	display: inline-block;
 	overflow: hidden;
 	vertical-align: middle;
 	width: 20px;
 	height: 20px;
 	margin-right: 5px;
-	text-indent: -99999em;
 }
 
-.grade_15 {
-	background: url(/LCHS/Image/Bg/bg_grade_15.png) no-repeat 0 0;
+.grade img{
+	height:20px;
 }
 
 .tit .myTit {
@@ -273,8 +274,8 @@ button.slick-prev:hover {
 
 .officeCont .officeRk li {
 	overflow: hidden;
-	height: 54px;
-	padding: 11px 10px 0;
+	height: 50px;
+	padding: 5px 5px 0;
 	box-sizing: border-box;
 }
 
@@ -445,42 +446,46 @@ button.slick-prev:hover {
 	text-align: center;
 	margin-top: 20px;
 }
-
 .footer-notice {
 	width: 100%;
+	height: 50px;
 	border-top: 1px solid #e5e5e5;
 	border-bottom: 1px solid #e5e5e5;
-}
-
-.footer-notice ul {
-	width: 1240px;
-	margin: 0 auto;
 	overflow: hidden;
+}
+.footer-div{
+	margin:0 auto;
+	width: 1240px;
+}
+.footer-notice-title{
+	float: left;
+	font-size: 20px;
+	width: 100px;
+	height: 50px;
+	margin: 0;
+	font-weight: 700;
+	border-right: 1px solid #e5e5e5;
+	padding-top:13px;
+}
+.footer-notice-title a{
+	text-decoration: none;
+	color: black;
+}
+.rolling {
+	width: 1100px;
+	margin: 0 0 0 90px;
 	position: relative;
 	height: 50px;
 	line-height: 50px;
-	z-index: 1000;
 }
 
 .footer-notice ul li {
-	margin-left: -30px;
-	margin-right: 50px;
-	float: left;
 	vertical-align: middle;
 }
-
-.footer-notice ul li a.text01 {
-	font-size: 18px;
-	color: #282828;
-	font-weight: 700;
-	padding-top: 2px;
-}
-
-.footer-notice ul li a.text02 {
-	font-size: 16px;
+.rolling li a{
 	color: #888;
+	font-size: 18px;
 	font-weight: 500;
-	padding-top: 2px;
 }
 
 .recommand-box {
@@ -493,7 +498,11 @@ button.slick-prev:hover {
 	overflow: hidden;
 	border: 1px solid #7f8285;
 }
-
+.plus span{
+	font-size: 15px;
+	color: white;
+	padding-right: 50px;
+}
 .plus {
 	padding: 5px 3px 5px 3px;
 	width: 100%;
@@ -501,7 +510,7 @@ button.slick-prev:hover {
 	font-size: 15px;
 	font-weight: 600;
 	text-align: right;
-	background-color: #23212a;
+	background-color: #244CBA;
 }
 
 .plus a {
@@ -510,6 +519,7 @@ button.slick-prev:hover {
 }
 
 .inner-box {
+	margin-top: 5px;
 	width: 100%;
 	height: 464px;
 }
@@ -550,4 +560,35 @@ button.slick-prev:hover {
 .close_btn{
 	border:none;
 	background-color: #fff;
+}
+
+.banner{
+	margin:0px;
+	width: 100%;
+	height: 70px;
+	text-align: center;
+	background-color: #234cba;
+	position: fixed;
+	z-index: 9999;
+}
+.banner:hover{
+	cursor: pointer;
+}
+.banner_close{
+	position:relative;
+	z-index: 10;
+	color:white;
+	width: 20px;
+	height: 20px;
+	top: -65px;
+	left: 1580px;
+	display: table;
+}
+.banner img{
+	width:1240px;
+	height: 70px;
+}
+.banner_close img{
+	width: 20px;
+	height: 20px;
 }

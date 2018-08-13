@@ -404,13 +404,13 @@ insert into movie values (20181181, 3, 3, '미션 임파서블: 폴아웃', 'Mis
 
 
 --상영영화 데이터
-insert into nowplaying values (1, 20183361, 1, to_date('2018-08-01 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (2, 20183361, 1, to_date('2018-08-01 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (3, 20180522, 5, to_date('2018-08-01 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (4, 20181181, 3, to_date('2018-08-01 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (5, 20180522, 4, to_date('2018-08-01 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (6, 20181181, 5, to_date('2018-08-01 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
-insert into nowplaying values (7, 20183361, 2, to_date('2018-08-01 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-01','yyyy-mm-dd'));
+insert into nowplaying values (10, 20183361, 1, to_date('2018-08-13 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-13','yyyy-mm-dd'));
+insert into nowplaying values (20, 20183361, 1, to_date('2018-08-14 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-14','yyyy-mm-dd'));
+insert into nowplaying values (30, 20180522, 5, to_date('2018-08-15 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-15','yyyy-mm-dd'));
+insert into nowplaying values (40, 20181181, 3, to_date('2018-08-16 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-16','yyyy-mm-dd'));
+insert into nowplaying values (50, 20180522, 4, to_date('2018-08-17 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-17','yyyy-mm-dd'));
+insert into nowplaying values (60, 20181181, 5, to_date('2018-08-18 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-18','yyyy-mm-dd'));
+insert into nowplaying values (70, 20183361, 2, to_date('2018-08-19 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-19','yyyy-mm-dd'));
 
 --수정
 UPDATE movie
