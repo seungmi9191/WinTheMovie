@@ -58,12 +58,10 @@ public class UserController {
 		boolean result = false;
 		UserVo authUser = userService.login(userVo);
 		if (authUser != null) {
-			System.out.println("들어옴");
 			session.setAttribute("authUser", authUser);
 			result = true;
 			return result;
 		} else {
-			System.out.println("비밀번호 틀림");
 			return result;
 		}
 	}
@@ -85,15 +83,12 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/emailcheck", method = RequestMethod.POST)
 	public boolean emailcheck(String email) {
-		System.out.println("YEAH"+email);
 		boolean result = userService.emailcheck(email);
 		return result;
 	}
 
 	public boolean emailcheckNaver(String email) {
-		System.out.println("check "+email);
 		boolean result = userService.emailcheck(email);
-		System.out.println("YEAH"+email);
 		return result;
 	}
 

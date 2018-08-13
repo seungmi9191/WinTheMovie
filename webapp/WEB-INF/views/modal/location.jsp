@@ -3,7 +3,8 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/location.css">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
+      integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 
 <div class="body-loc">
     <div class="modal-location-mask" id="location">
@@ -19,7 +20,7 @@
                 </div>
                 <div class="search">
                     <form name="form" id="form" action="javascript:void(0)">
-                        <input type="hidden" name="currentPage" value="1"/>
+                        <input type="hidden" id="currentPage" name="currentPage" value="1"/>
                         <!-- 요청 변수 설정 (현재 페이지. currentPage : n > 0) -->
                         <input type="hidden" name="countPerPage" value="10"/>
                         <!-- 요청 변수 설정 (페이지당 출력 개수. countPerPage 범위 : 0 < n <= 100) -->
@@ -27,35 +28,42 @@
                         <!-- 요청 변수 설정 (검색결과형식 설정, json) -->
                         <input type="hidden" name="confmKey" value="U01TX0FVVEgyMDE4MDcxNjIwMjkwNzEwODAxMzk="/>
                         <!-- 요청 변수 설정 (승인키) -->
-                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword" class="sh-location-input" style="background: white">
-                        <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search"></i></button>
+                        <input type="text" placeholder="동을 입력해주세요. 예)서초동" id="search-addr" name="keyword"
+                               class="sh-location-input" style="background: white">
+                        <button class="btn-search" type="button" onclick="getAddr()"><i class="fas fa-search"></i>
+                        </button>
                     </form>
                 </div>
 
-                <div class="sh-location-body">
+                <div class="sh-location-body" >
                     <div>
                         <div class="search-scroll">
                             <div class="location-wrap">
                                 <div class="sh-component01" id="list">
                                 </div>
                             </div>
+                            <div class="paginate" id="pageApi"></div>
                         </div>
                     </div>
                 </div>
- 				<button id="success">적용하기</button>
- 				
-               <button type="button" class="popup-close-loc">
+                <button id="success">적용하기</button>
+
+                <button type="button" class="popup-close-loc">
                     <img src="${pageContext.request.contextPath}/assets/img/icon/close.png"> <!--버튼 이미지-->
                     <span class="blind">닫기</span>
-                </button> 
+                </button>
             </div>
         </div>
     </div>
 </div>
 
 <script language="javascript">
-    function getAddr() {
-        // AJAX 주소 검색 요청
+    function goPage(pageNum) {
+        document.form.currentPage.value = pageNum;
+        getAddr();
+    }
+
+    function getAddr() {// AJAX 주소 검색 요청
         $.ajax({
             url: "http://www.juso.go.kr/addrlink/addrLinkApiJsonp.do"	// 주소검색 OPEN API URL
             , type: "post"
@@ -71,56 +79,104 @@
                 } else {
                     if (jsonStr != null) {
                         makeListJson(jsonStr);							// 결과 JSON 데이터 파싱 및 출력
+                        pageMake(jsonStr);
                     }
                 }
-            } , error: function (xhr, status, error) {
+            }, error: function (xhr, status, error) {
                 alert("에러발생");										// AJAX 호출 에러
             }
         });
     }
-    
+
     function makeListJson(jsonStr) {
-         var htmlStr = "";
-         htmlStr += "<table>";
-         $(jsonStr.results.juso).each(function () {
-             var setAddress = this.roadAddrPart1;
-             var address_xy = this.buldMnnm;
-             htmlStr += "<tr>";
-             htmlStr += "<td>" + setAddress + "</td>";
-             htmlStr += "<td>";
-             htmlStr += "<button type ='button' class='btn-select' data-addressxy ='" + address_xy + "' data-address='" + setAddress + "'>선택하기</button>";
-             htmlStr += "</td>";
-             htmlStr += "</tr>";
-         });
-         htmlStr += "</table>";
-         $("#list").html(htmlStr);
-        
-         $(".btn-select").on("click", function () {
-             var $address = $(this).data('address').split(" ")[1];
-             var $address_xy = $(this).data('addressxy');
-             if ($(this).data('address').split(" ")[0].length == 4) {
-                 var $front = $(this).data('address').split(" ")[0].substring(0, 1) + $(this).data('address').split(" ")[0].substring(2, 3);
-             } else {
-                 var $front = $(this).data('address').split(" ")[0].substring(0, 2);
-             }
-             $('.btn-address').html($front + "_" + $address);
-             $('#setAddr').html($front + "_" + $address);
-             transAddress($address);
-         });
+        var htmlStr = "";
+        htmlStr += "<table>";
+
+        $(jsonStr.results.juso).each(function () {
+            var setAddress = this.roadAddrPart1;
+            var address_xy = this.buldMnnm;
+            htmlStr += "<tr>";
+            htmlStr += "<td>" + setAddress + "</td>";
+            htmlStr += "<td>";
+            htmlStr += "<button type ='button' class='btn-select' data-addressxy ='" + address_xy + "' data-address='" + setAddress + "'>선택하기</button>";
+            htmlStr += "</td>";
+            htmlStr += "</tr>";
+        });
+        htmlStr += "</table>";
+        $("#list").html(htmlStr);
+
+
+        $(".btn-select").on("click", function () {
+            var $address = $(this).data('address').split(" ")[1];
+            var $address_xy = $(this).data('addressxy');
+            if ($(this).data('address').split(" ")[0].length == 4) {
+                var $front = $(this).data('address').split(" ")[0].substring(0, 1) + $(this).data('address').split(" ")[0].substring(2, 3);
+            } else {
+                var $front = $(this).data('address').split(" ")[0].substring(0, 2);
+            }
+            $('.btn-address').html($front + "_" + $address);
+            $('#setAddr').html($front + "_" + $address);
+            transAddress($address);
+        });
+
     }
-    
-   	function transAddress(address){
-   	 $.ajax({
-         url: "${pageContext.request.contextPath}/transfer"
-         , type: "POST"
-         , data: {getAddr : address}
-         , success: function (map) {
-             $userX = map.userY;
-             $userY = map.userX;
-         }, error: function (xhr, status, error) {
-             alert("에러발생");										// AJAX 호출 에러
-         }
-     });
-   	}
+
+    function pageMake(jsonStr) {
+        var total = jsonStr.results.common.totalCount; // 총건수
+        var pageNum = document.form.currentPage.value;// 현재페이지
+        var paggingStr = "";
+        if (total < 1) {
+        } else {
+            var PAGEBLOCK =10;
+            var pageSize = document.form.countPerPage.value;
+            var totalPages = Math.floor((total - 1) / pageSize) + 1;
+            var firstPage = Math.floor((pageNum - 1) / PAGEBLOCK) * PAGEBLOCK + 1;
+            var lastPage = firstPage - 1 + PAGEBLOCK;
+            var nextPage = lastPage + 1;
+            var prePage = firstPage - 5;
+
+            if (firstPage <= 0) {
+                firstPage = 1;
+            }
+
+            if (lastPage > totalPages) {
+                lastPage = totalPages;
+            }
+
+            if (firstPage > PAGEBLOCK) {
+                paggingStr += "<a href='javascript:goPage(" + prePage + ");'><</a>  ";
+            }
+            for (i = firstPage; i <= lastPage; i++) {
+                if (pageNum == i)
+                    paggingStr += "<a class='page' href='javascript:goPage(" + i + ");'>" + i + "</a>  ";
+                else
+                    paggingStr += "<a class='page' href='javascript:goPage(" + i + ");'>" + i + "</a>  ";
+            }
+            if (lastPage < totalPages) {
+                paggingStr += "<a href='javascript:goPage(" + nextPage + ");'>></a>";
+            }
+            $("#pageApi").html(paggingStr);
+        }
+    }
+
+    $(".page").on("click",function(){
+        console.log("click click")
+       $(this).toggleClass("selectedPage");
+    });
+
+    function transAddress(address) {
+        $.ajax({
+            url: "${pageContext.request.contextPath}/transfer"
+            , type: "POST"
+            , data: {getAddr: address}
+            , success: function (map) {
+                $userX = map.userY;
+                $userY = map.userX;
+            }, error: function (xhr, status, error) {
+                alert("에러발생");										// AJAX 호출 에러
+            }
+        });
+    }
+
 
 </script>

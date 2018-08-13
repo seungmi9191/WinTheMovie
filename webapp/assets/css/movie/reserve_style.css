@@ -41,7 +41,6 @@
 .final_body .modal-mask .modal-container .left_wrap .group2 .seat-box ul, ol {
     list-style: none;
     float: left;
-    overflow: hidden;
     padding: 0;
     margin: auto;
     text-align: center;
@@ -70,6 +69,7 @@
 }
 
 .isviewUnder{
+    margin-left:-30px;
     text-align: center !important;
     display: inline-block;
 }
@@ -92,18 +92,20 @@
 .chairs {
     font-family: NanumSquareBold;
     font-weight: bolder;
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     border: 1px;
     text-align: center;
-    line-height: 30px;
+    line-height: 35px;
     cursor: default;
     float: left;
+    margin: 0 2px 2px 1px;
+    font-size: larger;
 }
 
 .booked{
-    background-color: #ccc !important;
-    color: #282828 !important;
+    background-color: whitesmoke !important;
+    color: #666666!important;
 }
 
 .chairs {
@@ -124,10 +126,13 @@
 }
 
 .rowshead li {
+    font-size: larger;
     border: 1px solid white;
-    line-height: 30px;
+    line-height: 35px;
     text-align: center;
-    height: 30px;
+    height: 35px;
+    width: 35px;
+    margin-bottom: 2px;
 }
 
 .reserve {
@@ -160,9 +165,9 @@
 }
 
 /*div*/
-.final_body div {
-    display: block;
-}
+/*.final_body div {*/
+    /*display: block;*/
+/*}*/
 
 /*button*/
 .final_body button {
@@ -490,10 +495,11 @@
 }
 
 .right_wrap .row2 .booking-movie-title {
-    margin: -20px 0 5px 20px;
-    font-size: 14px;
+    margin: -23px 0 5px 20px;
+    font-size: 16px;
     line-height: 16px;
     color: #fff;
+    font-weight: bolder;
 }
 
 .right_wrap .row2 {
@@ -507,31 +513,16 @@
 }
 
 .age {
-    background: url('https://blogfiles.pstatic.net/MjAxODA3MTdfODIg/MDAxNTMxODE3MzIyNDA5.AP9vCRyCVpcvgWrirBLGqUh6c8WrhKnnqzeOiB4zF8wg.JO2a1MGOAd8DHvUYC8AGLRdZAQvCQEa7SvdyldR-7Ncg.PNG.victorym91/grade_all_final.png') 0 -999px no-repeat;
+    background:no-repeat;
     display: inline-block;
     width: 18px;
     height: 18px;
-    margin-right: 8px;
-    text-indent: -99999px;
-    overflow: hidden;
+    margin-right: 30px;
+    margin-top: -10px;
+    /*overflow: hidden;*/
     vertical-align: middle;
-    zoom: 1;
-}
-
-.age_all {
-    background-position: 0 0;
-}
-
-.age_12 {
-    background-position: -19px 0;
-}
-
-.age_15 {
-    background-position: -38px 0;
-}
-
-.age_19 {
-    background-position: -59px 0;
+    zoom: 0.8;
+    margin-left: 10px;
 }
 
 .booking-movie-content {
@@ -572,4 +563,3 @@
 .pay-btn .btn-next:hover {
     background: #143394;
 }
-
