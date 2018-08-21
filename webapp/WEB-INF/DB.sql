@@ -10,6 +10,9 @@ drop table theaterroom;
 drop table movie;
 drop table nowplaying;
 drop table users;
+drop table analysis;
+drop table dailystar;
+drop table wordcloud;
 
 --외래키 상관없이 테이블 삭제하는 쿼리
 --생성되있는 모든 테이블 확인
@@ -19,18 +22,21 @@ WHERE   object_type = 'TABLE';
 
 
 --위의 명령어로 출력된 테이블 명령어를 통해 제약조건 상관없이 모두 삭제
-DROP TABLE USERS CASCADE CONSTRAINTS;
-DROP TABLE TICKET CASCADE CONSTRAINTS;
-DROP TABLE SEAT CASCADE CONSTRAINTS;
 DROP TABLE MOVIE CASCADE CONSTRAINTS;
 DROP TABLE NOWPLAYING CASCADE CONSTRAINTS;
 DROP TABLE BRAND CASCADE CONSTRAINTS;
 DROP TABLE THEATERROOM CASCADE CONSTRAINTS;
 DROP TABLE THEATER CASCADE CONSTRAINTS;
+DROP TABLE SEAT CASCADE CONSTRAINTS;
+DROP TABLE USERS CASCADE CONSTRAINTS;
+DROP TABLE TICKET CASCADE CONSTRAINTS;
+DROP TABLE REVIEW CASCADE CONSTRAINTS;
 DROP TABLE ACTOR CASCADE CONSTRAINTS;
 DROP TABLE DIRECTOR CASCADE CONSTRAINTS;
 DROP TABLE STILLCUT CASCADE CONSTRAINTS;
-DROP TABLE REVIEW CASCADE CONSTRAINTS;
+DROP TABLE ANAYSIS CASCADE CONSTRAINTS;
+DROP TABLE DAILYSTAR CASCADE CONSTRAINTS;
+DROP TABLE WORDCLOUD CASCADE CONSTRAINTS;
 
 --시퀀스 삭제
 drop sequence seq_users_no;
@@ -156,7 +162,7 @@ REFERENCES seat(seatno);
 
 CREATE TABLE seat (
     seatno          NUMBER        ,
-    nowpalyingno    NUMBER        ,
+    nowplayingno    NUMBER        ,
     seatname        VARCHAR2(20)  NOT NULL,
     isseat          NUMBER        NOT NULL,
     
@@ -165,7 +171,7 @@ CREATE TABLE seat (
 
 --seat 제약조건 추가
 ALTER TABLE seat ADD CONSTRAINT wm_nowplayingno_fk FOREIGN KEY(nowplayingno) 
-REFERENCES nowpalying(nowplayingno);
+REFERENCES nowplaying(nowplayingno);
 
 CREATE TABLE nowplaying (
     nowplayingno    NUMBER        ,
@@ -232,9 +238,9 @@ CREATE TABLE review (
 );
 
 --review 제약조건 추가
-ALTER TABLE review ADD CONSTRAINT wm_userno_fk FOREIGN KEY(userno) 
+ALTER TABLE review ADD CONSTRAINT wm_userno_review_fk FOREIGN KEY(userno) 
 REFERENCES users(userno);
-ALTER TABLE review ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
+ALTER TABLE review ADD CONSTRAINT wm_movieno_review_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
 
 
@@ -255,7 +261,7 @@ CREATE TABLE movie (
 
 --movie 제약조건 추가
 ALTER TABLE movie ADD CONSTRAINT wm_derectorno_fk FOREIGN KEY(directorno) 
-REFERENCES derector(directorno);
+REFERENCES director(directorno);
 ALTER TABLE movie ADD CONSTRAINT wm_actorno_fk FOREIGN KEY(actorno) 
 REFERENCES actor(actorno);
 
@@ -286,8 +292,9 @@ CREATE TABLE stillcut (
     
     PRIMARY KEY(stillno)
 );
+
 --stillcut 제약조건 추가
-ALTER TABLE stillcut ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
+ALTER TABLE stillcut ADD CONSTRAINT wm_movieno_stillcut_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
 
 
@@ -300,8 +307,9 @@ CREATE TABLE analysis (
     
     PRIMARY KEY(anaysisno)
 );
+
 --anaysis 제약조건 추가
-ALTER TABLE anaysis ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
+ALTER TABLE analysis ADD CONSTRAINT wm_movieno_analysis_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
 
 
@@ -321,7 +329,7 @@ CREATE TABLE dailystar (
 );
 
 --dailystar 제약조건 추가
-ALTER TABLE dailystar ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
+ALTER TABLE dailystar ADD CONSTRAINT wm_movieno_dailystar_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
 
 CREATE TABLE wordcloud (
@@ -335,7 +343,7 @@ CREATE TABLE wordcloud (
 );
 
 --wordcloud 제약조건 추가
-ALTER TABLE wordcloud ADD CONSTRAINT wm_movieno_fk FOREIGN KEY(movieno) 
+ALTER TABLE wordcloud ADD CONSTRAINT wm_movieno_wordcloud_fk FOREIGN KEY(movieno) 
 REFERENCES movie(movieno);
 
 
@@ -376,11 +384,11 @@ insert into theater values (6, 3, '상암월드컵경기장', '서울특별시 �
 
 --상영관 데이터
 -- 입력 완료
-insert into theaterroom values (1, 8, 333);
-insert into theaterroom values (2, 4, 333);
-insert into theaterroom values (3, 31, 333);
-insert into theaterroom values (4, 34, 333);
-insert into theaterroom values (5, 23, 333);
+insert into theaterroom values (1, 1, 333);
+insert into theaterroom values (2, 3, 333);
+insert into theaterroom values (3, 4, 333);
+insert into theaterroom values (4, 5, 333);
+insert into theaterroom values (5, 6, 333);
 
 
 --영화 데이터
@@ -388,7 +396,7 @@ insert into theaterroom values (5, 23, 333);
 insert into movie values (20183361, 1, 1, '인크레더블', 'incredibles2', 0, 'action,comedy', '엄마 ‘헬렌’이 국민 히어로 ‘일라스티걸’로 활약하고 아빠 ‘밥’은 삼남매와 고군분투하며 육아 히어로로 거듭난 가운데,
 정체불명의 악당이 등장해 위기 상황이 발생하면서 슈퍼파워 가족이 다시 한번 ‘인크레더블’한 능력을 발휘하는 이야기.', '2018-07-18', 'incredibles2.jpg');
 
-insert into movie values (20180522, 2, 2, '앤트맨과 와스프', 'Ant-Man and the Wasp', 12, 'action', '“이제 믿을 건 자네 둘 뿐이야”,
+insert into movie values (20180522, 1, 1, '앤트맨과 와스프', 'Ant-Man and the Wasp', 12, 'action', '“이제 믿을 건 자네 둘 뿐이야”,
 사이즈부터 다른 마블의 히든카드가 온다.
 
 ‘시빌 워’ 사건 이후 은둔하며 히어로와 가장의 역할 사이에서 고민 중이던 
@@ -396,7 +404,7 @@ insert into movie values (20180522, 2, 2, '앤트맨과 와스프', 'Ant-Man and
 시공간의 개념이 사라진 양자 영역으로 들어갈 수 있는 기술을 훔쳐 달아난 
 고스트를 쫓던 앤트맨과 와스프는 상상도 못했던 상황에 직면하는데…', '2018-07-04', 'antman.jpg');
 
-insert into movie values (20181181, 3, 3, '미션 임파서블: 폴아웃', 'Mission:Impossible- Fallout', 15, 'action', '예측 할 수 없는 미션. 피할 수 없는 선택
+insert into movie values (20181181, 1, 1, '미션 임파서블: 폴아웃', 'Mission:Impossible- Fallout', 15, 'action', '예측 할 수 없는 미션. 피할 수 없는 선택
 전 세계 최강의 스파이 기관 IMF의 최고 요원 에단 헌트(톰 크루즈)와 그의 팀은 테러조직의 핵무기 소지를 막기 위해 미션에 착수한다.
 에단 헌트는 작전 수행 중 예상치 못한 결단을 내리게 되고, 중앙정보국 CIA는 그를 견제하기 위해 상급 요원 어거스트 워커(헨리 카빌)를 파견한다.
 최악의 테러 위기와 라이벌의 출현 속, 팀이 행한 모든 선의의 선택들이 최악의 결과로 돌아오면서 미션은 점점 더 예측할 수 없는 상황으로 치닫게 되는데…
@@ -404,13 +412,22 @@ insert into movie values (20181181, 3, 3, '미션 임파서블: 폴아웃', 'Mis
 
 
 --상영영화 데이터
-insert into nowplaying values (10, 20183361, 1, to_date('2018-08-13 13:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-13','yyyy-mm-dd'));
-insert into nowplaying values (20, 20183361, 1, to_date('2018-08-14 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-14','yyyy-mm-dd'));
-insert into nowplaying values (30, 20180522, 5, to_date('2018-08-15 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-15','yyyy-mm-dd'));
-insert into nowplaying values (40, 20181181, 3, to_date('2018-08-16 16:10:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-16','yyyy-mm-dd'));
-insert into nowplaying values (50, 20180522, 4, to_date('2018-08-17 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-17','yyyy-mm-dd'));
-insert into nowplaying values (60, 20181181, 5, to_date('2018-08-18 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-18','yyyy-mm-dd'));
-insert into nowplaying values (70, 20183361, 2, to_date('2018-08-19 15:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-19','yyyy-mm-dd'));
+insert into nowplaying values (11, 20183361, 1, to_date('2018-08-21 14:40:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (12, 20183361, 3, to_date('2018-08-21 12:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (13, 20180522, 4, to_date('2018-08-21 13:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (14, 20181181, 2, to_date('2018-08-21 17:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (16, 20181181, 3, to_date('2018-08-21 14:30:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (17, 20183361, 3, to_date('2018-08-21 10:09:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (18, 20183361, 2, to_date('2018-08-21 16:50:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (19, 20183361, 2, to_date('2018-08-21 19:35:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-21','yyyy-mm-dd'));
+insert into nowplaying values (20, 20183361, 3, to_date('2018-08-22 23:35:00', 'yyyy-mm-dd hh24:mi:ss'), to_date('2018-08-22','yyyy-mm-dd'));
+
+--영화배우
+insert into actor values (1, '테스트배우');
+
+--감독
+insert into director values(1, '테스트감독');
+
 
 --수정
 UPDATE movie
@@ -432,7 +449,7 @@ where n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theate
 
 select sysdate from dual;
 
-select * from theater
+select * from theater;
 
 SELECT TO_DATE('20180722') - TO_DATE(TO_CHAR(SYSDATE, 'YYYYMMDD')) FROM DUAL; 
 
