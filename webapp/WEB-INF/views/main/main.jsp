@@ -26,7 +26,7 @@
 <div class="banner">
 	<img src="${pageContext.request.contextPath}/assets/img/event/banner.jpg">
 	<div class="banner_close">
-		<img src="${pageContext.request.contextPath}/assets/img/icon/modal-x-mark.png">
+		<img src="${pageContext.request.contextPath}/assets/img/icon/close.png">
 	</div>
 </div>
 	<c:import url="/WEB-INF/views/include/header.jsp"></c:import>
@@ -36,7 +36,7 @@
     <div class="multi-banner">
       <div class="swiper-slide">	
        <c:forEach items="${theaterList}" var="theaterList" varStatus="status">
-        <div id="m_list{status.index}">
+        <div id="m_list">
           <div class="poster-box">
             <img src="${pageContext.request.contextPath}/upload/poster/${theaterList.poster}" class="poster">
             <div class="location-info">
@@ -64,13 +64,14 @@
               <div class="detail-time">
               <p class="con2">&nbsp;&nbsp;&nbsp;<span class="time" id="nowplayinglist${status.index}"></span></p></div>
             </div>
-            <div class="front">
+            <div class="front"  id="front${status.index}">
               <div class="front-btn-wrap">
-                <div style="padding-top:130px;">
-                  <a href="${pageContext.request.contextPath}/moive/reserve_quick" class="btn-reserve">예매하기</a>
+                <!-- <div style="padding-top:130px;"> -->
+                <div>
+                  <a href="" class="btn-reserve" onclick="return false;" id="btn-reserve${status.index}">예매하기</a>
                 </div>
                 <div>
-                  <a href="" class="btn-view" onclick="return false;">상세보기</a>
+                  <a href="" class="btn-view" onclick="return false;" id="btn-view${status.index}">상세보기</a>
                 </div>
               </div>
             </div>
@@ -83,15 +84,6 @@
 
 <!-- middle banner -->
 	<div class="middle-banner">
-		<div class="middle-banner-title">
-			<h2>
-				<span>영화 티켓은 SITE WIN THE MOVIE.</span>
-			</h2>
-		</div>
-		<div class="middle-banner-logo">
-			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
-		</div>
-
 		<div class="boxoffice-box">
 			<div class="officeTop">
 				<h2>BOX OFFICE</h2>
@@ -105,7 +97,7 @@
 					<c:forEach
 						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}"
 						var="boxoffice">
-						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> 
+						<li><a href="" class="tit"> <i>${boxoffice.rank}.</i> 
 						<span class="grade" data-movieCd='${boxoffice.movieCd}'><img src="${pageContext.request.contextPath}/assets/img/grade/bg_grade_12.png"></span>
 						 <span class="myTit">${boxoffice.movieNm}</span>
 						</a> <span class="memRk">예매율<em>${boxoffice.salesShare} %</em></span>
@@ -117,15 +109,15 @@
 					<c:forEach
 						items="${dailyResult.boxOfficeResult.dailyBoxOfficeList}"
 						var="boxoffice">
-						<li><a href="" class="tit"> <em>${boxoffice.rank}</em> 
-						<span class="grade_15">15</span> <span class="myTit">${boxoffice.movieNm}</span>
+						<li><a href="" class="tit"> <i>${boxoffice.rank}.</i> 
+						<span class="grade" data-movieCd='${boxoffice.movieCd}'><img src="${pageContext.request.contextPath}/assets/img/grade/bg_grade_12.png"></span>
+						<span class="myTit">${boxoffice.movieNm}</span>
 						</a> <span class="memRk">평점 <em>${boxoffice.salesShare} </em></span></li>
 					</c:forEach>
 				</ol>
 			</div>
 		</div>
-		<div class="map-box" id="naver_map" style="text-align: center;">
-		</div>
+		<div class="map-box" id="naver_map" style="text-align: center;"></div>
 
 		 <div class="recommand-box">
 			<div class="plus">
@@ -135,35 +127,47 @@
 			<div class="inner-box">
 				<div class="first-movie">
 					<div class="inner-poster">
-						<img
-							src="${pageContext.request.contextPath}/assets/img/movie_poster/poster_2.jpg"
-							alt="">
+						<img src="${pageContext.request.contextPath}/assets/img/movie_poster/poster_9.jpg" >
 					</div>
 					<div class="inner-content">
-						<div>제목 : 헤어화</div>
-						<div>장르 : 사극</div>
-						<div>배우 : 천우희, 한효주, 유연석</div>
+						<div class="m_title">러브,사이먼</div>
+						<div class="g_title">[장르]</div>
+						<div class="g_con">드라마/로맨스</div>
+						<div class="g_title">[배우]</div>
+						<div class="g_con">닉 로빈슨, 캐서린 랭퍼드</div>
 					</div>
 				</div>
 				<div class="second-movie">
 					<div class="inner-poster">
-						<img
-							src="${pageContext.request.contextPath}/assets/img/movie_poster/poster_2.jpg">
+						<img src="${pageContext.request.contextPath}/assets/img/movie_poster/poser_5.jpg">
 					</div>
 					<div class="inner-content">
-						<div>제목 : 헤어화</div>
-						<div>장르 : 사극</div>
-						<div>배우 : 천우희, 한효주, 유연석</div>
+						<div class="m_title">앵커</div>
+						<div class="g_title">[장르]</div>
+						<div class="g_con">드라마</div>
+						<div class="g_title">[배우]</div>
+						<div class="g_con">이주영/박수연</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+		
+		<div class="middle-banner-sub ">
+		<div class="middle-banner-title">
+			<h2>
+				<span>영화 티켓은 SITE WIN THE MOVIE.</span>
+			</h2>
+		</div>
+		<div class="middle-banner-logo">
+			<img src="${pageContext.request.contextPath}/assets/img/event/introduce.jpg" alt="">
+		</div> 
+	</div>
 
 	<!--footer-notice -->
 	<div class="footer-notice">
 		<div class="footer-div">
-			<div class="footer-notice-title"><a href="#" class="text01">공지사항</a></div>
+			<div class="footer-notice-title"><i class="fas fa-thumbtack"></i><a href="#" class="text01">&nbsp;공지사항</a></div>
 			<ul class="rolling">
 				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내1</a></li>
 				<li><a href="#">안드로이드 태블릿 가로보드 지원 안내2</a></li>
@@ -245,7 +249,7 @@
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
-        autoplay: false,
+        autoplay: true,
         autoplaySpeed: 2000,
         arrows: true,
         dots: true,
@@ -666,11 +670,11 @@
 						
 				
 				   /*남은시간 0:0:0*/
-				 		
 				  if(daysRound < 0) { 
-					$('#nowplayinglist'+i).html("예매종료"); 
+					$('#nowplayinglist'+i).text("예매종료").css("color","#a8a8a8"); 
 					$("#btn-reserve"+i).remove("a");
-					$("#btn-view"+i).remove("a");
+					$("#btn-view"+i).remove ("a");
+					$("#front"+i).html("예매 가능한 영화가 아닙니다.");
 				  } else {
 					 $('#nowplayinglist'+i).text("[남은시간]" + dy + hoursRound + hr + minutesRound + min + secondsRound);
 				  }

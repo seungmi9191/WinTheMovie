@@ -1,6 +1,5 @@
 @import
-	url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css)
-	;
+	url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
 
 html, body {
 	font-family: 'NanumSquare', sans-serif;
@@ -12,7 +11,7 @@ html, body {
 	position: relative;
 	padding-left: 0px;
 	padding-right: 0px;
-	margin: 0 0px;
+	margin: 0;
 	width: 100%;
 	min-width: 1240px;
 	max-width: 100%;
@@ -91,6 +90,14 @@ button.slick-prev:hover {
 	vertical-align: top;
 }
 
+.middle-banner-sub {
+	width: 1240px;
+	margin: 60px auto 40px auto;
+	overflow: hidden;
+	position: relative;
+	vertical-align: top;
+}
+
 .middle-banner-title {
 	margin: 0 0 20px;
 }
@@ -114,7 +121,7 @@ button.slick-prev:hover {
 
 .middle-banner .middle-banner-logo img {
 	max-width: 100%;
-	height: 600px;
+	height: 400px;
 }
 
 .middle-banner-logo {
@@ -179,9 +186,10 @@ button.slick-prev:hover {
 }
 
 .officeCont {
-	padding-top:10px;
+	padding-top: 10px;
+	padding-left: 8px;
 	height: 360px;
-	border: 1px solid #7f8285;
+	border-bottom: 1px solid #b8b8b8;
 }
 
 .map-box {
@@ -195,7 +203,7 @@ button.slick-prev:hover {
 	height: 500px;
 	overflow: hidden;
 	background: #7f8285;
-	border: 1px solid #7f8285;
+	border: 1px solid #b8b8b8;
 }
 
 .boxoffice-box ol {
@@ -223,12 +231,12 @@ button.slick-prev:hover {
 	height: 30px;
 	color: #1a1917;
 	line-height: 30px;
-	font-size: 16px;
+	font-size: 15px;
 	font-weight: 700;
 	letter-spacing: -0.5px;
 }
 
-.tit em {
+.tit i {
 	display: inline-block;
 	vertical-align: middle;
 	height: 30px;
@@ -236,7 +244,7 @@ button.slick-prev:hover {
 	padding-right: 5px;
 	font-style: italic;
 	font-weight: 700;
-	font-size: 18px;
+	font-size: 16px;
 }
 
 .tit .grade {
@@ -255,8 +263,8 @@ button.slick-prev:hover {
 .tit .myTit {
 	display: inline-block;
 	width: 150px;
-	height: 17px;
-	line-height: 17px;
+	height: 16px;
+	line-height: 16px;
 	vertical-align: middle;
 	text-overflow: ellipsis;
 	overflow: hidden;
@@ -269,7 +277,8 @@ button.slick-prev:hover {
 	height: 30px;
 	line-height: 30px;
 	color: #666;
-	font-size: 16px;
+	font-size: 14px;
+	padding-right: 10px;
 }
 
 .officeCont .officeRk li {
@@ -280,7 +289,7 @@ button.slick-prev:hover {
 }
 
 .officeCont .officeRk li .memRk em {
-	padding-left: 3px;
+	padding-left: 1px;
 }
 
 .boxoffice-box em {
@@ -341,6 +350,7 @@ button.slick-prev:hover {
 	position: absolute;
 }
 
+
 .hover {
 	width: 370px;
 	height: 430px;
@@ -348,6 +358,16 @@ button.slick-prev:hover {
 	position: absolute;
 	text-align: center;
 	margin: auto;
+}
+
+.front {
+	font-size : 18px;
+	color :#fff;
+	weight : 400;
+	align : center;
+	padding-top: 130px;
+	width: 370px;
+	height : 430px;
 }
 
 .front-btn-wrap div {
@@ -361,14 +381,14 @@ button.slick-prev:hover {
 	margin-top: 15px;
 	margin-bottom: 10px;
 	padding: 30px;
-	/* box-shadow: 0 2px 5px rgba(0,0,0,0.26); */
+	box-shadow: 0 2px 5px rgba(0,0,0,0.26);
 	height: 80px;
 	width: 300px;
-	/* line-height: 24px; */
+	line-height: 24px;
 	font-weight: 500;
 	text-decoration: none;
 	font-size: 18px;
-}
+} 
 
 .front a:hover {
 	background-color: #fff;
@@ -459,13 +479,13 @@ button.slick-prev:hover {
 }
 .footer-notice-title{
 	float: left;
-	font-size: 20px;
+	font-size: 18px;
 	width: 100px;
 	height: 50px;
 	margin: 0;
 	font-weight: 700;
 	border-right: 1px solid #e5e5e5;
-	padding-top:13px;
+	padding-top: 15px;
 }
 .footer-notice-title a{
 	text-decoration: none;
@@ -484,7 +504,7 @@ button.slick-prev:hover {
 }
 .rolling li a{
 	color: #888;
-	font-size: 18px;
+	font-size: 15px;
 	font-weight: 500;
 }
 
@@ -496,12 +516,13 @@ button.slick-prev:hover {
 	width: 25%;
 	height: 500px;
 	overflow: hidden;
-	border: 1px solid #7f8285;
+	border-bottom: 1px solid #b8b8b8;
+	
 }
 .plus span{
-	font-size: 15px;
+	font-size: 14px;
 	color: white;
-	padding-right: 50px;
+	padding-right: 147px;
 }
 .plus {
 	padding: 5px 3px 5px 3px;
@@ -510,50 +531,72 @@ button.slick-prev:hover {
 	font-size: 15px;
 	font-weight: 600;
 	text-align: right;
-	background-color: #244CBA;
+	/* background-color: #244CBA; */
+	background-color: #b8b8b8;
+	border-bottom: 1px solid #b8b8b8;
 }
 
 .plus a {
 	text-decoration: none;
 	color: white;
+	font-size : 13px;
+	color : #474747;
 }
 
 .inner-box {
-	margin-top: 5px;
+	margin-top: 15px;
 	width: 100%;
 	height: 464px;
 }
 
 .first-movie {
-	height: 232px;
+	height:225px;
 	width: 100%;
-	padding-bottom: 2px;
-	border-bottom: 1px solid #7f8285;
+	margin : 8px 2px 2px 0px;
+	border-bottom: 1px solid #b8b8b8;
 }
 
 .inner-poster {
-	width: 168px;
+	width: 140px;
 	height: 100%;
 	float: left;
-	margin-right: 4px;
-	background-color: black;
+	margin-right: 6px;
+	background-color: white;
 }
 
 .inner-poster img {
-	width: 168px;
-	height: 230px;
+	width: 140px;
+	height: 210px;
 }
 
 .inner-content {
-	padding-top: 50px;
 	float: left;
-	width: 136px;
+	width: 150px;
 	height: 100%;
+	padding-top : 1px;
+	margin-left : 10px;
+}
+
+.inner-content .m_title {
+	font-size: 18px;
+	font-weight: 700;
+	margin-bottom : 10px;
+}
+
+.inner-content .g_title {
+	font-size : 15px;
+	font-weight : 700;
+	margin-bottom : 4px;
+}
+
+.inner-content .g_con {
+	font-size : 14px;
+	margin-bottom : 10px;
 }
 
 .second-movie {
-	padding-top: 2px;
-	height: 232px;
+	margin : 12px 2px 2px 0px;
+	height: 225px;
 	width: 100%;
 }
 
@@ -567,9 +610,10 @@ button.slick-prev:hover {
 	width: 100%;
 	height: 70px;
 	text-align: center;
-	background-color: #234cba;
-	position: fixed;
-	z-index: 9999;
+	background-color: #2750b8;
+	/* position: fixed; */
+	position: relative;
+	z-index: 1500;
 }
 .banner:hover{
 	cursor: pointer;
@@ -578,10 +622,10 @@ button.slick-prev:hover {
 	position:relative;
 	z-index: 10;
 	color:white;
-	width: 20px;
-	height: 20px;
-	top: -65px;
-	left: 1580px;
+	width: 10px;
+	height: 10px;
+	top: -60px;
+	left: 1530px;
 	display: table;
 }
 .banner img{
