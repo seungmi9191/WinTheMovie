@@ -31,7 +31,7 @@ button.slick-next {
 	width: 47px;
 	height: 75px;
 	background-image:
-		url('https://blogfiles.pstatic.net/MjAxODA3MDNfMTMy/MDAxNTMwNjAyMTYxODYw.Di8trjqKpAzCNy2sHAGxmt4R5NyP9JC8qEEK597uWVYg.aOOTpdU20JAnTqvBFKUcHX431ATyr64r6ZW-T4Irdnkg.PNG.victorym91/left-right-arrow_%EC%82%AC%EB%B3%B8.png');
+		url('https://t1.daumcdn.net/cfile/tistory/99F0943D5B7CC39F01');
 	background-size: 95px;
 	margin-top: 10px;
 }
@@ -44,7 +44,7 @@ button.slick-next:hover {
 	width: 47px;
 	height: 75px;
 	background-image:
-		url('https://blogfiles.pstatic.net/MjAxODA3MDNfMjE1/MDAxNTMwNjAyMjQ3MzYz.sX1Y1YPpmpBOV0Q0E6i4vQnLqYwKAjDsY9bBcN-m1Lkg.FGp8-oddD7o1fbrux85JJ4x0E4h4eYlAWIbFJddYqD8g.PNG.victorym91/left-right-arrow_%EC%82%AC%EB%B3%B8.png');
+		url('https://t1.daumcdn.net/cfile/tistory/9998933D5B7CC39F33');
 	background-size: 95px;
 }
 
@@ -445,7 +445,6 @@ button.slick-prev:hover {
 }
 
 .limit-time {
-
 	position: absolute;
 	width: 370px;
 	height: 60px;

@@ -41,6 +41,7 @@ public class MainController {
 		try {
 			model.addAttribute("dailyResult", KobisAPI.kobis(1)); // Kobis API 불러오는 코드
 			List<NowpVo> theaterList = movieService.getTheaterList(); 
+			System.out.println("뿌려질현재영화리스트: "+theaterList);
 			//KobisAPI.movieInfo("신과함께");
 			model.addAttribute("theaterList", theaterList);
 
@@ -64,4 +65,7 @@ public class MainController {
 		HashMap<String, String> map = Trans.transfer(getAddr);
 		return map;
 	}
+	
+	
+
 }

@@ -16,7 +16,7 @@
 	<!-- com.javaex.controller 패키지 밑에 있는 클래스 중에 @Controller를 달고 있는 클래스의 객체를 
 		생성 하겠다. (new 하겠다) -->
 	<context:component-scan
-		base-package="kr.co.winthemovie.controller" />
+		base-package="kr.co.winthemovie.controller, kr.co.winthemovie.api" />
 
 	<!-- 서블릿 컨테이너의 디폴트 서블릿 위임 핸들러 -->
 	<mvc:default-servlet-handler />
@@ -33,7 +33,8 @@
 	</bean>
 	
 	<!-- url매핑 -->
-    <mvc:resources mapping="/upload/**" location="file:/Users/JS-K/Desktop/upload" /> <!-- 사용자가 치는 주소 / 물리적인 주소 -->
-    <mvc:resources mapping="/upload/poster/**" location="file:/Users/JS-K/Desktop/upload/poster" />
-
+    <mvc:resources mapping="/upload/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/brand/" /> <!-- 사용자가 치는 주소 / 물리적인 주소 -->
+    <mvc:resources mapping="/upload/poster/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/poster/" />
+	<mvc:resources mapping="/upload/poster/stillcut/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/poster/stillcut/" />
+	<mvc:resources mapping="/upload/poster/stillcut/movie/**" location="file:/Users/WOOSEUNGMI/Desktop/2018/upload_team/poster/stillcut/movie/" />
 </beans>
