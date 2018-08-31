@@ -1,0 +1,145 @@
+/*
+Theme Name: WinTheMovie
+Author : WOOSEUNGMI
+Version : 1.0.0
+*/
+
+/* 1.0 Normalize */
+@import url(https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css);
+
+
+.review-body {
+  font-family : 'NanumSquare', sans-serif;
+  height : 100%;
+  /* width : 100%; */
+  display : block;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #282828;
+  box-sizing : border-box;
+  z-index : 9999;
+}
+
+.review-body h1, h2, h3, h4, h5, h6 {
+  font-family: 'NanumSquare', sans-serif;
+  font-weight: 700;
+  line-height: 1.1;
+  color : inherit;
+}
+
+.review-body button {
+  width : 50px;
+  height : 30px;
+  margin : 0;
+  border: 0 none;
+  cursor: pointer;
+  background: transparent;
+}
+
+.review-body .review-close {
+  position : absolute;
+  top: 0px;
+  right: -50px;
+}
+
+.blind {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+  top: -1000em;
+  left: -1000em;
+}
+
+.modal-review-mask {
+  position: absolute;
+  z-index : 9999;
+  top : 0;
+ /*  right : 0;
+  left : 0;
+  bottom: 0; */
+  width : 100%;
+  /* height : 100%; */
+  /* overflow: auto;
+  overflow-y: scroll;
+  background-color: rgba(0,0,0,0); */
+}
+
+.modal-review-wrapper {
+  width : 620px;
+  margin : auto;
+  padding : 110px 40px 0;
+}
+
+.modal-review-wrapper .modal-review-container {
+  width : 100%;
+  position: relative;
+  /* height: 700px; */
+  background-color: #fff;
+  border : 1px solid #d8d8d8;
+  /* box-shadow: 2px 2px 2px #f8f8f8;  */
+  /* border-radius: 4px; */
+  transition: all .3s ease;
+  padding : 50px 30px 25px 30px;
+  z-index:9999;
+}
+
+.modal-review-wrapper .modal-review-container h2 {
+  font-size: 25px;
+  font-color : #282828;
+  text-align: center;
+  font-weight: 200;
+}
+
+.modal-review-wrapper .modal-review-container h2 strong {
+  font-size: 25px;
+  font-color : #282828;
+  text-align: center;
+  font-weight: 700;
+}
+
+.modal-review-wrapper .modal-review-container .star {
+  font-size: 25px;
+  text-align: center;
+  margin : 15px 0 0 0;
+  color : #2e4b9b;
+}
+
+.modal-review-wrapper .modal-review-container .star i {
+  cursor : pointer;
+}
+
+ .modal-review-wrapper .modal-review-container .textarea-input {
+  margin : 25px 0 20px 0;
+  weight : 600px;
+}
+
+ .modal-review-wrapper .modal-review-container .textarea-input textarea {
+   border: 1px solid #ddd;
+   line-height: 1.5em;
+   padding: 10px;
+   font-size: 14px;
+   width : 480px;
+   height: 120px;
+   overflow: auto;
+   overflow-y: scroll;
+   resize: none; /* 사용자 임의 변경 불가 */
+   font-family : 'NanumSquare', sans-serif;
+ }
+
+ .review-body .btn-apply { /*적용하기*/
+   background-color: #2e4b9b;
+   text-align: center;
+   font-size: 16px;
+   width: 480px;
+   height: 45px;
+   /* padding : 3px; */
+   color: #fff;
+   margin-left : 0px;
+   font-weight : 400;
+ }
+
+ .review-body .btn-apply:hover {
+   color: #fff;
+ 	background-color: #063d8a;
+ 	text-decoration: none;
+ }

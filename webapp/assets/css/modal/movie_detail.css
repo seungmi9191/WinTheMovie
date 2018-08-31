@@ -37,7 +37,7 @@ Version : 1.0.0
   list-style: none;
 }
 
-.body ul {
+/* .body ul {
   display : block;
   -webkit-margin-before: 1em;
   -webkit-margin-after: 1em;
@@ -54,7 +54,7 @@ Version : 1.0.0
 .modal_body ul, ol {
   margin-top: 0;
   margin-bottom: 10px;
-}
+} */
 
 .modal_body p {
   margin : 0 0 10px;
@@ -153,7 +153,7 @@ Version : 1.0.0
   margin-bottom: 10px;
 }
 
-.col-i-4 .btn-view {
+.col-i-4 .btn-ans-view {
   position: absolute;
   top: 0;
   right: 0;
@@ -433,7 +433,12 @@ margin-bottom: 105px;
 /* 줄거리 */
 .modal_body .center-wrap {
   float: left;
-  width: 400px;
+  width: auto;
+}
+
+.modal_body .center-wrap2 {
+ float: left;
+  width: 300px;
 }
 
 .modal_body .modal-mask .modal-wrapper .modal-container .row1 .left-wrap {
@@ -612,10 +617,10 @@ margin-bottom: 105px;
   vertical-align: text-bottom; */
   /* background: url('http://image2.megabox.co.kr/mop/home/bg_age_l.png')
   0 -999px no-repeat; */
-  background: url('https://blogfiles.pstatic.net/MjAxODA2MjdfMjMy/MDAxNTMwMDYwOTk0MTI1.UXBr83w8HZBtmeqbIhr4zlYnMdyN7ZLUlTBBwj0WlM4g.CG749OeQroNmZCqsbRMr9zvkuPyQ--CsKaHN23Rg3xAg.PNG.victorym91/test.png')
+  background: url('https://t1.daumcdn.net/cfile/tistory/99D8EB355B7CC44532')
   0 -999px no-repeat;
   width: 33px;
-  height: 32px;
+  height: 33px;
   margin-right: 15px;
   text-indent: -99999px;
   overflow: hidden;
@@ -630,19 +635,19 @@ margin-bottom: 105px;
 }
 
 .age_all {
-  background-position: 0 0;
+  background-position: 1px 0;
 }
 
 .age_12 {
-  background-position: -74px 0; /*메박은 71*/
+  background-position: -36px 0; /*메박은 71*/
 }
 
 .age_15 {
-  background-position: -110px 0;
+  background-position: -73px 0;
 }
 
 .age_19 {
-  background-position: -37px 0; /*메박은 35*/
+  background-position: -110px 0; /*메박은 35*/
 }
 /* 등급가 끝 */
 
@@ -661,6 +666,7 @@ margin-bottom: 105px;
 
 .t-logo {
   width: auto;
+  
   height : 32px;
 }
 
@@ -671,7 +677,7 @@ margin-bottom: 105px;
 }
 
 .time-title { /* 남은시간 타이틀 */
-  margin : 0 3px 0 274px;
+  margin : 0 10px 0 0;
   font-size: 21px;
   vertical-align: middle;
   color : #282828;
@@ -687,9 +693,14 @@ margin-bottom: 105px;
   font-weight: 700;
 }
 
+.time-view {
+	float : right;
+}
+
 /* 영화 간략 정보 */
 .modal-mask .modal-wrapper .modal-container .row2 .text {
     margin: 15px 0 0 0;
+    
 }
 
 .modal-mask .modal-wrapper .modal-container .row2 .text li {
@@ -705,11 +716,29 @@ margin-bottom: 105px;
   margin-right: 5px;
 }
 
+.modal-mask .modal-wrapper .modal-container .row1 .text li span {
+  font-family: 'NanumSquare', sans-serif;
+  font-size: 14px;
+  margin-right: 5px;
+}
+
 /* 줄거리 */
 .modal-mask .modal-wrapper .modal-container .row3 .text {
   color : #282828;
   line-height: 1.7em;
   font-size: 14px;
+}
+
+.modal-mask .modal-wrapper .modal-container .row3 .text .text-pre {
+  font-family: 'NanumSquare', sans-serif;
+  color : #282828;
+  line-height: 1.7em;
+  font-size: 14px;
+  white-space: pre-wrap; /* CSS3*/
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-all; /* Internet Explorer 5.5+ */ 
 }
 
 /* 영화분석 판넬 */
@@ -841,49 +870,119 @@ margin-bottom: 105px;
 
 .stillcut-list .still-slide {
   position: relative;
-  width: 820px;
+  /* width: 820px; */
+  width: 920px;
   height: 110px;
-  margin-left: 50px;
+  /* margin-left: 50px; */
   overflow: hidden;
   z-index: 1;
 }
 
 .stillcut-list .still-slide ul {
   position: absolute;
+  /* width: 1143px; */
+  width : 920px;
+  left : 0px;
+  right : 0px;
 }
 
 .stillcut-list .still-slide ul li {
   float: left;
   display: block;
   height: 110px;
+  margin : 0 3px 0 3px;
 }
 
-.stillcut-list .still-slide ul li div {
-  float: none;
-  display: block;
-  height: 112px;
+/*동영상 리스트*/
+.stillDiv-m a .stillDiv-m-play {
+  position: absolute;
+}
+
+.stillDiv-m a .stillDiv-m-play  i{
+  font-size:50px;
+  color:white;
+  text-align: center;
+  margin: 30px 0 30px 80px;
+  opacity: .7;
+}
+ 
+.stillcut-list-m {
   position: relative;
+  width: 920px;
+  height: 110px;
+  margin-bottom: 30px;
 }
 
-.stillcut-list .still-slide ul li div a {
+.stillcut-list-m .still-prevNext .still-prev {
+  left: 0;
+}
+
+.stillcut-list-m .still-prevNext .still-next {
+  right: 0;
+  background-position: right 45px;
+}
+
+.stillcut-list-m .still-prevNext a {
+  display: block;
+  width: 49px;
+  height: 110px;
+  position: absolute;
+  top: 0;
+  overflow: hidden;
+  text-indent: -999px;
+  background: #fff url("http://image2.megabox.co.kr/mop/home/btns/bg_stillcut_btn.png")
+  0 45px no-repeat;
+}
+
+.stillcut-list-m .still-slide-m {
+  position: relative;
+  /* width: 820px; */
+  width: 920px;
+  height: 110px;
+  /* margin-left: 50px; */
+  overflow: hidden;
+  z-index: 1;
+}
+
+.stillcut-list-m .still-slide-m ul {
+  position: absolute;
+  /* width: 1143px; */
+  width : 920px;
+  left : 0px;
+  right : 0px;
+}
+
+.stillcut-list-m .still-slide-m ul li {
+  float: left;
   display: block;
   height: 110px;
-  left: 0;
-  width: 100%;
-  position: absolute;
+  margin : 0 3px 0 3px;
+}
+
+.stillDiv {
+  float: none;
+  display: block;
+  height: 110px;
+  position: relative;
+  width : 100%;
+  clear: both;
+}
+
+.stillcut-list .still-slide ul li div a,
+.stillcut-list .still-slide ul li div a img {
+  display: block;
+  height: 110px;
   z-index: 2;
+  float: left; 
+  overflow: hidden;
 }
 
 .stillcut-list .still-slide ul li div a.on,
 .stillcut-list .still-slide ul li div a:hover,
 .stillcut-list .still-slide ul li div a:focus {
-  border: 5px solid #2e4b9b;
-  opacity: .7;
-}
-
-.stillcut-list .still-slide ul li div img {
-  display : block;
-  height: 100%;
+  /* border: 5px solid #2e4b9b;  */
+  /* box-shadow: inset 0 0 0 10px rgba(255, 255, 255, .4);*/
+  opacity: .4;    
 }
 
 .still-view-box {
@@ -930,6 +1029,49 @@ margin-bottom: 105px;
   height: 500px;
   max-width: 100%;
 }
+
+.still-view-box-m {
+  position: relative;
+  width: 920px;
+}
+
+.still-view-box-m .still-img-m {
+  background: #000;
+  text-align: center;
+  height: 500px;
+}
+
+.still-view-box-m .still-img-m img {
+  height: 500px;
+  max-width: 100%;
+}
+
+.stillDiv-m {
+  float: none;
+  display: block;
+  height: 110px;
+  position: relative;
+  width : 100%;
+  clear: both;
+}
+
+.stillcut-list-m .still-slide-m ul li div a,
+.stillcut-list-m .still-slide-m ul li div a img {
+  display: block;
+  height: 110px;
+  z-index: 2;
+  float: left; 
+  overflow: hidden;
+}
+
+.stillcut-list-m .still-slide-m ul li div a.on,
+.stillcut-list-m .still-slide-m ul li div a:hover,
+.stillcut-list-m .still-slide-m ul li div a:focus {
+  /* border: 5px solid #2e4b9b;  */
+  /* box-shadow: inset 0 0 0 10px rgba(255, 255, 255, .4);*/
+  opacity: .4;    
+}
+
 
 /* 실관람객 평가 */
 .row4 .review h3 {

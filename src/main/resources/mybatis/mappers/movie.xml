@@ -47,4 +47,74 @@
 			where #{nowplayingno}=s.NOWPALYINGNO
         ]]>
     </select>
+    
+    <select id="detailView" parameterType="int" resultType="detailVo">
+    	<![CDATA[
+			select n.nowplayingno, 
+				   to_char(n.playingtime,'YYYY-MM-DD HH24:MI:SS') as playingtime, 
+    			   to_char(n.playingdate,'YYYY-MM-DD') as playingdate,
+				   tr.roomno,
+				   tr.theaterno,
+				   tr.screen,
+				   t.theatername,
+				   t.theateraddress,
+				   t.theaterxgps,
+				   t.theaterygps,
+				   b.brandname,
+				   b.brandNo,
+				   b.brandlogo,
+				   m.movieno,
+				   m.directorno,
+ 				   m.actorno,
+				   m.koname,
+				   m.enname,
+				   m.grade,
+				   m.genre,
+				   m.story,
+				   m.openning,
+				   m.poster,
+				   m.runtime,
+				   a.actorname,
+				   d.directorname,
+				   (select count(*) from stillcut s where s.movieno = m.movieno) as stillnum,
+				   (select count(*) from stillmovie sm where sm.movieno = m.movieno) as stillmvnum
+			from nowplaying n, movie m, theaterroom tr, theater t, brand b, actor a, director d
+			where n.nowplayingno=#{nowplayingno} and n.movieno=m.movieno and n.roomno=tr.roomno and tr.theaterno=t.theaterno and t.brandno=b.brandno 
+			and m.actorno=a.actorno and m.directorno=d.directorno
+        ]]>
+    </select>
+    
+    <select id="detailStillcut" parameterType="int" resultType="detailVo">
+    	<![CDATA[
+			select s.stillno, 
+				   m.movieno, 
+				   s.stillname, 
+				   s.savename
+			from movie m, stillcut s
+			where m.movieno = #{movieno} and m.movieno = s.movieno
+			order by s.stillno asc	
+        ]]>
+    </select>
+    
+    <select id="detailStillmovie" parameterType="int" resultType="detailVo">
+    	<![CDATA[
+    		select sm.stillmvno, 
+    		       sm.stillmvname, 
+    		       sm.stillmvurl,
+    		       sm.stillmvimg, 
+    		       m.movieno
+        	from movie m, stillmovie sm
+        	where m.movieno = #{movieno} and m.movieno = sm.movieno
+			order by sm.stillmvno asc		
+    	]]>
+    </select>
+    
+    <select id="movieReview" parameterType="map" resultType="reviewVo">
+       <![CDATA[
+    	   select t.nowplayingno, u.userno, n.movieno, m.koname
+           from ticket t ,(select userno from users where email=#{userEmail})u, nowplaying n, movie m
+           where  n.movieno=#{movieno} and t.nowplayingno = n.nowplayingno and n.movieno = m.movieno
+       ]]>
+    </select>
+   
 </mapper>

@@ -31,10 +31,12 @@
 				</li>						
 			</c:if>
 			<c:if test="${sessionScope.authUser != null}">
+			<input type="hidden" value="${authUser.email}" id="userEamil">
 				<li class="myinfo2">
 					<a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user"></i>
 						&nbsp;&nbsp;${authUser.username}님&nbsp;&nbsp;<i class="fas fa-angle-down"></i>
 					</a>
+						
 					<ul class="hide dropdown-content">
 						<li><a href="${pageContext.request.contextPath}/mypage/myinfo">회원정보</a></li>
 						<li><a href="${pageContext.request.contextPath}/mypage/myticket">예매내역</a></li>

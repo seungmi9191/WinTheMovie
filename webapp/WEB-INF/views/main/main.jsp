@@ -16,6 +16,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/common/slick-theme.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/movie_detail.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/assets/css/modal/review_popup.css">
 <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?clientId=85K3LBTERGnPmOpMLKtu&submodules=geocoder"></script>
 <script type="text/javascript">
 	var $userX, $userY;
@@ -47,8 +48,19 @@
 	              	<p class="con">
 		              	<c:set var="splitloc" value="${fn:split(theaterList.theateraddress,' ')[1]}"></c:set> <!--locate에서 공백기준으로 배열 index[1] 받아옴 -->
 		              	<c:set var="len" value="${fn:length(splitloc)}"></c:set> <!--받아온 index[1]의 단어길이 확인 -->
-						<c:set var="substringloc" value="${fn:substring(splitloc,0,len-1) }"></c:set> <!--'구' 삭제위해 index 전체길이-1 -->
+		              	
+		              	<c:choose>
+		              		<c:when test="${len eq 2}">
+		              		<c:set var="substringloc" value="${fn:substring(splitloc,0,len) }"></c:set> 
+	              			<c:out value="${substringloc}"></c:out>
+		              		</c:when>
+		              		
+		              		<c:otherwise>
+		              		<c:set var="substringloc" value="${fn:substring(splitloc,0,len-1) }"></c:set> <!--'구' 삭제위해 index 전체길이-1 -->
 	              		<c:out value="${substringloc}"></c:out>
+		              		</c:otherwise>
+		              	</c:choose>
+		             
 	              	</p></div>
                	</c:when>
                	<c:otherwise>
@@ -68,10 +80,10 @@
               <div class="front-btn-wrap">
                 <!-- <div style="padding-top:130px;"> -->
                 <div>
-                  <a href="" class="btn-reserve" onclick="return false;" id="btn-reserve${status.index}">예매하기</a>
+                  <a href="" class="btn-reserve" onclick="return false;" id="btn-reserve${status.index}" >예매하기</a>
                 </div>
                 <div>
-                  <a href="" class="btn-view" onclick="return false;" id="btn-view${status.index}">상세보기</a>
+                  <a href="" class="btn-view" onclick="return false;" id="btn-view${status.index}" data-playingno="${theaterList.nowplayingno}" data-movieno="${theaterList.movieno}">상세보기</a>
                 </div>
               </div>
             </div>
@@ -181,10 +193,11 @@
   
 	<!-- <div class="detail"></div> -->
 	<c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import>
+	<c:import url="/WEB-INF/views/modal/review_popup.jsp"></c:import>
 	<c:import url="/WEB-INF/views/modal/location.jsp"></c:import>
 
 
-	<div class="detail"></div>
+	<!-- <div class="detail"></div> -->
 	<%-- <c:import url="/WEB-INF/views/modal/movie_detail.jsp"></c:import> --%>
 </body>
 
@@ -249,7 +262,7 @@
         speed: 500,
         slidesToShow: 5,
         slidesToScroll: 1,
-        autoplay: true,
+        autoplay: false,
         autoplaySpeed: 2000,
         arrows: true,
         dots: true,
@@ -270,20 +283,7 @@
         }]
     });
 
-	  // modal function
-	  $('.btn-view').on("click",function(){
-	      $('.modal_body').toggle(400);
-	      $('body').css('overflow','hidden');
-		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px');
-		  console.log("확인");
-		  detailrender();
-	  });	 
-		 
-	  $('.popup-close').on("click",function(){
-		  $('.modal_body').toggle(400);
-		  $('body').css('overflow','auto');
-	  });	 
-		
+	 
 	// geolocation 사용 여부
 	function check_geolocation(){
 		if(window.navigator.geolocation){
@@ -644,13 +644,13 @@
 				   console.log("jstl_list:" + d_day); 
 				   console.log("sysdate:" + today); 
 						  
-				   days = (d_day - today) / 1000 / 60 / 60 / 24;
+				   days = (d_day - today)/ 1000 /60/60/24;
 				   daysRound = Math.floor(days);
-				   hours = (d_day - today) / 1000 / 60 / 60 - (24 * daysRound);
+				   hours = (d_day - today)/1000/60/60-(24*daysRound);
 				   hoursRound = Math.floor(hours);
-				   minutes = (d_day - today) / 1000 /60 - (24 * 60 * daysRound) - (60 * hoursRound);
+				   minutes = (d_day - today)/1000/60-(24*60*daysRound)-(60*hoursRound);
 				   minutesRound = Math.floor(minutes);
-				   seconds = (d_day - today) / 1000 - (24 * 60 * 60 * daysRound) - (60 * 60 * hoursRound) - (60 * minutesRound);
+				   seconds = (d_day - today)/1000-(24*60*60*daysRound)-(60*60*hoursRound)-(60*minutesRound);
 				   secondsRound = Math.round(seconds);
 				   sec = " "
 				   min = " : "
@@ -676,14 +676,12 @@
 					$("#btn-view"+i).remove ("a");
 					$("#front"+i).html("예매 가능한 영화가 아닙니다.");
 				  } else {
-					 $('#nowplayinglist'+i).text("[남은시간]" + dy + hoursRound + hr + minutesRound + min + secondsRound);
+					$('#nowplayinglist'+i).text("[남은시간]" + dy + hoursRound + hr + minutesRound + min + secondsRound);
 				  }
 		   }
-		newtime = window.setTimeout("reverse_counter();", 1000); 
+			     window.setTimeout(reverse_counter, 1000); 
     }
 	  
-	  
-	 
 	  // mouseover function
       $(".poster-box").mouseover(function(){
         $(this).children('.front').addClass('hover');
@@ -693,19 +691,301 @@
       });
 
       // modal function
-	  $('.btn-view').on("click",function(){
+	 	  $('.btn-view').on("click",function(){
+	 		  
 		  //ajax로 데이터 값 매칭
-		  $('#age').removeClass();
-		  $('#age').addClass("age_l age_15"); //if문 활용해서 age 클래스명에 매칭
+		  var nowNo = $(this).data("playingno");
+		  var movieNo = $(this).data("movieno");
+		  console.log("영화 : " + movieNo);
+		  console.log("현재번호 : " + nowNo);
 		  
-	      $('.modal_body').toggle(400);
-	      $('body').css('overflow','hidden');
-		  $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); 
+		  $.ajax({
+			  url : "${pageContext.request.contextPath}/detail/view",
+			  type : "post",
+			  data : {playingno : nowNo},
+			  success : function(result) {
+				  
+				  console.log(result);
+				  var testHtml = "";
+				  
+				  //날짜 계산
+				  var timestr = result.playingtime
+				  var timestr_s = timestr.split(" ");
+				  var week = ['일', '월', '화', '수', '목', '금', '토'];
+				  var dayOfWeek = week[new Date(timestr_s[0]).getDay()];
+				  
+				  testHtml += "<img src='${pageContext.request.contextPath}/upload/poster/"+result.poster+"' id='m-poster'>";
+				  
+				  //브랜드 로고
+				  if(result.brandNo==1) {
+					  $('#th-info').append("<img src='${pageContext.request.contextPath}/upload/mega_detail.png' class='t-logo' id='t-logo'>");
+				  } else if(result.brandNo==2) {
+					  $('#th-info').append("<img src='${pageContext.request.contextPath}/upload/cgv_detail.png' class='t-logo' id='t-logo'>");
+				  } else if(result.brandNo==3) {
+					  $('#th-info').append("<img src='${pageContext.request.contextPath}/upload/lotte_detail.png' class='t-logo' id='t-logo'>");
+				  }
+				  
+				  $('#th-name').text(result.theatername);
+				  
+				  $('#detail-poster').append(testHtml);
+				
+				  //관람등급
+				  if(result.grade == 0) {
+					  $('#age').removeClass();
+					  $('#age').addClass("age_l age_all");
+				  } else if (result.grade == 12) {
+					  $('#age').removeClass();
+					  $('#age').addClass("age_l age_12");
+				  } else if (result.grade == 15) {
+					  $('#age').removeClass();
+					  $('#age').addClass("age_l age_15");
+				  } else if (result.grade == 19) {
+					  $('#age').removeClass();
+					  $('#age').addClass("age_l age_19");
+				  } 
+				  
+				  $('#title').text(result.koname);
+				  $('#enname').text(result.enname);
+				  $('#t-address').text(result.theateraddress)
+				  
+				  $('#m-time').html(timestr_s[0].split("-")[0] + "." + timestr_s[0].split("-")[1] +"." + timestr_s[0].split("-")[2] + " (" + dayOfWeek +") "
+						            + "<font color=red>" + timestr_s[1].split(":")[0] + ":" +timestr_s[1].split(":")[1]);
+				  $('#th-room').text(result.theatername + " " + result.screen + "관");
+				  
+				  $('#story').text(result.story);
+				  /*  $('#time-wrap').text(aabc); */
+				  
+				  $('#m-director').text(result.directorname);
+				  $('#m-actor').text(result.actorname);
+				  $('#m-genre').text(result.genre + " / " + result.runtime + "분");
+				  
+				  $('#btn_steelCut').addClass("active");  
+				  $('.stillcut-box').show();
+				  $('.btn_play').removeClass("active");
+				 
+				  //남은시간
+				  var countDownDate = new Date(result.playingtime).getTime();
+
+				  // 1초씩 카운트
+				  var x = setInterval(function() {
+
+					    // 오늘날짜
+					    var now = new Date().getTime();
+					    
+					    // 남은시간-오늘날짜
+					    var distance = countDownDate - now;
+					    
+					    // 시,분,초 계산
+					    var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+					    var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+					    var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+					    var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+					    
+					    // 10보다 작으면 앞에 0 붙여줌
+					    if(hours < 10) hours = "0" + hours;
+					    if(minutes < 10) minutes = "0" + minutes;
+					    if(seconds < 10) seconds = "0" + seconds;
+					   
+					    // 시간종료시 예매종료표시 
+					    if (distance < 0) {
+					    	clearInterval(x);
+					    	$('#time-wrap').text("예매종료");
+					    } else {
+					    	$('#time-wrap').text(hours + " : " + minutes + " : " + seconds);
+					    }
+				   }, 1000); 
+					
+				   //무한반복 방지 -> x버튼 누를 시 setInterval 초기화
+				   $('.popup-close').on("click",function(){
+				    	clearInterval(x);
+				   });
+					 
+				   //스틸컷&동영상
+				   $(".stillCount").text(result.stillnum);
+				   $(".trailerCount").text(result.stillmvnum);
+				   $('.stillcut-box-m').hide();
+				   
+				   $("#btn_steelCut").click(function(event) {
+					  $('#btn_steelCut').addClass("active");  
+					  $('.stillLi').show();
+					  $('.stillcut-box').show();
+					  $('#btn_play').removeClass("active"); 
+					  $('.stillcut-box-m').hide();
+					  event.preventDefault();
+				   });
+				   
+				   $("#btn_play").click(function(event) {
+					   $('#btn_play').addClass("active");  
+					   $('.stillcut-box-m').show();
+					   $('#btn_steelCut').removeClass("active");
+					   $('.stillLi').hide();
+					   $('.stillcut-box').hide();
+					   event.preventDefault();
+				   });
+					
+				   $('.modal_body').toggle(400);
+				   $('body').css('overflow','hidden');
+			       $('body').css('margin-right', (window.innerWidth - $('body').width()) + 'px'); 
+			       
+			      
+			  },
+			  error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			  }
+		  });
+		  
+		  $.ajax({
+			  url : "${pageContext.request.contextPath}/detail/stillcut",
+			  type : "post",
+			  data : {movieno : movieNo},
+			  success : function(result_stillcut) {
+				  var render ="";
+				  
+				  //스틸컷 뷰 
+				  $.each(result_stillcut, function(idx, val) {
+						console.log("영화" + idx + " " + val.stillname); 
+						
+					 	render +=  "<li class='stillLi'>";
+					 	render +=  "<div class='stillDiv'>";
+					 	render +=  "<a href='javascript:void(0);' class=' ' id='stillIdx"+idx+"'>";
+					 	render +=  "<img src=${pageContext.request.contextPath}/upload/stillcut/"+val.stillname+">";
+					 	render +=  "<em></em>";
+					 	render +=  "</div>";
+					 	render +=  "</li>"; 
+					 	
+				  });  
+						$('.stillUl').html(render); 
+				  
+				 //스틸컷 src경로 미리 받아오기 (+ memo: stillcut click idx0 selected processing-)
+				 var imgPath = $("#stillIdx"+0).children("img").attr("src");	
+				 $("#stillIdx"+0).addClass("on"); 
+				 $(".still-img>img").attr({src:imgPath}).hide().fadeIn();
+				 
+				 //스틸컷 이벤트
+				 $(".stillLi .stillDiv a").click(function() {
+ 						var imgPath = $(this).children("img").attr("src");
+				        $(".stillDiv").children("a").removeClass("on");
+				        $(this).addClass("on");
+				        $(".still-img>img").attr({src:imgPath}).hide().fadeIn();
+				 });
+			 
+						
+			  },
+			  error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			  }  
+		  });
+		  
+		  $.ajax({
+			  url : "${pageContext.request.contextPath}/detail/stillmovie",
+			  type : "post",
+			  data : {movieno : movieNo},
+			  success : function(result_stillmovie) {
+				 var render_m = $() 
+				 
+				//동영상 뷰 
+			    $.each(result_stillmovie, function(idx, val_m) {
+					
+			    	 render_m +=  "<li class='stillLi-m'>";
+			    	 render_m +=  "<div class='stillDiv-m'>";
+			    	 render_m +=  "<a href='javascript:void(0);' class=' ' id='stillMId"+idx+"'>";
+			    	 render_m +=  "<input type='hidden' value='"+val_m.stillmvurl+"'>";
+			    	 render_m +=  "<div class='stillDiv-m-play'><i class='far fa-play-circle'></i></div>";
+			    	 render_m +=  "<img src=${pageContext.request.contextPath}/upload/stillcut/movie/"+val_m.stillmvimg+">";
+			    	 render_m +=  "<em></em>";
+			    	 render_m +=  "</div>";
+			    	 render_m +=  "</li>"; 
+				 	
+			   }); 
+					 $('.stillUl-m').html(render_m); 
+					
+					 //스틸컷 src경로 미리 받아오기 
+					 $("#stillMId"+0).addClass("on"); 
+					 var moviePath = $(".stillLi-m .stillDiv-m a").children("input").attr("value");
+					 $(".still-img-m").children("iframe").attr("src", moviePath);
+					 
+					 /* $(".still-view-box-m .still-img-m").on('click', function(e) {
+						 e.preventDefault();
+						 var $item_top = $("still-view-box-m").find("iframe").attr("src");
+						 $(".still-view-box-m .still-img-m").fadeOut("slow");
+						 $(".still-view-box-m iframe").show().attr("src", $item_top + "$autoplay=1");
+					 }); */
+					 
+					//스틸컷 이벤트
+					 $(".stillLi-m .stillDiv-m a").click(function() {
+	 					  var moviePath = $(this).children("input").attr("value");
+					      $(".stillDiv-m").children("a").removeClass("on");
+					      $(this).addClass("on");
+					      $(".still-img-m").children("iframe").attr("src", moviePath);
+					      
+					 });
+				  
+			   },
+			    error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			  }  
+		  });
+		  
+		  
+		  //review popup
+		  $('.btn-review').off().on("click",function() {
+		     console.log("movieNo" + movieNo);
+		     var userEmail = $('#userEamil').val(); 
+			 
+		     reviewVo =  {
+		    	 movieno : movieNo, userEmail:userEmail, playingno : nowNo
+		     };
+		     console.log("reviewVo" + reviewVo);
+			
+		   <c:if test="${sessionScope.authUser == null}">
+			   var logresult = confirm('리뷰평가는 로그인 후 작성하실 수 있습니다. 로그인 페이지로 이동하시겠습니까?');
+			    if(logresult) {
+			 	  location.href =  '${pageContext.request.contextPath}/user/loginform';
+			     } else { 
+			    	return false;	 
+			     }
+		   </c:if>	
+		   
+		  $.ajax({
+			  url : "${pageContext.request.contextPath}/detail/reviewpop",
+			  type : "post",
+			  data : reviewVo,
+			  success : function(result_review) { 
+				 
+			  if(result_review.movieno == movieNo) {
+	    	  $('.review-body').show();
+			  $('.modal-review-container h2').html("<strong>"+result_review.koname+"</strong>" + " 평가 등록");
+		      $('.star i').off().on("click", function() {
+		    	  $(this).parent().children('i').removeClass("fas").addClass("far");
+		    	  $(this).removeClass("far").addClass("fas").prevAll("i").removeClass("far").addClass("fas"); 
+		    	  alert($(this).data("num"));
+		          });
+			  } else {
+				  alert("윈더무비에서 관람하신 영화가 아닙니다.");
+			  }
+			  },
+			    error : function(XHR, status, error) {
+				console.error(status + " : " + error);
+			  }  
+		  });  
+		  
+		});
+		  
+		 
+	 	 $('.review-close').on("click",function(){
+	 		 $('#inputText').val('').attr("placeholder","운영원칙에 어긋나는 게시물로 판단되는 글은 제재 조치를 받을 수 있습니다.");
+	 		 $(".star i").removeClass("fas").addClass("far");
+	 		 $('.review-body').hide();
+	 	 });	
 	  });	 
 
 	  $('.popup-close').on("click",function(){
+		  $('#t-logo').remove("img");
+		  $('#m-poster').remove("img");
+		  $('.modal_body').toggle(400);
 		  $('body').css('overflow','auto');
 	  });	
-
+	  
+	  $('.review-body').hide();	//상세페이지 누르기 전 미리 숨김 
 </script>
 </html>

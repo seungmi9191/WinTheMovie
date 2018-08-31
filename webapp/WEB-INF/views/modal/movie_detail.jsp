@@ -10,13 +10,18 @@
         <div id="movieDetailTime">
 
           <div class="popup-box-top row1 clearfix">
-            <div class="center-wrap">
-              <img src="${pageContext.request.contextPath}/assets/img/logo/cgv.png" class="t-logo">
-              <span class="time-name">명동역 씨네라이브러리</span>
+            <div class="center-wrap" id="th-info">
+              <%-- <img src="${pageContext.request.contextPath}/assets/img/logo/cgv.png" class="t-logo"> --%>
             </div>
+             <div class="center-wrap2" >
+              <span class="time-name" id="th-name">명동역 씨네라이브러리</span>
+             </div>
+             
+              <div class="time-view">
               <!-- <img src="assets/img/hourglass.png" class="time-logo"> -->
               <span class="time-title">남은시간</span>
-            <div class="time-wrap">01 : 01 : 10 </div>
+            <div class="time-wrap" id="time-wrap"> </div>
+            </div>
           </div>
         </div>
       </div>
@@ -26,18 +31,18 @@
     <div id="movieDetail">
       <!--기본정보 : 영화포스터-->
         <div class="popup-box row1 clearfix">
-          <div class="left-wrap">
-            <img src="${pageContext.request.contextPath}/assets/img/movie_poster/ocean.jpg" alt="오션스8">
+          <div class="left-wrap" id="detail-poster">
+            <%-- <img src="${pageContext.request.contextPath}/assets/img/movie_poster/ocean.jpg" alt="오션스8"> --%>
           </div>
     <!--기본정보 : 영화정보-->
     <div class="right-wrap">
           <div class="text">
           <div class="title clearfix">
             <h2>
-            <i class="age_l age_12">전체관람가</i>
-          <span>오션스8</span>
+            <i id="age" class=""></i>
+          	<span id="title"></span>
             </h2>
-            <p>OCEAN'S 8, 2018</p>
+            <p id="enname">OCEAN'S 8, 2018</p>
           </div>
 
       <div class="reservation-wrap">
@@ -64,15 +69,15 @@
           <ul class="info-wrap">
             <li>
               <strong>극장위치 &nbsp; </strong>
-              서울특별시 중구 퇴계로 123 (명동, 하이해리엇 10층)
+              <span id="t-address"></span>
             </li>
             <li>
-              <strong>영화시간 &nbsp; </strong>
-              <font color="red">18시 30분</font>
+              <strong>영화일시 &nbsp; </strong>
+              <span id="m-time"><font color="red"></font></span>
             </li>
             <li>
               <strong>상영관 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</strong>
-              6관 8층
+              <span id="th-room"></span>
             </li>
           </ul>
           <button type="button" class="btn-movie btn-reservation" onclick="" id="test">
@@ -121,7 +126,7 @@
       </div>
       <div class="col-i-4">
         <span> 이 영화에 대해 더 알고싶다면? </span>
-        <button type="button" class="btn-ans btn-view" onclick="#">
+        <button type="button" class="btn-ans btn-ans-view">
           영화 분석 더 알아보기</button>
       </div>
     </div>
@@ -132,15 +137,15 @@
         <ul class="text">
           <li>
             <strong>감독  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
-            게리 로스
+            <span id="m-director">  </span>
           </li>
           <li>
-            <strong>출연진 &nbsp; </strong>
-            산드라 블록 ,  케이트 블란쳇 ,  앤 해서웨이 ,  민디 캘링 ,  사라 폴슨 ,  아콰피나 ,  리한나 ,  헬레나 본햄 카터
+            <strong>주연배우 &nbsp; </strong>
+            <span id="m-actor"> </span>
           </li>
           <li>
             <strong>개요 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </strong>
-            액션,범죄 / 110분
+            <span id="m-genre"> </span>
           </li>
         </ul>
       </div>
@@ -148,128 +153,82 @@
       <div class="popup-box row3">
         <h3>줄거리</h3>
           <div class="text">
-            1천 5백억원의 다이아몬드 목걸이를 훔쳐라!<br/>
-            과연 목표가 그것뿐일까?<br/>
-            전 애인의 배신으로 5년간 감옥에서 썩은 ‘데비 오션’(산드라 블록)은 가석방되자마자<br/>
-            믿음직한 동료 ‘루’(케이트 블란쳇)와 함께 새로운 작전을 계획한다.<br/>
-            그들의 목표는 바로, 뉴욕 메트로폴리탄 박물관에서 열리는 미국 최대 패션 행사인<br/>
-            메트 갈라에 참석하는 톱스타 ‘다프네’(앤 해서웨이)의 목에 걸린 1천 5백억 원의 다이아몬드 목걸이를 훔치는 것!<br/>
-            디자이너부터 보석전문가, 소매치기와 해커까지, 전격 결성된 각 분야 전문가들이 마침내 실행에 나서는데…<br/>
-            <br/>
-            기가 막힌 작전, 그 뒤에 또 다른 목적<br/>
-            화끈하게 훔치고 시원하게 갚는다!<br/>
+             <pre class="text-pre" id="story"></pre>
           </div>
       </div>
 
       <!--동영상/스틸컷-->
       <div class="popup-box row4">
         <h3>
-            <a class="btn_steelCut active" onclick="#" href="http://www.naver.com" title="스틸컷 보기">
+            <a href="" class="btn_steelCut active" title="스틸컷 보기" id="btn_steelCut">
               스틸컷
-            <span class="stillCount">7</span>
+            <span class="stillCount"> </span>
             </a>
 
             <span class="line"> &nbsp;&nbsp;|&nbsp;&nbsp; </span>
 
-            <a class="btn_play" onclick="#" href="http://www.naver.com" target="_blank" title="동영상 보기">
+            <a href="" class="btn_play" title="동영상 보기" id="btn_play">
               동영상
-            <span class="trailerCount">3</span>
+            <span class="trailerCount"> </span>
             </a>
         </h3>
-
-        <div class="stillcut-list">
+     
+     	<!-- 스틸컷 -->
+		<div class="stillcut-box row4">
+          <div class="stillcut-list">
             <!--이전&다음 버튼-->
-            <div class="still-prevNext">
+           <!-- <div class="still-prevNext">
               <a class="still-prev" href="#" title="이전 스틸컷보기">이전 스틸컷</a>
               <a class="still-next" href="#" title="다음 스틸컷보기">다음 스틸컷</a>
-            </div>
+            </div> -->
 
             <div class="still-slide">
-              <ul style="width: 1143px; left: 0px; right: 0px;">
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="0" title="스틸컷1 선택" class="on">
-                        <span class="blind">오션스8 스틸컷1</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/poster/2018/4B/071542-0D54-4776-95AC-C45580621AFC.large.jpg" alt="오션스8 스틸컷1">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷2 선택">
-                        <span class="blind">오션스8 스틸컷2</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/0F/0006B4-6C42-49F2-9E04-49E617B12792.large.jpg" alt="오션스8 스틸컷2">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷3 선택">
-                        <span class="blind">오션스8 스틸컷3</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/9A/D57763-D1F4-4422-9E72-AB84D3164B96.large.jpg" alt="오션스8 스틸컷3">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷4 선택">
-                        <span class="blind">오션스8 스틸컷4</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/36/3C030C-9410-44E2-97E8-350DDEBE9630.large.jpg" alt="오션스8 스틸컷4">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷5 선택">
-                        <span class="blind">오션스8 스틸컷5</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/62/4AFC81-1857-471E-B134-FAB6A5EB4B5B.large.jpg" alt="오션스8 스틸컷5">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷6 선택">
-                        <span class="blind">오션스8 스틸컷6</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/76/F3C079-083E-48DE-B0DB-F85BD742BB92.large.jpg" alt="오션스8 스틸컷6">
-                      <em></em>
-                    </div>
-                  </li>
-                  <li class="stillLi" style="display: block;">
-                    <div>
-                      <a href="#" index="1" title="스틸컷7 선택">
-                        <span class="blind">오션스8 스틸컷7</span>
-                      </a>
-                      <img src="http://image2.megabox.co.kr/mop/still/2018/32/FDA39A-0A9B-4F7E-8658-671C1C7EFDC9.large.jpg" alt="오션스8 스틸컷7">
-                      <em></em>
-                    </div>
-                  </li>
+              <ul class="stillUl">
+                 <!-- 썸네일 그려질 공간 -->
               </ul>
             </div>
         </div>
         <div class="still-view-box">
           <!--이전&다음 버튼-->
-          <div class="still-prevNext2" style="display: block;">
+         <!-- <div class="still-prevNext2" style="display: block;">
             <a class="still-prev2" href="#" title="이전 스틸컷 보기">이전 스틸컷</a>
             <a class="still-next2" href="#" title="다음 스틸컷 보기">다음 스틸컷</a>
-          </div>
+          </div> -->
           <div class="still-img" style="display:block;">
-            <img alt="오션스8 스틸컷1" src="http://image2.megabox.co.kr/mop/poster/2018/4B/071542-0D54-4776-95AC-C45580621AFC.large.jpg">
+            <img src="">
           </div>
         </div>
       </div>
-
+      
+      <!-- 동영상 -->
+      <div class="stillcut-box-m row4">
+    	 <div class="stillcut-list-m">
+      		<!--이전&다음 버튼-->
+            <!--  <div class="still-prevNext">
+              <a class="still-prev" href="#" title="이전 스틸컷보기">이전 스틸컷</a>
+              <a class="still-next" href="#" title="다음 스틸컷보기">다음 스틸컷</a>
+            </div> -->
+            
+            <div class="still-slide-m">
+              <ul class="stillUl-m">
+                 <!-- 썸네일 그려질 공간 -->
+              </ul>
+            </div>
+            </div>
+             <div class="still-view-box-m">
+          	 <div class="still-img-m">
+           	   <iframe src="" width="920" height="500" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+           	  
+            </div>
+      	 </div>
+      </div>
+      
+	</div>
       <!--감상평 등록-->
   <div class="popup-box1 row4">
     <div class="review">
       <h3>실관람객 평가</h3>
-      <button type="button" class="btn-review" onclick="parent.location.href='assets/review_popup.html">
-        평점작성</button>
+      <button type="button" class="btn-review" onclick="return false;">평점작성</button>
     </div>
     <div id="movieCommentList" class="list">
      <div class="item-2block">
