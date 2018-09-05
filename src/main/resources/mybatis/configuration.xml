@@ -3,7 +3,6 @@
 <configuration>
     <typeAliases>
         <!--경로 ex) com.javaex.vo.emaillistVo-->
-        <!--<typeAlias alias="바꿀 이름" type="경로" />-->
         <typeAlias alias="theaterVo" type="kr.co.winthemovie.vo.TheaterVo"/>
         <typeAlias alias="nowpVo" type="kr.co.winthemovie.vo.NowpVo"/>
         <typeAlias alias="quickreserveVo" type="kr.co.winthemovie.vo.QuickReserveVo"/>

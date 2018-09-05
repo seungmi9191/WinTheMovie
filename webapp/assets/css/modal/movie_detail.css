@@ -1072,7 +1072,6 @@ margin-bottom: 105px;
   opacity: .4;    
 }
 
-
 /* 실관람객 평가 */
 .row4 .review h3 {
   background-color: #2e4b9b;
@@ -1086,38 +1085,89 @@ margin-bottom: 105px;
   height: 50px;
 }
 
+.list {
+  border-top : 1px solid #d1d1d1;
+}
+
 .list .item-2block {
+ /*  border-bottom : 1px solid #d1d1d1;  */
+}
+
+.list .item-2block .row {
   clear: both;
   overflow: hidden;
   width: 100%;
   display: table;
-  border-top: 1px solid #d1d1d1;
-  border-bottom: 1px solid #d1d1d1;
-}
-
-.list .item-2block .row {
-  display: table-row;
+  /* border-top: 1px solid #d1d1d1; 
+  border-bottom: 1px solid #d1d1d1; */
   height: 100%;
+  margin-left : 1px;
 }
 
 .list .item-2block .row .cell:first-child {
-  border-right: 1px solid #d1d1d1;
+/*   border-bottom: 1px solid #d1d1d1;  */
 }
 
 .list .item-2block .row .cell {
   display: table-cell;
   vertical-align: top;
-  width: 50%;
+  /* width: 50%; */
   height: 100px;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #d1d1d1; 
   overflow: hidden;
-  padding: 30px 20px;
+  padding: 20px 20px;
   position: relative;
 }
 
 .list .item-2block .row .cell .photo-profile {
-   width: 80px;
+   width: 120px;
+   padding-top : 5px;
+   color : #2e4b9b;
+   display:inline;
+   
 }
+
+.modal_body div .nickname {
+	/* display:inline;
+	float: right;
+    padding : 10px; */
+    font-size : 13px;
+    color : #787878;
+}
+
+.info {
+	margin-left : 10px;
+	margin-right: 10px;
+}
+
+.list .item-2block .row .cell .buttons {
+	/* display:inline;
+	float: right;
+    margin-left: 50px;	
+    margin-top : 5px;
+    font-size: 12px;
+    color : #787878; */
+    width: 120px;
+    font-size: 12px;
+    color : #787878;
+    padding-left: 30px;	
+    padding-top : 5px;
+}
+
+.modal_body div .buttons li {
+	padding-bottom : 10px;
+	cursor : pointer;
+}
+
+.modal_body div .buttons li i{
+	cursor : pointer;
+}
+
+.modal_body div .buttons li:hover {
+	color : #292929;
+	cursor : pointer;
+}
+
 
 .list .item-2block .row .cell>div {
    float: left;
@@ -1151,7 +1201,7 @@ margin-bottom: 105px;
  }
 
 .list .item-2block .row .cell .text {
-   width: 78%;
+   width: 70%;
    position: relative;
  }
 
@@ -1180,6 +1230,16 @@ margin-bottom: 105px;
   font-size : 12px;
   color: #2e4b9b;
   margin-left: 3px;
+  
+}
+
+.starM {
+  font-size: 11px;
+  display: table-cell;
+  padding-left: 23px;
+  padding-top : 5px;
+  text-align: left;
+  vertical-align: middle;
 }
 
 
@@ -1194,6 +1254,7 @@ margin-bottom: 105px;
 .list .item-2block .row .cell .text>p span {
   word-break: break-all;
 }
+
 
 /* Important styles */
 .toggle2 {
@@ -1260,7 +1321,7 @@ margin-bottom: 105px;
   /* just for this demo */
   opacity: 0;
   visibility: hidden;
-  transition: opacity .4s;To
+  transition: opacity .4s;
 }
 .menu:after {
   content: '';
