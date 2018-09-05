@@ -4,7 +4,7 @@
 
 <mapper namespace="movie"> <!--클래스명은 xml명과 똑같을 필요 없음-->
     
-     <!-- 쿼리문 작성 -->
+     <!-- 현재상영리스트 -->
      <select id="getTheaterList" resultType="nowpVo">
     	<![CDATA[
 			select  n.nowplayingno, 
@@ -25,13 +25,13 @@
 			where  n.movieno = m.movieno and n.roomno = tr.roomno and tr.theaterno = t.theaterno and t.brandno = b.brandno
 			and (n.playingtime - sysdate) *24*60*60 > 0 
 			and n.playingtime between to_date(concat(to_char(sysdate, 'yyyy-mm-dd'), '04:00:01'), 'yyyy-mm-dd hh24:mi:ss')
-			and to_date(concat(to_char(sysdate+7, 'yyyy-mm-dd'), '04:00:00'), 'yyyy-mm-dd hh24:mi:ss')
+			and to_date(concat(to_char(sysdate+1	, 'yyyy-mm-dd'), '04:00:00'), 'yyyy-mm-dd hh24:mi:ss')
 			and to_char(n.playingtime,'YYYY-MM-DD') = to_char(n.playingdate,'YYYY-MM-DD')
 			order by n.playingtime asc			
 	 ]]>	
     </select> 
 
-
+    <!-- 빠른예매 -->
     <select id="getQuickReserve" resultType="quickReserveVo">
 	<![CDATA[
 			select n.MOVIENO, n.ROOMNO, to_char(n.PLAYINGTIME,'HH24:MI') as playingtime, TO_CHAR(n.PLAYINGDATE, 'yyyy-mm-dd') as playingdate, m.KONAME, m.POSTER, m.grade, t.theatername, tr.SEATCOUNT, t.brandno, t.theatername
@@ -40,6 +40,7 @@
         ]]>
     </select>
 
+    <!-- 좌석정보 -->
     <select id="getIsSeat" resultType="seatVo">
 		<![CDATA[
 			select s.SEATNAME , s.ISSEAT
@@ -48,6 +49,7 @@
         ]]>
     </select>
     
+    <!-- 상세페이지 기본정보-->
     <select id="detailView" parameterType="int" resultType="detailVo">
     	<![CDATA[
 			select n.nowplayingno, 
@@ -84,6 +86,7 @@
         ]]>
     </select>
     
+    <!-- 스틸컷 -->
     <select id="detailStillcut" parameterType="int" resultType="detailVo">
     	<![CDATA[
 			select s.stillno, 
@@ -96,6 +99,7 @@
         ]]>
     </select>
     
+    <!-- 동영상 -->
     <select id="detailStillmovie" parameterType="int" resultType="detailVo">
     	<![CDATA[
     		select sm.stillmvno, 
@@ -109,12 +113,83 @@
     	]]>
     </select>
     
+    <!-- 리뷰 작성 가능자 판별 -->
     <select id="movieReview" parameterType="map" resultType="reviewVo">
        <![CDATA[
-    	   select t.nowplayingno, u.userno, n.movieno, m.koname
-           from ticket t ,(select userno from users where email=#{userEmail})u, nowplaying n, movie m
-           where  n.movieno=#{movieno} and t.nowplayingno = n.nowplayingno and n.movieno = m.movieno
+           select t.nowplayingno, 
+                  u.userno, 
+                  n.movieno, 
+                  m.koname,  
+                  (select count(*) from (select userno from users where email=#{userEmail})u, review r 
+                   where u.userno=r.userno and r.movieno = #{movieno}) as reviewnum,
+                  rownum
+		  from ticket t ,(select userno from users where email=#{userEmail})u, nowplaying n, movie m
+          where n.movieno=#{movieno} and t.nowplayingno = n.nowplayingno and n.movieno = m.movieno and t.userno = u.userno
+                and rownum = 1
        ]]>
     </select>
+    
+    <!-- 리뷰 등록 -->
+    <insert id="addReview" parameterType="reviewVo">
+      <selectKey keyProperty="reviewno" resultType="int" order="BEFORE">
+			select seq_review_no.nextval from dual
+	   </selectKey>
+
+       <![CDATA[    
+       		insert into review
+       		values(#{reviewno},
+       		       #{userno},
+       		       #{movieno},
+       		       #{content},
+       		       #{reviewstar},
+       		       sysdate
+       		       )
+       ]]>   
+    </insert>
+    
+    <!-- 방금 등록한 리뷰 불러오기 -->
+    <select id="selectReview" parameterType="int" resultType="reviewVo">
+      <![CDATA[ 
+          select reviewno,
+                 userno,
+                 movieno,
+                 content,
+                 reviewstar,
+                 (select username
+                  from users u where r.userno=u.userno) username,
+                  (select email
+                  from users u where r.userno=u.userno) email,
+                  to_char(r.addDate,'YYYY-MM-DD')as addDate
+          from review r
+          where r.reviewno = #{reviewno}
+          order by addDate desc
+       ]]> 
+    </select>
+    
+    <!-- 리뷰리스트 불러오기 -->
+    <select id="ReviewList" parameterType="int" resultType="reviewVo">
+      <![CDATA[  
+          select u.username, 
+          		 u.email,
+          		 r.reviewno, 
+          		 r.userno, 
+          		 r.movieno, 
+          		 r.content, 
+          		 r.reviewstar, 
+          		 to_char(r.addDate,'YYYY-MM-DD')as addDate
+          from users u, review r
+          where r.movieno=#{movieno} and r.userno = u.userno
+          order by r.addDate desc
+      ]]> 
+    </select>
+    
+    <!-- 리뷰삭제 -->
+    <delete id="ReviewDel" parameterType="int">
+     <![CDATA[  
+     	 delete 
+     	 from review
+     	 where reviewno = #{reviewno}
+     ]]> 
+    </delete>
    
 </mapper>

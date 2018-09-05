@@ -31,7 +31,7 @@
 				</li>						
 			</c:if>
 			<c:if test="${sessionScope.authUser != null}">
-			<input type="hidden" value="${authUser.email}" id="userEamil">
+			<input type="hidden" value="${authUser.email}" id="userEamil"> <!-- userEmail 확인 -->
 				<li class="myinfo2">
 					<a href="javascript:void(0)" class="dropbtn"><i class="fas fa-user"></i>
 						&nbsp;&nbsp;${authUser.username}님&nbsp;&nbsp;<i class="fas fa-angle-down"></i>
