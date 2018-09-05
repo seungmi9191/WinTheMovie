@@ -44,7 +44,7 @@
 		<![CDATA[
 			select s.SEATNAME , s.ISSEAT
 			from seat s
-			where #{nowplayingno}=s.NOWPALYINGNO
+			where #{nowplayingno}=s.NOWPLAYINGNO
         ]]>
     </select>
 </mapper>

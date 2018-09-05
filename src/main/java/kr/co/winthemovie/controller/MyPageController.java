@@ -17,7 +17,7 @@ public class MyPageController {
 	// 예매내역 페이지
 	@RequestMapping(value = "/myticket", method = RequestMethod.GET)
 	public String myticketform() {
-		return "user/";
+		return "user/myTicket";
 	}
 
 	// 1:1 문의 페이지

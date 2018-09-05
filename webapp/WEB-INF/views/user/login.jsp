@@ -221,6 +221,7 @@
             }
         })
     }
+
     <%-- kakao로 로그인  --%>
     function login(email) {
         console.log("login 함수" + email);
@@ -238,5 +239,6 @@
             }
         })
     }
+
 </script>
 </html>

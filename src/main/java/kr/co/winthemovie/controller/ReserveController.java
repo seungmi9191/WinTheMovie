@@ -5,8 +5,7 @@ import java.util.List;
 
 
 import com.sun.xml.internal.bind.v2.model.annotation.Quick;
-import kr.co.winthemovie.vo.QuickReserveVo;
-import kr.co.winthemovie.vo.SeatVo;
+import kr.co.winthemovie.vo.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kr.co.winthemovie.service.ReserveService;
 import kr.co.winthemovie.service.TheaterService;
 import kr.co.winthemovie.vo.QuickReserveVo;
-import kr.co.winthemovie.vo.TheaterVo;
+
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/movie")
@@ -59,23 +59,23 @@ public class ReserveController {
 		}
 		return list;
 	}
-	
-	    @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
-	    public String reserve_final(Model model, int nowplayingno) {
-
 
     @RequestMapping(value = "/reserve_quick", method = {RequestMethod.GET, RequestMethod.POST})
     public String reserve_final(Model model, int nowplayingno) {
 
+		UserVo authUser = new UserVo();
         QuickReserveVo quickreservevo = reserve_service.getQuickReserve(nowplayingno);
         List<SeatVo> seatVoList = reserve_service.getIsSeat(nowplayingno);
+
         model.addAttribute("quickreservevo", quickreservevo);
         model.addAttribute("seatVo", seatVoList);
 
 		ArrayList<SeatVo> seatVoArrayList = (ArrayList<SeatVo>) reserve_service.getIsSeat(nowplayingno);
 		model.addAttribute("seatVoArrayList",seatVoArrayList);
+		model.addAttribute("nowplayingno",nowplayingno);
 
 		return "movie/reserve_final";
-	    }
+
+	}
 
 }

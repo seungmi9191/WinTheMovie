@@ -37,7 +37,8 @@ ul {
 }
 
 .cs-1depth {
-	margin-bottom: 40px;
+	margin-bottom: 70px;
+	width: 100%;
 }
 
 .cs-1depth li:first-child {
@@ -57,7 +58,7 @@ ul {
 
 .cs-1depth li {
 	float: left;
-	width: 25%;
+	width: 33.333%;
 	text-align: center;
 	border: 1px solid #e5e5e5;
 	margin-left: -1px;

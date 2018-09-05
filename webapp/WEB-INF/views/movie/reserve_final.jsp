@@ -1,3 +1,4 @@
+<%@ page import="kr.co.winthemovie.vo.UserVo" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -99,32 +100,32 @@
                                            alt=""></div>
                     <div class="row2">
 
-                            <c:choose>
-                                <c:when test="${quickreservevo.grade==1}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-4.png">
-                                    </div>
-                                </c:when>
-                                <c:when test="${quickreservevo.grade==12}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-1.png">
-                                    </div>
-                                </c:when>
-                                <c:when test="${quickreservevo.grade==15}">
-                                    <div class="age"><img
-                                            src='${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-2.png'>
-                                    </div>
-                                </c:when>
-                                <c:when test="${quickreservevo.grade==19}">
-                                    <div class="age"><img
-                                            src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-3.png">
-                                    </div>
-                                </c:when>
-                            </c:choose>
+                        <c:choose>
+                            <c:when test="${quickreservevo.grade==1}">
+                                <div class="age"><img
+                                        src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-4.png">
+                                </div>
+                            </c:when>
+                            <c:when test="${quickreservevo.grade==12}">
+                                <div class="age"><img
+                                        src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-1.png">
+                                </div>
+                            </c:when>
+                            <c:when test="${quickreservevo.grade==15}">
+                                <div class="age"><img
+                                        src='${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-2.png'>
+                                </div>
+                            </c:when>
+                            <c:when test="${quickreservevo.grade==19}">
+                                <div class="age"><img
+                                        src="${pageContext.request.contextPath}/assets/img/grade/KakaoTalk_Photo_2018-07-31-11-26-18-3.png">
+                                </div>
+                            </c:when>
+                        </c:choose>
 
                         <div class="booking-movie-title">
 
-                            <h4 class="movieTitle">${quickreservevo.koname}</h4>
+                            <h4 class="movieTitle">${quickreservevo.koname}${authUser.username}${sessionScope.authUser.userno}</h4>
                         </div>
                         <div class="booking-movie-content">
                             <table style="width:240px;">
@@ -147,24 +148,22 @@
 
                         <div class="pay-btn">
                             <button type="button" class="btn-close">취소</button>
-                            <button type="button" class="btn-next" onclick="payment()">결제하기</button>
-                            <input type="hidden" id="countMembers"/>
-                            <input type="hidden" id="tickets"/>
+                                <button type="button" class="btn-next" onclick="return payment();">결제하기</button>
+                                <input type="hidden" id="countMembers"/>
+                                <input type="hidden" id="tickets"/>
+                                <input type="hidden" id="userno" value="${authUser.userno}"/>
+                                <input type="hidden" id="nowplayingno" value="${nowplayingno}"/>
                         </div>
 
                     </div>
                 </div>
-                <!--  <button type="button" class="popup-close">
-                   <img src="../assets/img/icon/modal-x-mark.png"> 버튼 이미지
-                   <span class="blind">닫기</span>
-                 </button> -->
+
             </div>
         </div>
     </div>
 </div>
 <script type="text/javascript">
-    // var $cols = $('input[name=cols]'),
-    //     $rows = $('input[name=rows]'),
+
     var $result = $('.result'),
         $seat = $('.seat-box .seat'),
         $colsHead = $('.seat-box .colsHead'),
@@ -179,21 +178,12 @@
     var dayOfWeek = week[new Date(${quickreservevo.playingdate}).getDay()];
     var playingdate = '${quickreservevo.playingdate}' + "(" + dayOfWeek + ")" + ' &nbsp; &nbsp;${quickreservevo.playingtime}';
 
-
-    <%--for(var i =0; i<${seatVo.};i++){--%>
-    <%--var isSeat= ${seatVo[i].isSeat};--%>
-    <%--}--%>
-
     $(".playingdate").html(playingdate);
 
     var updateView = function () {
 
         var makeTag = '';
         console.log(colsNum, rowsNum);
-
-        <%--for(var i=0,isSeat=[]; i<seatVoSize;i++){--%>
-        <%--var isSeat[i] = ${seatVo[i].isSeat};--%>
-        <%--}--%>
 
         for (var i = 1, leng = colsNum * rowsNum; i <= leng; i++) {     // 좌석 li 태그로 그리기
 
@@ -222,20 +212,11 @@
                 if (isSeatList != 1) {
                     $('.chairs').eq(i).toggleClass('booked');
                 } else {
-                    console.log("its booked!");
                 }
             }
         })
 
         $seat.html(makeTag);
-
-        // $('.chairs').toggleClass('booked')
-
-        // for (makeTag = '', i = 1, leng = colsNum; i <= leng; i++) {  //좌석 col name header(ex 1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
-        //     makeTag += '<li>' + i + '</li>';
-        // }
-        // $colsHead.html(makeTag);
-
 
         for (rowlist = '', i = 65, leng = 65 + rowsNum; i < leng; i++) {   //좌석 row name header(ex A, B, C, D, E, F, G, ..)
             rowlist += "<li class='rowList'>" + String.fromCharCode(i) + "</li>";
@@ -249,14 +230,13 @@
     $seat.on('click', 'li', function () {
 
 
-
         var $this = $(this),
             index = $this.index(),
             count = $('.selectedM').data('count');
 
         console.log($this.attr('class'))
 
-        if($this.hasClass('booked')){
+        if ($this.hasClass('booked')) {
             return false;
         }
 
@@ -442,16 +422,40 @@
         }
     }
 
+
     function payment() {
+        var userno = $("#userno").val();
+        var nowplayingno=$("#nowplayingno").val();
+
+        var chooseList = new Array();
+
+        for(var i=0; i<choose.length;i++){
+            chooseList[i]=choose[i];
+        }
+
+        jQuery.ajaxSettings.traditional = true;
+
         if (choose.length == selMemNum && selMemNum != 0) {
-            alert(selMemNum + choose.length + "선택한 좌석=" + choose + "결제가 완료되었습니다.");
-            location.href = "${pageContext.request.contextPath}/main"
+            if(confirm(choose.length + "선택한 좌석=" + choose + "선택하신 좌석이 맞습니까?.")==true){
+                $.ajax({
+                    url:"${pageContext.request.contextPath}/ticket/ticketing",
+                    type: "post",
+                    data: {chooseList: choose, userno: userno, nowplayingno:nowplayingno},
+                    dataType: "json",
+                    success: function (result) {
+                        alert(userno + "님" + selMemNum + choose.length + "선택한 좌석=" + choose + "결제가 완료되었습니다.");
+                        location.href = "${pageContext.request.contextPath}/main";
+
+                    },error:function (XHR, status, error) {
+                        console.error(status+" 123: "+ error)
+                    }
+                })
+            }
         } else {
-            alert("예매 인원 수를 다시 확인해주세요.")
+            alert("예매 인원 수를 다시 확인해주세요.");
             return false;
         }
     }
-
 </script>
 <c:import url="/WEB-INF/views/include/footer.jsp"></c:import>
 </body>

@@ -522,12 +522,12 @@ button.slick-prev:hover {
 }
 
 .inner-poster {
-	width: 168px;
-	height: 100%;
-	float: left;
-	margin-right: 4px;
-	background-color: black;
-}
+	 width: 168px;
+	 height: 100%;
+	 float: left;
+	 margin-right: 4px;
+	 background-color: black;
+ }
 
 .inner-poster img {
 	width: 168px;
